@@ -19,10 +19,10 @@ class App extends Component {
           { Routes }
         </main>
         <h1>NEW</h1>
-        {/* <Footer currentPath={ this.props.history.location.pathname }/> */}
+        <Footer currentPath={ this.props.history.location.pathname }/>
       </div>
     )
   }
 }
 
-export default App
+export default withRouter(App)
