@@ -18,7 +18,6 @@ class App extends Component {
         <main>
           { Routes }
         </main>
-        <h1>NEW</h1>
         <Footer currentPath={ this.props.history.location.pathname }/>
       </div>
     )

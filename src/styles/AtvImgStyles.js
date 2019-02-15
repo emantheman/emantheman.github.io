@@ -57,7 +57,7 @@ const styles = {
     width: '90%',
     height: '90%',
     transition: 'all 0.2s ease-out',
-    boxShadow: '0 8px 30px rgba(14, 21, 47, 0.6)',
+    // boxShadow: '0 8px 30px rgba(14, 21, 47, 0.6)',
   },
 
   shine: {

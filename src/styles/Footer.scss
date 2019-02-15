@@ -1,5 +1,42 @@
 .wordmark {}
 
 .footer {
-  background-color: red;
+  background-color: rgba(255, 255, 255, 0);
+  height: 85px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 41%;
+}
+.footer::after{
+  background-color: rgb(237, 237, 237);
+  content: '';
+  display: block;
+  height: 229%;
+  width: 206%;
+  left: 0px;
+  position: absolute;
+  right: 0;
+  z-index: -1;
+  top: 100px;
+  -webkit-transform: skewY(9deg);
+  transform: skewY(9deg);
+  -webkit-transform-origin: 100% 0;
+  transform-origin: 100% 0;
+}
+.footer ul {
+  list-style-type: none;
+}
+.footer ul li {
+  float: left;
+}
+.footer ul li a {
+  color: rgb(41, 41, 41);
+  text-decoration: none;
+  font-size: 1.5em;
+  font-family: 'Raleway', sans-serif;
+}
+
+@media screen (max-width: 1433) {
+
 }

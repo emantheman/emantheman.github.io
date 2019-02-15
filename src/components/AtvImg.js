@@ -17,7 +17,7 @@ export default class AtvImg extends Component {
     isOnHover: false,
     container: {},
     shine: {},
-    layers: [],
+    layers: []
   };
 
   componentDidMount() {
