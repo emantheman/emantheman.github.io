@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Route, withRouter } from 'react-router-dom'
 import Footer from './components/Footer'
 import routes from './config/routes'
-import './styles/App.css'
+import './styles/App.scss'
 
 class App extends Component {
   render() {
