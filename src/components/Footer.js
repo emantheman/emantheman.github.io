@@ -21,8 +21,7 @@ const Footer = props => {
 
   return (
     <React.Fragment>
-      <h1 className="wordmark">Emmanuel Price</h1>
-      <nav className="footer">
+      <nav className="Footer">
         <ul>
           { Links }
         </ul>
