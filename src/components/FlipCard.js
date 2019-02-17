@@ -20,16 +20,11 @@ export default class FlipCard extends Component {
        card,
        width,
        height,
-       flipped,
-       isStatic: true
+       flipped
     }
   }
   
   render() {
-    // destructure state
-    const {
-      isStatic
-    } = this.state
     // destructure props
     const {
       card,
@@ -37,7 +32,7 @@ export default class FlipCard extends Component {
       width,
       height
     } = this.props
-    
+
     // set undefined styles to {}
     card.back.style = card.back.style || {}
     card.front.style = card.front.style || {}
@@ -47,6 +42,11 @@ export default class FlipCard extends Component {
     card.front.style.width = width
     card.front.style.height = height
 
+    if (flipped) {
+      card.front.style.display = 'none'
+    } else {
+      card.back.style.display = 'none'
+    }
 
 
     return (
@@ -56,13 +56,13 @@ export default class FlipCard extends Component {
             className="front"
             layers={ card.front.layers }
             staticFallback={ card.front.staticFallback }
-            isStatic={ isStatic }
+            isStatic={ false }
             style={ card.front.style }/>
           <AtvImg
             className="back"
             layers={ card.back.layers }
             staticFallback={ card.back.staticFallback }
-            isStatic={ isStatic }
+            isStatic={ false }
             style={ card.back.style }/>
         </div>
       </div>

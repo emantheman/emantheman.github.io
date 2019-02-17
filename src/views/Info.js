@@ -10,7 +10,7 @@ class Info extends Component {
 
   render() {
     return (
-      <div></div>
+      <div>oyeH</div>
     )
   }
 }
