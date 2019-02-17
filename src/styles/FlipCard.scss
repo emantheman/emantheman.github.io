@@ -23,7 +23,10 @@
       transform: rotateY(180deg);
     }
   }
-  &:hover .inner {
+  // &:hover .inner {
+  //   transform: rotateY(180deg);
+  // }
+  .inner.flipped {
     transform: rotateY(180deg);
   }
 }
