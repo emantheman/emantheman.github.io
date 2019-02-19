@@ -9,7 +9,7 @@ const Footer = ({ currentPath }) => {
   const Links = routes.map((route, index) => {
     const { path, linkText } = route
     return (
-      <li style={{ margin: '5px' }} key={ index }>
+      <li key={ index }>
         <Link key={ index }
               to={ path }
               className={ currentPath === path ? 'current' : undefined }>

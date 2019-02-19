@@ -10,19 +10,15 @@ class App extends Component {
   
     this.state = {}
   }
-
-  flipOverCard = yOrN => this.setState({ cardFlipped: yOrN })
   
   render() {
-    const {
-      history
-    } = this.props
+    const { history } = this.props
 
     const Routes = routes.map((route, index) => {
       const { path, view: View } = route
       return <Route key={ index }
                     exact path={ path }
-                    render={ () => <View flipOverCard={ this.flipOverCard }/> }/>
+                    render={ () => <View/> }/>
     })
 
     return (

@@ -4,8 +4,7 @@ $small: "(min-width: 320px) and (max-width: 767px)";
 $medium: "(min-width: 768px) and (max-width: 1023px)";
 $large: "(min-width: 1024px)";
 // measurements
-$lg_tilt: 3.3deg;
-$link_hover_scale: 1.2;
+$link_hover_scale: 1.1;
 // colors
 $nav_link_color: rgba(27, 32, 52, 0.728);
 
@@ -14,16 +13,20 @@ $nav_link_color: rgba(27, 32, 52, 0.728);
 }
 
 .Footer {
-  background-color: #e9e9e9;
-  height: 118px;
-  width: 108%;
+  background-color: #e9e9e900;
+  height: 62px;
+  width: 100%;
   position: fixed;
-  left: -11px;
-  bottom: -54px;
+  left: 0;
+  bottom: 0;
   ul {
     list-style-type: none;
+    text-align: center;
+    padding: 0;
+    width: 100%;
     li {
-      float: left;
+      display: inline-block;
+      margin: 0 12px;
       transition: all .2s ease-in-out;
       &:hover {
         -webkit-transform: scale($link_hover_scale);
