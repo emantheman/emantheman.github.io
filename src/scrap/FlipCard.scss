@@ -17,10 +17,8 @@
       backface-visibility: hidden;
     }
     .front {
-      z-index: 2;
     }
     .back {
-      z-index: -1;
       transform: rotateY(180deg);
     }
   }

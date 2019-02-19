@@ -1,27 +1,14 @@
 import React, { Component } from 'react'
 import AtvImg from './AtvImg'
-import '../styles/FlipCard.scss'
+import './FlipCard.scss'
 // '../../public/images/redtree.png',
 // '../../public/images/sun_zealot.png'
 
 export default class FlipCard extends Component {
   constructor(props) {
     super(props)
-
-    // destructure props
-    const {
-      card,
-      height,
-      width,
-      flipped
-    } = props
   
-    this.state = {
-       card,
-       width,
-       height,
-       flipped
-    }
+    this.state = {}
   }
   
   render() {

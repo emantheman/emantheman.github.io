@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
+import AtvImg from '../components/AtvImg'
 
 class Info extends Component {
-  componentDidMount() {
-    this.props.flipOverCard(true)
-  }
-  componentWillUnmount() {
-    this.props.flipOverCard(false)
-  }
-
   render() {
     return (
-      <div>oyeH</div>
+      <AtvImg
+        layers={[
+          'http://kloc.pm/images/back.png',
+          'http://kloc.pm/images/front.png',
+        ]}
+        staticFallback={ 'http://kloc.pm/images/kloc-icon-flattened.jpg' }
+        isStatic={ false }
+        style={{ width: 480, height: 285 }}/>
     )
   }
 }
