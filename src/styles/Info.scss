@@ -1,14 +1,21 @@
 .Info {
+  font-family: 'Roboto Slab', serif;
+  margin: 140px auto;
+  width: 65%;
   opacity: 1;
 	animation-name: fadeInOpacity;
 	animation-iteration-count: 1;
 	animation-timing-function: ease-in;
   animation-duration: 1s;
-  width: 85%;
-  margin: 50px auto;
   h1 {
-    font-family: 'Roboto Slab', serif;
     font-weight: 500;
+  }
+  p {
+    font-size: 1.1em;
+  }
+  h6 {
+    margin-top: 7em;
+    text-align: center;
   }
 }
 
