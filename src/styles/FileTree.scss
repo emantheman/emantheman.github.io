@@ -1,0 +1,42 @@
+.FileTree {
+  // Toggles tree
+  background: lightblue;
+  .toggle {
+    position: relative;
+    &::before,
+    &::after {
+      content: '';
+      cursor: pointer;
+      display: block;
+      position: absolute;
+      top: 50%;
+      right: -22px;
+      width: 14px;
+      height: 2px;
+      margin-top: -2px;
+      background-color: #000;
+      -webkit-transform-origin: 50% 50%;
+      -ms-transform-origin: 50% 50%;
+      transform-origin: 50% 50%;
+      -webkit-transition: all 0.25s;
+      transition: all 0.25s;
+    }
+    &::before {
+      -webkit-transform: rotate(-270deg);
+      -ms-transform: rotate(-270deg);
+      transform: rotate(-270deg);
+      opacity: 0;
+    }
+    &.collapsed::before {
+      -webkit-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+      transform: rotate(0deg);
+      opacity: 1;
+    }
+    &.collapsed::after {
+      -webkit-transform: rotate(-90deg);
+      -ms-transform: rotate(-90deg);
+      transform: rotate(-90deg);
+    }
+  }
+}

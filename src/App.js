@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Route, withRouter } from 'react-router-dom'
 import Footer from './components/Footer'
+import FileTree from './components/FileTree'
 import routes from './config/routes'
 import './styles/App.scss'
 
@@ -23,6 +24,7 @@ class App extends Component {
 
     return (
       <div className="App">
+        <FileTree />
         <main>
           { Routes }
         </main>
