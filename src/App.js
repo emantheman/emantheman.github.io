@@ -22,9 +22,30 @@ class App extends Component {
                     render={ () => <View/> }/>
     })
 
+    const branches = {
+      name: 'Food',
+      descendants: [{
+        name: 'Fruit',
+        descendants: [{
+          name: 'Red',
+          descendants: [{name: 'Apple'}, {name: 'Strawberry'}, {name: 'Raspberry'}]
+        }, {
+          name: 'Yellow',
+          descendants: [{
+            name: 'Banana'
+          }, {
+            name: 'Pineapple'
+          }]
+        }]
+      }, {
+        name: 'Meat',
+        descendants: [{name: 'Beef'}, {name: 'Pork'}, {name: 'Chicken'}]
+      }]
+    }
+
     return (
       <div className="App">
-        <FileTree />
+        <FileTree branches={branches}/>
         <main>
           { Routes }
         </main>

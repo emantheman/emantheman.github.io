@@ -1,79 +1,87 @@
 .FileTree {
   position: absolute;
-  left: 0;
-  top: 0;
-  .toggle-container {
-    // Widens click area
-    cursor: pointer;
-    background: lightblue;
-    width: 31px;
-    height: 30px;
-    // Toggles tree
-    .toggle {
-      position: relative;
-      left: 0;
-      top: 16px;
-      &::before, &::after {
-        content: '';
-        display: block;
-        position: absolute;
-        top: 50%;
-        right: -22px;
-        width: 14px;
-        height: 2px;
-        margin-top: -2px;
-        background-color: #000;
-        -webkit-transform-origin: 50% 50%;
-        -ms-transform-origin: 50% 50%;
-        transform-origin: 50% 50%;
-        -webkit-transition: all 0.25s;
-        transition: all 0.25s;
-      }
-      &::before {
-        -webkit-transform: rotate(-270deg);
-        -ms-transform: rotate(-270deg);
-        transform: rotate(-270deg);
-        opacity: 0;
-      }
-      &.collapsed::before {
-        -webkit-transform: rotate(0deg);
-        -ms-transform: rotate(0deg);
-        transform: rotate(0deg);
-        opacity: 1;
-      }
-      &.collapsed::after {
-        -webkit-transform: rotate(-90deg);
-        -ms-transform: rotate(-90deg);
-        transform: rotate(-90deg);
-      }
-    }
+  left: 6px;
+  top: 6px;
+  opacity: .5;
+  &:hover {
+    opacity: 1;
   }
-  // Styles "branches"
-  .branches {
-    position: relative;
+  // timer
+  .timer {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 8px;
+  }
+  // Styles "tree"
+  .tree {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    // Styles unordered lists
     ul {
       list-style: none;
-      padding-left: 32px;
-      & > li:last-child::after {
-        height: 8px;
+      margin: 0;
+      padding: 0;
+      margin-left: 1.0em;
+    }
+    // Styles branches
+    li {
+      margin-left: 0.35em;
+      border-left: thin solid #000;
+      &:last-child {
+        border-left: none;
       }
-      li {
+      &::before {
+        width: 0.9em;
+        height: 0.6em;
+        margin-right: 0.1em;
+        vertical-align: top;
+        border-bottom: thin solid #000;
+        content: "";
+        display: inline-block;
+      }
+      &:last-child:before {
+        border-left: thin solid #000;
+      }
+    }
+    // Styles toggle button
+    span {
+      cursor: pointer;
+      .toggle {
+        position: relative;
         &::before, &::after {
-          content: "";
+          content: '';
+          display: block;
           position: absolute;
-          left: -12px;
+          top: 55%;
+          right: -13px;
+          width: 8px;
+          height: 2px;
+          margin-top: -1px;
+          background-color: #000;
+          -webkit-transform-origin: 50% 50%;
+          -ms-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
+          -webkit-transition: all 0.25s;
+          transition: all 0.25s;
         }
         &::before {
-          border-top: 1px solid #000;
-          top: 9px;
-          width: 8px;
-          height: 0;
+          -webkit-transform: rotate(-270deg);
+          -ms-transform: rotate(-270deg);
+          transform: rotate(-270deg);
+          opacity: 0;
         }
-        &::after {
-          border-left: 1px solid #000;
-          height: 100%;
-          width: 0px;
-          top: 2px;
+        &.collapsed::before {
+          -webkit-transform: rotate(0deg);
+          -ms-transform: rotate(0deg);
+          transform: rotate(0deg);
+          opacity: 1;
+        }
+        &.collapsed::after {
+          -webkit-transform: rotate(-90deg);
+          -ms-transform: rotate(-90deg);
+          transform: rotate(-90deg);
         }
       }
     }
