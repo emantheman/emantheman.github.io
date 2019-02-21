@@ -57,10 +57,10 @@ export default class Node extends Component {
             onClick={this.toggleChildren}>
             <span className={'toggle ' + (!open ? 'collapsed' : '')}/>
           </div>}
+          <ul>
+            {open && Branches}
+          </ul>
         </span>
-        <ul>
-          {open && Branches}
-        </ul>
       </li>
     )
   }

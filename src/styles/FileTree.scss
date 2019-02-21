@@ -1,8 +1,8 @@
 .FileTree {
   font-family: 'Roboto Slab', serif;
-  position: absolute;
-  left: 6px;
-  top: 6px;
+  position: sticky;
+  margin-left: 8px;
+  top: 7px;
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
   -khtml-user-select: none; /* Konqueror HTML */
@@ -63,6 +63,10 @@
         top: 2px;
         &.clicked {
           background: #f2f2f2;
+          box-shadow: inset 0px 0px 2px 1px #80808052;
+        }
+        &:hover {
+          background: #b2b4c32e;
         }
         .toggle {
           position: relative;
