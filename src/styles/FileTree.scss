@@ -67,22 +67,24 @@
         right: -4px;
         top: 2px;
         // box-style on hover
-        &.hovered {
+        &.hover {
           background: #b2b4c32e;
         }
         // box-style on active link
-        &.clicked:active, &:active {
-          box-shadow: inset 0px 0px 2px 3px rgba(128, 128, 128, 0.337);
-        }
-        // box-style on click
-        &.clicked, &.clicked.hovered {
-          background: #f2f2f2;
+        &.active {
           box-shadow: inset 0px 0px 2px 1px #80808052;
         }
-        // // box-style on hover AND click
-        // &.hovered, &.hover.clicked {
-
-        // }
+        // box-style on click
+        &.open {
+          background: #f2f2f2;
+          box-shadow: inset 0px 0px 2px 3px rgba(128, 128, 128, 0.337);
+          &.hover {
+            box-shadow: inset 0px 0px 2px 3px rgba(164, 164, 164, 0.337);
+            &.active {
+              box-shadow: inset 0px 0px 3px 3px rgba(103, 103, 103, 0.337);          
+            }
+          }
+        }
         // Plus / minus
         .toggle {
           position: relative;

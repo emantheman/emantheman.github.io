@@ -7,7 +7,8 @@ export default class Node extends Component {
   
     this.state = {
        open: false,
-       hover: false
+       hover: false,
+       active: false
     }
   }
 
@@ -18,7 +19,7 @@ export default class Node extends Component {
   }
   render() {
     // destructure
-    const { open, hover } = this.state
+    const { open, hover, active } = this.state
     let { descendants: children, name, depth, link, currentPath } = this.props
 
     // set defaults
@@ -44,7 +45,9 @@ export default class Node extends Component {
             <span
               onClick={ this.toggleChildren }
               onMouseEnter={ () => this.setState({ hover: true }) }
-              onMouseOut={ () => this.setState({ hover: false }) }>
+              onMouseOut={ () => this.setState({ hover: false }) }
+              onMouseDown={ () => this.setState({ active: true }) }
+              onMouseUp={ () => this.setState({ active: false }) }>
               { name }
             </span> : link.type === 'anchor' ?
             <a 
@@ -57,11 +60,13 @@ export default class Node extends Component {
               onClick={ this.toggleChildren }
               onMouseEnter={ () => this.setState({ hover: true }) }
               onMouseOut={ () => this.setState({ hover: false }) }
+              onMouseDown={ () => this.setState({ active: true }) }
+              onMouseUp={ () => this.setState({ active: false }) }
               className={ currentPath === link.url ? 'current' : '' }>
               { name }
             </Link>}
           {children.length > 0 && 
-          <div className={ 'toggle-container ' + (open ? 'clicked ' : '') + (hover ? 'hovered' : '') }>
+          <div className={ 'toggle-container ' + (open ? 'open ' : '') + (hover ? 'hover ' : '') + (active ? 'active' : '') }>
             <span className={ 'toggle ' + (!open ? 'collapsed' : '') }/>
           </div>}
           <ul>
