@@ -1,4 +1,5 @@
 .FileTree {
+  // default
   font-family: 'Roboto Slab', serif;
   position: fixed;
   z-index: 1;
@@ -10,29 +11,32 @@
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
-  // Styles "tree"
+  // tree
   .tree {
     list-style: none;
     margin: 0;
     padding: 0;
-    // Styles unordered lists
+    // unordered lists
     ul {
       list-style: none;
       margin: 0;
       padding: 0;
       margin-left: 1.0em;
     }
+    // links
     a {
       text-decoration: none;
       color: black;
+      // links on hover
       &:hover {
         color: blue;
       }
+      // currently selected link
       &.current {
         font-style: oblique;
       }
     }
-    // Styles branches
+    // lists and their branches
     li {
       margin-left: 0.35em;
       border-left: thin solid #000;
@@ -52,8 +56,9 @@
         border-left: thin solid #000;
       }
     }
-    // Styles toggle button
+    // Children toggle button
     span {
+      // Box that holds plus
       .toggle-container {
         cursor: pointer;
         display: inline-block;
@@ -62,13 +67,20 @@
         position: relative;
         right: -4px;
         top: 2px;
+        // box-style on hover
+        &:hover {
+          background: #b2b4c32e;
+        }
+        // box-style on active link
+        &:active {
+          box-shadow: inset 0px 0px 2px 3px rgba(128, 128, 128, 0.337);
+        }
+        // box-style on click
         &.clicked {
           background: #f2f2f2;
           box-shadow: inset 0px 0px 2px 1px #80808052;
         }
-        &:hover {
-          background: #b2b4c32e;
-        }
+        // Plus / minus
         .toggle {
           position: relative;
           &::before, &::after {
