@@ -6,18 +6,34 @@ const branches = {
   },
   descendants: [{
     name: 'code',
+    link: {
+      type: 'link',
+      url: '/code'
+    },
     descendants: [{
       name: 'projects',
       link: {
         type: 'link',
-        url: '/projects'
+        url: '/code/projects'
       },
       descendants: [{
-        name: 'Concatenate'
+        name: 'Concatenate',
+        link: {
+          type: 'link',
+          url: '/code/projects/concatenate'
+        }
       }, {
-        name: 'Kigo'
+        name: 'Kigo',
+        link: {
+          type: 'link',
+          url: '/code/projects/kigo'
+        }
       }, {
-        name: 'Life'
+        name: 'Game of Life',
+        link: {
+          type: 'link',
+          url: '/projects/gameoflife'
+        }
       }]
     }]
   }, {
@@ -51,7 +67,7 @@ const branches = {
       name: 'inspiration',
       link: {
         type: 'link',
-        url: '/inspiration'
+        url: '/info/inspiration'
       }
     }]
   }]

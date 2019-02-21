@@ -16,6 +16,7 @@ export default class Node extends Component {
     }
   }
   render() {
+    // destructure
     const { open } = this.state
     let { descendants: children, name, depth, link, currentPath } = this.props
 
@@ -25,40 +26,40 @@ export default class Node extends Component {
     children = children || []
 
     // render children
-    const Branches = children.map(({name: childName, link, descendants: grandChildren}, index) => (
+    const Branches = children.map(({ name: childName, link, descendants: grandChildren }, index) => (
       <Node
-        key={index}
-        name={childName}
-        link={link}
-        descendants={grandChildren || []}
-        currentPath={currentPath}
-        depth={depth + 1}/>
+        key={ index }
+        name={ childName }
+        link={ link }
+        descendants={ grandChildren || [] }
+        currentPath={ currentPath }
+        depth={ depth + 1 }/>
     ))
 
     return (
-      <li className={depth === 0 ? 'tree' : ''}>
+      <li className={ depth === 0 ? 'tree' : '' }>
         <span>
           {link === undefined ?
             name : link.type === 'anchor' ?
             <a 
-              href={link.url}
+              href={ link.url }
               target="_blank"
-              rel="noopener noreferrer">{name}
+              rel="noopener noreferrer">{ name }
             </a> :  
             <Link
-              to={link.url}
-              onClick={() => this.setState({ open: false })}
+              to={ link.url }
+              onClick={ () => this.setState({ open: false }) }
               className={ currentPath === link.url ? 'current' : '' }>
-              {name}
+              { name }
             </Link>}
           {children.length > 0 && 
           <div
-            className={'toggle-container ' + (open ? 'clicked' : '')} 
-            onClick={this.toggleChildren}>
-            <span className={'toggle ' + (!open ? 'collapsed' : '')}/>
+            className={ 'toggle-container ' + (open ? 'clicked' : '') } 
+            onClick={ this.toggleChildren }>
+            <span className={ 'toggle ' + (!open ? 'collapsed' : '') }/>
           </div>}
           <ul>
-            {open && Branches}
+            { open && Branches }
           </ul>
         </span>
       </li>

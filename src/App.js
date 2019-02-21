@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import { Route, withRouter } from 'react-router-dom'
-import Footer from './components/Footer'
+
 import FileTree from './components/FileTree'
+import Path from './components/Path'
+
 import routes from './config/routes'
-import branches from './config/treeSchema'
+import branches from './config/schema'
+
 import './styles/App.scss'
 
 class App extends Component {
@@ -26,8 +29,9 @@ class App extends Component {
     return (
       <div className="App">
         <FileTree
-          branches={branches}
+          branches={ branches }
           currentPath={ history.location.pathname }/>
+        <Path path={ history.location.pathname }/>
         <main>
           { Routes }
         </main>

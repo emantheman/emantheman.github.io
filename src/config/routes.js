@@ -3,12 +3,10 @@ import Info from '../views/Info'
 
 const routes = [{
   view: Info,
-  path: '/info',
-  linkText: 'info'
+  path: '/info'
 }, {
   view: Home,
-  path: '/',
-  linkText: 'home'
+  path: '/'
 }]
 
 export default routes

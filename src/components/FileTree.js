@@ -14,10 +14,10 @@ export default class FileTree extends Component {
     return (
       <div className="FileTree">
         <Node
-          name={name}
-          link={link}
-          descendants={descendants}
-          currentPath={currentPath}/>
+          name={ name }
+          link={ link }
+          descendants={ descendants }
+          currentPath={ currentPath }/>
       </div>
     )
   }
