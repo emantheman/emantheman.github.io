@@ -3,6 +3,7 @@ import { Route, withRouter } from 'react-router-dom'
 import Footer from './components/Footer'
 import FileTree from './components/FileTree'
 import routes from './config/routes'
+import branches from './config/treeSchema'
 import './styles/App.scss'
 
 class App extends Component {
@@ -22,30 +23,11 @@ class App extends Component {
                     render={ () => <View/> }/>
     })
 
-    const branches = {
-      name: 'Food',
-      descendants: [{
-        name: 'Fruit',
-        descendants: [{
-          name: 'Red',
-          descendants: [{name: 'Apple'}, {name: 'Strawberry'}, {name: 'Raspberry'}]
-        }, {
-          name: 'Yellow',
-          descendants: [{
-            name: 'Banana'
-          }, {
-            name: 'Pineapple'
-          }]
-        }]
-      }, {
-        name: 'Meat',
-        descendants: [{name: 'Beef'}, {name: 'Pork'}, {name: 'Chicken'}]
-      }]
-    }
-
     return (
       <div className="App">
-        <FileTree branches={branches}/>
+        <FileTree
+          branches={branches}
+          currentPath={ history.location.pathname }/>
         <main>
           { Routes }
         </main>

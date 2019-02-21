@@ -1,18 +1,14 @@
 .FileTree {
+  font-family: 'Roboto Slab', serif;
   position: absolute;
   left: 6px;
   top: 6px;
-  opacity: .5;
-  &:hover {
-    opacity: 1;
-  }
-  // timer
-  .timer {
-    position: absolute;
-    right: 0;
-    top: 0;
-    font-size: 8px;
-  }
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
   // Styles "tree"
   .tree {
     list-style: none;
@@ -24,6 +20,16 @@
       margin: 0;
       padding: 0;
       margin-left: 1.0em;
+    }
+    a {
+      text-decoration: none;
+      color: black;
+      &:hover {
+        color: blue;
+      }
+      &.current {
+        font-style: oblique;
+      }
     }
     // Styles branches
     li {
@@ -47,41 +53,52 @@
     }
     // Styles toggle button
     span {
-      cursor: pointer;
-      .toggle {
+      .toggle-container {
+        cursor: pointer;
+        display: inline-block;
+        width: 15px;
+        height: 15px;
         position: relative;
-        &::before, &::after {
-          content: '';
-          display: block;
-          position: absolute;
-          top: 55%;
-          right: -13px;
-          width: 8px;
-          height: 2px;
-          margin-top: -1px;
-          background-color: #000;
-          -webkit-transform-origin: 50% 50%;
-          -ms-transform-origin: 50% 50%;
-          transform-origin: 50% 50%;
-          -webkit-transition: all 0.25s;
-          transition: all 0.25s;
+        right: -4px;
+        top: 2px;
+        &.clicked {
+          background: #f2f2f2;
         }
-        &::before {
-          -webkit-transform: rotate(-270deg);
-          -ms-transform: rotate(-270deg);
-          transform: rotate(-270deg);
-          opacity: 0;
-        }
-        &.collapsed::before {
-          -webkit-transform: rotate(0deg);
-          -ms-transform: rotate(0deg);
-          transform: rotate(0deg);
-          opacity: 1;
-        }
-        &.collapsed::after {
-          -webkit-transform: rotate(-90deg);
-          -ms-transform: rotate(-90deg);
-          transform: rotate(-90deg);
+        .toggle {
+          position: relative;
+          &::before, &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 8px;
+            right: -12px;
+            width: 8px;
+            height: 2px;
+            margin-top: -1px;
+            background-color: #000;
+            -webkit-transform-origin: 50% 50%;
+            -ms-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+            -webkit-transition: all 0.25s;
+            transition: all 0.25s;
+          }
+          &::before {
+            -webkit-transform: rotate(-270deg);
+            -ms-transform: rotate(-270deg);
+            transform: rotate(-270deg);
+            opacity: 0;
+          }
+          &.collapsed::before {
+            -webkit-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            transform: rotate(0deg);
+            opacity: 1;
+          }
+          &.collapsed::after {
+            -webkit-transform: rotate(-90deg);
+            -ms-transform: rotate(-90deg);
+            transform: rotate(-90deg);
+          }
         }
       }
     }

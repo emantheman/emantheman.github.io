@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 export default class Node extends Component {
   constructor(props) {
@@ -6,13 +7,6 @@ export default class Node extends Component {
   
     this.state = {
        open: false
-    }
-  }
-  
-  componentDidUpdate(prevProps) {
-    if (this.props.menuActive !== prevProps.menuActive &&
-        !this.props.menuActive) {
-      this.setState({ open: false })
     }
   }
 
@@ -23,7 +17,7 @@ export default class Node extends Component {
   }
   render() {
     const { open } = this.state
-    let { descendants: children, name, depth } = this.props
+    let { descendants: children, name, depth, link, currentPath } = this.props
 
     // set defaults
     depth = depth || 0
@@ -31,19 +25,38 @@ export default class Node extends Component {
     children = children || []
 
     // render children
-    const Branches = children.map(({name: childName, descendants: grandChildren}, index) => (
+    const Branches = children.map(({name: childName, link, descendants: grandChildren}, index) => (
       <Node
         key={index}
         name={childName}
+        link={link}
         descendants={grandChildren || []}
+        currentPath={currentPath}
         depth={depth + 1}/>
     ))
 
     return (
       <li className={depth === 0 ? 'tree' : ''}>
-        <span onClick={this.toggleChildren}>
-          {name}
-          {children.length > 0 && <span className={'toggle ' + (!open ? 'collapsed' : '')}/>}
+        <span>
+          {link === undefined ?
+            name : link.type === 'anchor' ?
+            <a 
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer">{name}
+            </a> :  
+            <Link
+              to={link.url}
+              onClick={() => this.setState({ open: false })}
+              className={ currentPath === link.url ? 'current' : '' }>
+              {name}
+            </Link>}
+          {children.length > 0 && 
+          <div
+            className={'toggle-container ' + (open ? 'clicked' : '')} 
+            onClick={this.toggleChildren}>
+            <span className={'toggle ' + (!open ? 'collapsed' : '')}/>
+          </div>}
         </span>
         <ul>
           {open && Branches}
