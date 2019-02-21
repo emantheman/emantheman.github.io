@@ -1,7 +1,8 @@
 .FileTree {
   font-family: 'Roboto Slab', serif;
-  position: sticky;
-  margin-left: 8px;
+  position: fixed;
+  z-index: 1;
+  left: 10px;
   top: 7px;
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
