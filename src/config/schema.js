@@ -32,7 +32,7 @@ const branches = {
         name: 'Game of Life',
         link: {
           type: 'link',
-          url: '/projects/gameoflife'
+          url: '/code/projects/life'
         }
       }]
     }]

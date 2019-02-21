@@ -6,7 +6,9 @@
   left: 50%;
   transform: translateX(-50%);
   // styling
-  background: #757272bf;
+  // background: #757272bf;
+  background: #474747;
+  cursor: default;
   font-weight: bold;
   color: white;
   padding: 3px 7px;
@@ -17,7 +19,8 @@
     color: white;
     text-decoration: none;
     &:hover {
-      color: rgb(252, 207, 248);
+      // color: rgb(252, 207, 248);
+      color: #fc80b1;
     }
   }
 }

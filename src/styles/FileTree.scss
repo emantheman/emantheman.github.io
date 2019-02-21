@@ -60,7 +60,6 @@
     span {
       // Box that holds plus
       .toggle-container {
-        cursor: pointer;
         display: inline-block;
         width: 15px;
         height: 15px;
@@ -68,7 +67,7 @@
         right: -4px;
         top: 2px;
         // box-style on hover
-        &:hover {
+        &.hovered {
           background: #b2b4c32e;
         }
         // box-style on active link
@@ -76,10 +75,14 @@
           box-shadow: inset 0px 0px 2px 3px rgba(128, 128, 128, 0.337);
         }
         // box-style on click
-        &.clicked {
+        &.clicked, &.clicked.hovered {
           background: #f2f2f2;
           box-shadow: inset 0px 0px 2px 1px #80808052;
         }
+        // // box-style on hover AND click
+        // &.hovered, &.hover.clicked {
+
+        // }
         // Plus / minus
         .toggle {
           position: relative;
