@@ -17,22 +17,22 @@ const branches = {
         url: '/code/projects'
       },
       descendants: [{
-        name: 'Concatenate',
+        name: 'concat',
         link: {
           type: 'link',
           url: '/code/projects/concatenate'
         }
       }, {
-        name: 'Kigo',
+        name: 'kigo',
         link: {
           type: 'link',
           url: '/code/projects/kigo'
         }
       }, {
-        name: 'Game of Life',
+        name: 'cogl',
         link: {
           type: 'link',
-          url: '/code/projects/life'
+          url: '/code/projects/conwaysgameoflife'
         }
       }]
     }]

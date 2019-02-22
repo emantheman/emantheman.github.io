@@ -49,7 +49,8 @@ export default class Node extends Component {
               onMouseDown={ () => this.setState({ active: true }) }
               onMouseUp={ () => this.setState({ active: false }) }>
               { name }
-            </span> : link.type === 'anchor' ?
+            </span> :
+            link.type === 'anchor' ?
             <a 
               href={ link.url }
               target="_blank"

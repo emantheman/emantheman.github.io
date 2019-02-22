@@ -15,17 +15,19 @@ const activate = absPath => {
   }
   links.unshift({ absPath: '/', relPath: '*'})
   return links.map((link, index) => (
-    <React.Fragment>
+    <React.Fragment key={ index }>
       { link.relPath === '*' ? '' : '/' }
-      <Link key={ index + 1 } to={ link.absPath }>
+      <Link to={ link.absPath }>
         { link.relPath }
       </Link>
     </React.Fragment>
   ))
 }
 
-const Path = props => {
-  return <span className="Path">{ activate(props.path) }</span>
-}
+const Path = props => (
+  <span key={props.path} className="Path">
+    { activate(props.path) }
+  </span>
+)
 
 export default Path

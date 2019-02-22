@@ -14,13 +14,24 @@
   padding: 3px 7px;
   border: 1px solid #dedede;
   border-radius: 4px;
+  opacity: .8;
+  animation-duration: 3s;
+  animation-name: show-hide;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease;
+  &:hover { animation-play-state: paused; }
   a {
     cursor: pointer;
     color: white;
     text-decoration: none;
     &:hover {
-      // color: rgb(252, 207, 248);
       color: #fc80b1;
     }
   }
+}
+
+@keyframes show-hide {
+  0% { opacity: .9; }
+  50% { opacity: .9; }
+  100% { opacity: 0; }
 }
