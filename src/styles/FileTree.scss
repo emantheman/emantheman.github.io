@@ -48,12 +48,12 @@
     }
     // when NOT weird hand remove this block (.folder.root)
     .folder.root {
-      font-size: 52px;
-      position: relative;
-      bottom: -22px;
-      left: 0px;
+      display: inline-block;
+      padding-top: 11px;
+      font-size: 55px;
+      height: 61px;
       & + .toggle-container {
-        top: 7px;
+        top: -17px;
       }
     }
     // lists and their branches
