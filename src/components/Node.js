@@ -19,6 +19,8 @@ export default class Node extends Component {
   }
 
   createLeaf = (link, name, depth, path) => {
+    // determines whether leaf should be a plain folder, an external link,
+    // or a link to a view and returns the corresponding jsx
     if (link === undefined) {
       return (
         <span
@@ -94,6 +96,7 @@ export default class Node extends Component {
             <span className={ 'toggle ' + (!open ? 'collapsed' : '') }/>
           </div>}
         </span>
+        {/* the ul style is to offset the weird spacing around the index-hand I used for the root folder */}
         <ul style={ depth === 0 ? {marginTop: '-9px'} : {}}>
           { open && this.createChildren(children, depth, currentPath) }
         </ul>
