@@ -1,3 +1,4 @@
+//☟, ☞, ☛, ✹, ※, ⁂, ☯
 const branches = {
   name: '☞',
   descendants: [{
