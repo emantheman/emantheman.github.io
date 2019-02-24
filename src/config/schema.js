@@ -8,19 +8,19 @@ const branches = {
       descendants: [{
         name: 'concat',
         link: {
-          type: 'link',
+          type: 'view',
           url: '/code/projects/concatenate'
         }
       }, {
         name: 'kigo',
         link: {
-          type: 'link',
+          type: 'view',
           url: '/code/projects/kigo'
         }
       }, {
         name: 'cogl',
         link: {
-          type: 'link',
+          type: 'view',
           url: '/code/projects/conwaysgameoflife'
         }
       }]
@@ -30,7 +30,7 @@ const branches = {
     descendants: [{
       name: 'about',
       link: {
-        type: 'link',
+        type: 'view',
         url: '/about'
       }
     }, {
@@ -57,7 +57,7 @@ const branches = {
     }, {
       name: 'inspiration',
       link: {
-        type: 'link',
+        type: 'view',
         url: '/info/inspiration'
       }
     }]

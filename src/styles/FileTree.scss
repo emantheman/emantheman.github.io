@@ -50,8 +50,11 @@
     .folder.root {
       font-size: 52px;
       position: relative;
-      bottom: -15px;
+      bottom: -22px;
       left: 0px;
+      & + .toggle-container {
+        top: 7px;
+      }
     }
     // lists and their branches
     li {

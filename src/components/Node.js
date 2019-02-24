@@ -44,12 +44,12 @@ export default class Node extends Component {
         <span>
           {link === undefined ?
             <span
-              className={'folder ' + (depth === 0 ? 'root' : '')}
               onClick={ this.toggleChildren }
               onMouseEnter={ () => this.setState({ hover: true }) }
               onMouseOut={ () => this.setState({ hover: false }) }
               onMouseDown={ () => this.setState({ active: true }) }
-              onMouseUp={ () => this.setState({ active: false }) }>
+              onMouseUp={ () => this.setState({ active: false }) }
+              className={ 'folder ' + (depth === 0 ? 'root' : '') }>
               { name }
             </span> :
             link.type === 'anchor' ?
@@ -73,13 +73,13 @@ export default class Node extends Component {
           <div className={ 'toggle-container ' +
                          (open ? 'open ' : '') +
                        (hover ? 'hover ' : '') +
-                       (active ? 'active' : '') }>
+                      (active ? 'active' : '') }>
             <span className={ 'toggle ' + (!open ? 'collapsed' : '') }/>
           </div>}
-          <ul>
-            { open && Branches }
-          </ul>
         </span>
+        <ul>
+          { open && Branches }
+        </ul>
       </li>
     )
   }
