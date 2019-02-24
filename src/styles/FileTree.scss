@@ -1,5 +1,5 @@
 .FileTree {
-  // default
+  // Default
   font-family: 'Roboto Slab', serif;
   position: fixed;
   z-index: 1;
@@ -11,7 +11,7 @@
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
-  // tree
+  // Tree
   .tree {
     list-style: none;
     margin: 0;
@@ -23,17 +23,17 @@
       padding: 0;
       margin-left: 1.0em;
     }
-    // links
-    a {
+    // links/folders
+    .view-link, .external-link, .folder {
       text-decoration: none;
       color: black;
-      // links on hover
+      // on hover
       &:hover {
         color: blue;
       }
-      // currently selected link
+      // link to currently selected view
       &.current {
-        font-style: oblique;
+        font-style: italic;
       }
     }
     // lists and their branches
@@ -56,71 +56,72 @@
         border-left: thin solid #000;
       }
     }
+    
     // Children toggle button
-    span {
-      // Box that holds plus
-      .toggle-container {
-        display: inline-block;
-        width: 15px;
-        height: 15px;
-        position: relative;
-        right: -4px;
-        top: 2px;
-        // box-style on hover
+    // Box that holds plus/minus sign
+    .toggle-container {
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      position: relative;
+      right: -4px;
+      top: 2px;
+      // box on hover
+      &.hover {
+        background: #b2b4c32e;
+      }
+      // box while being clicked
+      &.active {
+        box-shadow: inset 0px 0px 2px 1px #80808052;
+      }
+      // open box 
+      &.open {
+        background: #f2f2f2;
+        box-shadow: inset 0px 0px 2px 3px rgba(128, 128, 128, 0.337);
+        // open box + hover
         &.hover {
-          background: #b2b4c32e;
-        }
-        // box-style on active link
-        &.active {
-          box-shadow: inset 0px 0px 2px 1px #80808052;
-        }
-        // box-style on click
-        &.open {
-          background: #f2f2f2;
-          box-shadow: inset 0px 0px 2px 3px rgba(128, 128, 128, 0.337);
-          &.hover {
-            box-shadow: inset 0px 0px 2px 3px rgba(164, 164, 164, 0.337);
-            &.active {
-              box-shadow: inset 0px 0px 3px 3px rgba(103, 103, 103, 0.337);          
-            }
+          box-shadow: inset 0px 0px 2px 3px rgba(164, 164, 164, 0.337);
+          // open box + hover + active
+          &.active {
+            box-shadow: inset 0px 0px 3px 3px rgba(103, 103, 103, 0.337);          
           }
         }
-        // Plus / minus
-        .toggle {
-          position: relative;
-          &::before, &::after {
-            content: '';
-            display: block;
-            position: absolute;
-            top: 8px;
-            right: -12px;
-            width: 8px;
-            height: 2px;
-            margin-top: -1px;
-            background-color: #000;
-            -webkit-transform-origin: 50% 50%;
-            -ms-transform-origin: 50% 50%;
-            transform-origin: 50% 50%;
-            -webkit-transition: all 0.25s;
-            transition: all 0.25s;
-          }
-          &::before {
-            -webkit-transform: rotate(-270deg);
-            -ms-transform: rotate(-270deg);
-            transform: rotate(-270deg);
-            opacity: 0;
-          }
-          &.collapsed::before {
-            -webkit-transform: rotate(0deg);
-            -ms-transform: rotate(0deg);
-            transform: rotate(0deg);
-            opacity: 1;
-          }
-          &.collapsed::after {
-            -webkit-transform: rotate(-90deg);
-            -ms-transform: rotate(-90deg);
-            transform: rotate(-90deg);
-          }
+      }
+      // Plus / minus sign
+      .toggle {
+        position: relative;
+        &::before, &::after {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 8px;
+          right: -12px;
+          width: 8px;
+          height: 2px;
+          margin-top: -1px;
+          background-color: #000;
+          -webkit-transform-origin: 50% 50%;
+          -ms-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
+          -webkit-transition: all 0.25s;
+          transition: all 0.25s;
+        }
+        &::before {
+          -webkit-transform: rotate(-270deg);
+          -ms-transform: rotate(-270deg);
+          transform: rotate(-270deg);
+          opacity: 0;
+        }
+        &.collapsed::before {
+          -webkit-transform: rotate(0deg);
+          -ms-transform: rotate(0deg);
+          transform: rotate(0deg);
+          opacity: 1;
+        }
+        &.collapsed::after {
+          -webkit-transform: rotate(-90deg);
+          -ms-transform: rotate(-90deg);
+          transform: rotate(-90deg);
         }
       }
     }
