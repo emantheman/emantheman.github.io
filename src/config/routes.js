@@ -1,13 +1,13 @@
 import Home from '../views/Home'
-import Info from '../views/Info'
+import About from '../views/About'
 import Concatenate from '../views/Concatenate'
 
 const routes = [{
   path: '/',
   view: Home
 }, {
-  path: '/info',
-  view: Info,
+  path: '/about',
+  view: About,
 }, {
   path: '/code/projects/concatenate',
   view: Concatenate

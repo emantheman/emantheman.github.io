@@ -8,14 +8,23 @@ const Concatenate = props => (
       <article itemprop="text">
         <h1>Concatenate</h1>
         <p>
-          The client side of an app designed to display progress.{" "}
+          The client side of an app designed to display progress. Click{" "}
+          <a
+            href="https://naturalbornchiller.github.io/concatenate-client/#/"
+            title="concatenate-client">
+             here
+          </a>{" "}
+          to try it out!
+        </p>
+        <p>
+          Or click{" "}
           <a
             href="http://github.com/naturalbornchiller/concatenate-api"
             title="concatenate-api"
           >
-            Here
+            here
           </a>{" "}
-          is the server side repo.
+          to view the server side repository.
         </p>
         <hr />
         <p>
@@ -54,9 +63,9 @@ const Concatenate = props => (
           </li>
           <li>See how long you can keep it going!</li>
         </ol>
-        <h2>
+        <h3>
           Planning process / problem solving strategies
-        </h2>
+        </h3>
         <p>
           The idea for this app stems from advice that developer and comic Brad
           Isaac received from Jerry Seinfield in a comedy club. Isaac tells it

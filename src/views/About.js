@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import AtvImg from '../components/AtvImg'
-import '../styles/Info.scss'
-// make info home page, remove "Home"
-class Info extends Component {
+import '../styles/About.scss'
+
+class About extends Component {
   render() {
     return (
-      <div className="Info">
+      <div className="About">
         <AtvImg
           layers={[
             'http://kloc.pm/images/back.png',
@@ -33,4 +33,4 @@ class Info extends Component {
   }
 }
 
-export default Info
+export default About

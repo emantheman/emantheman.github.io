@@ -4,7 +4,8 @@
   position: fixed;
   z-index: 1;
   left: 10px;
-  top: 7px;
+  top: -27px;
+  // when not WIERD HAND use top: 7px
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
   -khtml-user-select: none; /* Konqueror HTML */
@@ -35,6 +36,21 @@
       &.current {
         font-style: italic;
       }
+    }
+    // adds question mark after all links - except the currently selected - on hover
+    .view-link, .external-link {
+      &:hover:not(.current) {
+        &::after {
+          content: ' ?'
+        }
+      }
+    }
+    // when NOT weird hand remove this block (.folder.root)
+    .folder.root {
+      font-size: 52px;
+      position: relative;
+      bottom: -15px;
+      left: 0px;
     }
     // lists and their branches
     li {

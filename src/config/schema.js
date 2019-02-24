@@ -1,21 +1,9 @@
 const branches = {
-  name: 'home',
-  link: {
-    type: 'link',
-    url: '/'
-  },
+  name: '☞',
   descendants: [{
     name: 'code',
-    link: {
-      type: 'link',
-      url: '/code'
-    },
     descendants: [{
       name: 'projects',
-      link: {
-        type: 'link',
-        url: '/code/projects'
-      },
       descendants: [{
         name: 'concat',
         link: {
@@ -38,11 +26,13 @@ const branches = {
     }]
   }, {
     name: 'info',
-    link: {
-      type: 'link',
-      url: '/info'
-    },
     descendants: [{
+      name: 'about',
+      link: {
+        type: 'link',
+        url: '/about'
+      }
+    }, {
       name: 'contact',
       descendants: [{
         name: 'github',

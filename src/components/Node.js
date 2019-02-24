@@ -44,7 +44,7 @@ export default class Node extends Component {
         <span>
           {link === undefined ?
             <span
-              className="folder"
+              className={'folder ' + (depth === 0 ? 'root' : '')}
               onClick={ this.toggleChildren }
               onMouseEnter={ () => this.setState({ hover: true }) }
               onMouseOut={ () => this.setState({ hover: false }) }
