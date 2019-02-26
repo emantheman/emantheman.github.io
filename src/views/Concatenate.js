@@ -1,9 +1,9 @@
 import React from "react"
 
-import '../styles/Concatenate.scss'
+import '../styles/Project.scss'
 
 const Concatenate = props => (
-  <div className="Concatenate">
+  <div className="Project">
     <div className="inner">
       <article itemprop="text">
         <h1>Concatenate</h1>
@@ -106,11 +106,12 @@ const Concatenate = props => (
           <p>
             "Don't break the chain," he said again for emphasis.{" "}
             <a
+              className="src"
               href="https://lifehacker.com/jerry-seinfelds-productivity-secret-281626"
               title="source"
               rel="nofollow"
             >
-              [1]
+              <sup>1</sup>
             </a>
           </p>
         </blockquote>
