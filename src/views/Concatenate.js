@@ -35,10 +35,10 @@ const Concatenate = props => (
           <a
             target="_blank"
             rel="noopener noreferrer"
-            href="https://user-images.githubusercontent.com/43046847/51720047-f9479500-2019-11e9-9fe7-ca4d7ae6b1b9.png"
+            href="https://user-images.githubusercontent.com/43046847/53427231-92b9ec00-39b6-11e9-9482-e10dc9ca9c68.png"
           >
             <img
-              src="https://user-images.githubusercontent.com/43046847/51720047-f9479500-2019-11e9-9fe7-ca4d7ae6b1b9.png"
+              src="https://user-images.githubusercontent.com/43046847/53427231-92b9ec00-39b6-11e9-9482-e10dc9ca9c68.png"
               alt="screenshot"
               style={{ maxWidth: "100%" }}
             />
