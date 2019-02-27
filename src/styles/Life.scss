@@ -7,6 +7,29 @@
       fill: #808080;
       width: 9.5px; // change to '5' for interesting appearance
       height: 9.5px;
+      transform-origin: 50% 50%;
+      transform-box: fill-box;
+      animation-name: brief-grow;
+      animation-duration: .5s;
+      animation-fill-mode: forwards;
+      animation-timing-function: ease;
+      /*
+      styles = {
+        zoomEffect: {
+          duration: 200,
+          transform: 's1.2', // scale by 1.2x
+          transformBack: 's1.0',
+        },
+        zoomCell: function(cell) {
+          cell.attr({
+              transform: this.zoomEffect.transform,
+          }).animate({
+              transform: this.zoomEffect.transformBack,
+          }, this.zoomEffect.duration);
+        }
+      }
+      */
+
     }
   
     // Allows interface with the GoL
@@ -58,5 +81,15 @@
         }
       }
     }
+  }
+}
+
+@keyframes brief-grow {
+  0%{
+    transform: scale(1)
+  } 50% {
+    transform: scale(1.2)
+  } 100% {
+    transform: scale(1)
   }
 }

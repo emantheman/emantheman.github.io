@@ -217,14 +217,14 @@ export default class Life extends Component {
           {/* Units of Life! */}
           { this.drawGrid() }
         </svg>
-        {/* Allows user to play God */}
+        {/* Allows user to interact with the game */}
         <div className="Interface">
           <i
             className={ 'fa fa-play ' + (this.state.paused ? '' : 'unpaused') }
             id="start"
             title="pause/play"
             aria-hidden="true"
-            onClick={ () => this.setState(prevState => ({ paused: !prevState.paused }))}
+            onClick={() => this.setState(prevState => ({ paused: !prevState.paused }))}
           />
           <i
             className="fas fa-info-circle"
@@ -232,7 +232,7 @@ export default class Life extends Component {
             id="tooltip"
           >
             <p id="tooltiptext">
-              population: <span id="count"></span>
+              population: <span id="count">{ this.printPopulation() }</span>
               <br/>
               generation: <span id="generation"></span>
             </p>
