@@ -18,6 +18,8 @@ export default class Life extends Component {
     const randBool = () => Math.random() >= .8
     
     this.state = {
+      cols: 90,
+      rows: 60,
       paused: true, // whether the game is paused,
       tick: 200, // time between each frame
       grid: new Array(cols) // a 2d grid of arbitrary boolean values
@@ -209,6 +211,18 @@ export default class Life extends Component {
     this.flipCell(x, y)
   }
 
+  /**
+   * Pauses and re-randomizes GoL
+   */
+  reset = () => this.setState({
+    paused: true, 
+    grid: new Array(this.state.cols) // a 2d grid of arbitrary boolean values
+            .fill(null)
+            .map(() => new Array(this.state.rows)
+                        .fill(null)
+                        .map(() => Math.random() >= .8))
+  })
+
   render() {
     return (
       <div className="Life">
@@ -234,6 +248,12 @@ export default class Life extends Component {
             title="pause/play"
             aria-hidden="true"
             onClick={() => this.setState(prevState => ({ paused: !prevState.paused }))}
+          />
+          <i
+            className="fas fa-undo"
+            id="reset"
+            title="reset"
+            onClick={ this.reset }
           />
           <i
             className="fas fa-info-circle"
