@@ -25,31 +25,21 @@ export default class Cell extends Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.isAlive !== this.props.isAlive) {
-      // causes the cell to balloon outwards onValueChange
-      this.styles.zoomCell(this.rectRef.current)
-    }
-  }
-
   render() {
     const {
       xPos,
       yPos,
-      cellSize,
-      isAlive,
-      setPenType
+      flipCell,
+      coordPair
     } = this.props
 
     return (
       <rect
-        className={ 'Cell ' + (isAlive ? 'alive' : 'dead') }
+        className="Cell"
         ref={ this.rectRef }
         x={ xPos }
         y={ yPos }
-        width={ cellSize }
-        height={ cellSize }
-        onMouseDown={ () => setPenType(isAlive) }
+        onClick={ () => flipCell(coordPair[0], coordPair[1])}
       />
     )
   }

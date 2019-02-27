@@ -3,16 +3,60 @@
   .Life {
     // Units of "life"
     .Cell {
-      fill: #fff;
-      stroke: #000;
-      stroke-opacity: 0.2;
-      stroke-width: .9;
-      .dead {
-        fill: #808080;
-      }
+      cursor: pointer;
+      fill: #808080;
+      width: 9.5px; // change to '5' for interesting appearance
+      height: 9.5px;
     }
   
     // Allows interface with the GoL
-    .Interface {}
+    .Interface {
+
+      /* Starts and stops the current game */
+      #start {
+        cursor: pointer;
+        margin-left: 2px;
+        margin-right: 6px;
+        &.unpaused {
+          color: blue;
+        }
+      }
+
+      /* Displays current game data on hover */
+      // information icon
+      #tooltip {
+        position: relative;
+        display: inline-block;
+        // hidden message
+        #tooltiptext {
+          visibility: hidden;
+          width: 150px;
+          background-color: black;
+          color: #fff;
+          text-align: center;
+          border-radius: 6px;
+          padding: 5px 0;
+          position: absolute;
+          z-index: 1;
+          top: 53%;
+          left: 46.5%;
+          margin-left: -60px;
+          &::after {
+            content: "";
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            margin-left: -19.5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: transparent transparent black transparent;
+          }
+        }
+        // hover reveals hidden message
+        &:hover #tooltiptext {
+          visibility: visible;
+        }
+      }
+    }
   }
 }

@@ -11,44 +11,43 @@ export default class Life extends Component {
     note: this is calculated from the height(600) and width(900)
     of the grid divided by the size of each cell(10)
     */
-    const rows = 60, // number of rows
-          cols = 90 // and columns in the grid
+    const cols = 90, // number of rows
+          rows = 60 // and columns in the grid
   
     this.state = {
       paused: true, // whether the game is paused
-      grid: new Array(rows) // a 2d grid of arbitrary boolean values
+      grid: new Array(cols) // a 2d grid of arbitrary boolean values
               .fill(null)
-              .map(() => new Array(cols)
+              .map(() => new Array(rows)
                           .fill(null)
                           .map(() => Math.random() >= .5)),
       mouseIsDown: false, // whether the mouse is down (for "drawing" cells)
       penType: false
     }
   }
-
+  
   /**
-   * Sets the type of the life-pen (options: kill (false), revive (true))
+   * Sets whether the mouse is down and changes the type of the life-giving pen
    * 
-   * NOTE: This method will be passed as a prop to cell components
-   * in order to setState of this component. 
-   * 
-   * @param {Boolean} type - the type that the life-pen is being set
+   * @param {Boolean} type - the type that the life-pen is being set 
+   * (false=kill, true=resurrect)
    */
-  setPenType = type => this.setState({ penType: type })
+  setMouseDown = type => this.setState({ mouseIsDown: true, penType: type })
 
   /**
-   * Sets the value of the current cell
+   * Flips the value of the current cell
    * 
    * @param {Number} x - the x-coordinate of the cell being set
    * @param {Number} y - the y-coordinate of the cell being set
-   * @param {Boolean} val - the boolean value to which the cell is being set
    */
-  setCell = (x, y, val) => {
+  flipCell = (x, y) => {
     this.setState(prevState => {
-      return prevState.grid.map((row, i) => row.map((cell, j) => {
-        if (i === x && y === j) cell = val
-        return cell
-      }))
+      return { 
+        grid: prevState.grid.map((col, i) => col.map((cell, j) => {
+          // if cell has coordinates (x, y), reverse cell-state
+          return i === x && j === y ? !cell : cell
+        }))
+      }
     })
   }
 
@@ -126,7 +125,7 @@ export default class Life extends Component {
    */
   updateGrid = () => {
     this.setState(prevState => {
-      return { grid: prevState.grid.map((row, i) => row.map((cell, j) => this.updateCell(i, j, cell))) }
+      return { grid: prevState.grid.map((col, i) => col.map((cell, j) => this.updateCell(i, j, cell))) }
     })
   }
 
@@ -135,25 +134,28 @@ export default class Life extends Component {
    */
   drawGrid = () => {
     const size = 10, // dimensions of each Cell
-          Cells = [] // array of Cells
-    let xPos = 0, // (x, y) coordinates of the Cell
+          Cells = [], // array of Cells
+          xAxis = this.state.grid.length, // width and length of the containing svg, respectively
+          yAxis = this.state.grid[0].length
+
+    let xPos = 0, // relative (x, y) coordinates of the Cell
         yPos = 0
 
-    for (let i = 0, len = this.state.grid.length; i < len; i++) {
-      for (let j = 0; j < len; j++) {
-        // add Cell to array of Cells
-        Cells.push(
-          <Cell
-            key={ [i, j] }
-            xPos={ xPos }
-            yPos={ yPos }
-            size={ size }
-            setPenType={ this.setPenType }
-            setCell={ this.setCell }
-            mouseIsDown={ this.state.mouseIsDown}
-            isAlive={ this.state.grid[i][j] }
-          />
-        )
+    for (let y = 0; y < yAxis; y++) {
+      for (let x = 0; x < xAxis; x++) {
+        // if the cell is alive
+        if (this.state.grid[x][y]) {
+          // add a Cell to array of Cells
+          Cells.push(
+            <Cell
+              key={ [x, y] }
+              coordPair={ [x, y] }
+              xPos={ xPos }
+              yPos={ yPos }
+              flipCell={ this.flipCell }
+            />
+          )
+        }
         // increase xPosition, moving it right by one Cell-size
         xPos += size
       }
@@ -165,19 +167,76 @@ export default class Life extends Component {
     return Cells
   }
 
+  /**
+   * Returns an object containing the coordinates of an event
+   * 
+   * @param {Event} e - object containing event data
+   */
+  getCoordPair = e => {
+    const svg = e.nativeEvent.target.ownerSVGElement
+    let pt = svg.createSVGPoint()
+    pt.x = e.nativeEvent.clientX
+    pt.y = e.nativeEvent.clientY
+    pt = pt.matrixTransform(svg.getScreenCTM().inverse());
+    return {
+      x: Math.floor(pt.x / 10),
+      y: Math.floor(pt.y / 10) 
+    }
+  }
+
+  /**
+   * Changes the value of the cell at event-coordinates
+   * 
+   * @param {Event} e - object containing event data
+   */
+  playGod = e => {
+    // pause the GoL
+    this.setState({ paused: true })
+
+    // get coordinates of click
+    const { x, y } = this.getCoordPair(e)
+
+    // reverse cell-state at coordinates
+    this.flipCell(x, y)
+  }
+
   render() {
     return (
-      <div
-        className="Life"
-        onMouseDown={() => this.setState({ mouseIsDown: true })}
-        onMouseUp={() => this.setState({ mouseIsDown: false })}
-      >
+      <div className="Life">
         {/* Liquid crystal display for the miracle of Life */}
-        <svg height={600} width={900}>
+        <svg height={600} width={900} style={{ border: '1px solid black' }}>
+          {/* Lines that form the grid */}
+          <g>
+            <defs>
+              <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+                <path d="M 10 0 L 0 0 0 10" fill="none" stroke="gray" strokeWidth="0.1"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid)" onClick={ this.playGod }/>
+          </g>
+          {/* Units of Life! */}
           { this.drawGrid() }
         </svg>
         {/* Allows user to play God */}
-        <div className="interface">
+        <div className="Interface">
+          <i
+            className={ 'fa fa-play ' + (this.state.paused ? '' : 'unpaused') }
+            id="start"
+            title="pause/play"
+            aria-hidden="true"
+            onClick={ () => this.setState(prevState => ({ paused: !prevState.paused }))}
+          />
+          <i
+            className="fas fa-info-circle"
+            title="info"
+            id="tooltip"
+          >
+            <p id="tooltiptext">
+              population: <span id="count"></span>
+              <br/>
+              generation: <span id="generation"></span>
+            </p>
+          </i>
         </div>
       </div>
     )
