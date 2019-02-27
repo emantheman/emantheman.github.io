@@ -13,14 +13,14 @@ export default class Life extends Component {
     */
     const cols = 90, // number of rows
           rows = 60 // and columns in the grid
-  
+    
     this.state = {
       paused: true, // whether the game is paused
       grid: new Array(cols) // a 2d grid of arbitrary boolean values
               .fill(null)
               .map(() => new Array(rows)
                           .fill(null)
-                          .map(() => Math.random() >= .5)),
+                          .map(() => false)),
       mouseIsDown: false, // whether the mouse is down (for "drawing" cells)
       penType: false
     }
@@ -88,14 +88,12 @@ export default class Life extends Component {
    * 
    * @param {Number} x - the x coordinate of the current cell
    * @param {Number} y - the y coordinate of the current cell
-   * @param {Boolean} isAlive - whether the current cell is alive or not
+   * @param {Boolean} c - the value of the current cell
    */
-  updateCell = (x, y, isAlive) => {
-    // number of alive neighbors
-    let n = 0
-    // height and width of grid
-    const height = this.state.grid.length,
-          width = this.state.grid[0].length
+  updateCell = (x, y, c) => {
+    let n = 0 // number of alive neighbors
+    const width = this.state.grid.length, // width and height of the containing svg, respectively
+          height = this.state.grid[0].length
     
     // loop through neighbors of current cell
     for (let i = -1; i <= 1; i++) {
@@ -103,7 +101,7 @@ export default class Life extends Component {
         // skip current cell
         if (i === 0 && j === 0) continue
         // check if neighbor is filled (wrapping around if index is out of bounds)
-        if (this.isAlive((x + i + width) % width, (y + i + height) % height)) n++
+        if (this.isAlive((x + i + width) % width, (y + j + height) % height)) n++
         // if their are more than 3 living neighbors the cell dies
         if (n > 3) return false
       }
@@ -112,7 +110,7 @@ export default class Life extends Component {
     // if there are 3 neighbors the cell lives
     if (n === 3) return true
     // if there are 2 neighbors the cell stays the same
-    if (n === 2) return isAlive
+    if (n === 2) return c
     // if there is less than 2 the cell dies
     return false
   }
@@ -127,6 +125,7 @@ export default class Life extends Component {
     this.setState(prevState => {
       return { grid: prevState.grid.map((col, i) => col.map((cell, j) => this.updateCell(i, j, cell))) }
     })
+
   }
 
   /**
@@ -163,6 +162,12 @@ export default class Life extends Component {
       xPos = 0 // reset xPosition
       yPos += size // and increase yPosition, moving it down by one Cell-size
     }
+
+    setTimeout(() => {
+      if (!this.state.paused) {
+          this.updateGrid()
+      }
+    }, 500)
 
     return Cells
   }
