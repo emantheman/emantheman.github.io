@@ -5,7 +5,7 @@ import '../styles/Project.scss'
 const Concatenate = props => (
   <div className="Project">
     <div className="inner">
-      <article itemprop="text">
+      <article itemProp="text">
         <h1>Concatenate</h1>
         <p>
           The client side of an app designed to display progress. Click{" "}

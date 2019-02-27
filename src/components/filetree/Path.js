@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import '../styles/Path.scss'
+import '../../styles/Path.scss'
 
 const activate = absPath => {
   const links = []

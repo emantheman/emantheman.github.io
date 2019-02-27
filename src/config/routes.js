@@ -1,6 +1,7 @@
 import Home from '../views/Home'
 import About from '../views/About'
 import Concatenate from '../views/Concatenate'
+import CGOL from '../views/CGOL'
 
 const routes = [{
   path: '/',
@@ -11,6 +12,9 @@ const routes = [{
 }, {
   path: '/code/projects/concatenate',
   view: Concatenate
+}, {
+  path: '/code/projects/conwaysgameoflife',
+  view: CGOL
 }]
 
 export default routes

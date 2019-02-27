@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Route, withRouter } from 'react-router-dom'
 
-import FileTree from './components/FileTree'
-import Path from './components/Path'
+import FileTree from './components/filetree/FileTree'
+import Path from './components/filetree/Path'
 
 import routes from './config/routes'
 import branches from './config/schema'
