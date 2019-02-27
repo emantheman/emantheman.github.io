@@ -13,14 +13,18 @@ export default class Life extends Component {
     */
     const cols = 90, // number of rows
           rows = 60 // and columns in the grid
+
+    // returns an arbitrary boolean value
+    const randBool = () => Math.random() >= .8
     
     this.state = {
-      paused: true, // whether the game is paused
+      paused: true, // whether the game is paused,
+      tick: 200, // time between each frame
       grid: new Array(cols) // a 2d grid of arbitrary boolean values
               .fill(null)
               .map(() => new Array(rows)
                           .fill(null)
-                          .map(() => false)),
+                          .map(() => randBool())),
       mouseIsDown: false, // whether the mouse is down (for "drawing" cells)
       penType: false
     }
@@ -167,7 +171,7 @@ export default class Life extends Component {
       if (!this.state.paused) {
           this.updateGrid()
       }
-    }, 500)
+    }, this.state.tick)
 
     return Cells
   }
@@ -233,13 +237,10 @@ export default class Life extends Component {
           />
           <i
             className="fas fa-info-circle"
-            title="info"
             id="tooltip"
           >
             <p id="tooltiptext">
               population: <span id="count">{ this.printPopulation() }</span>
-              <br/>
-              generation: <span id="generation"></span>
             </p>
           </i>
         </div>
