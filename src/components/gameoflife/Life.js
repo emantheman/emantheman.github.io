@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import update from 'react-addons-update'
 import Cell from './Cell'
 
 import '../../styles/Life.scss'
