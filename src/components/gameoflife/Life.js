@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import update from 'react-addons-update'
 import Cell from './Cell'
 
 import '../../styles/Life.scss'
@@ -27,14 +28,30 @@ export default class Life extends Component {
   }
 
   /**
-   * Sets the type of the last cell clicked
+   * Sets the type of the life-pen (options: kill (false), revive (true))
    * 
-   * NOTE: This method will be passed as a prop to Cell components
+   * NOTE: This method will be passed as a prop to cell components
    * in order to setState of this component. 
    * 
-   * @param {Boolean} type - the type of the last cell clicked
+   * @param {Boolean} type - the type that the life-pen is being set
    */
   setPenType = type => this.setState({ penType: type })
+
+  /**
+   * Sets the value of the current cell
+   * 
+   * @param {Number} x - the x-coordinate of the cell being set
+   * @param {Number} y - the y-coordinate of the cell being set
+   * @param {Boolean} val - the boolean value to which the cell is being set
+   */
+  setCell = (x, y, val) => {
+    this.setState(prevState => {
+      return prevState.grid.map((row, i) => row.map((cell, j) => {
+        if (i === x && y === j) cell = val
+        return cell
+      }))
+    })
+  }
 
   /**
    * Count the game's current cell population
@@ -132,8 +149,10 @@ export default class Life extends Component {
             xPos={ xPos }
             yPos={ yPos }
             size={ size }
-            setCurrentType={ this.setPenType }
-            alive={ this.state.grid[i][j] }
+            setPenType={ this.setPenType }
+            setCell={ this.setCell }
+            mouseIsDown={ this.state.mouseIsDown}
+            isAlive={ this.state.grid[i][j] }
           />
         )
         // increase xPosition, moving it right by one Cell-size

@@ -1,12 +1,18 @@
-.Life {
-  // Representations of "life"
-  .Cell {
-    fill: #fff;
-    stroke: #000;
-    stroke-opacity: 0.2;
-    
+.CGOL {
+  padding-left: 14%;
+  .Life {
+    // Units of "life"
+    .Cell {
+      fill: #fff;
+      stroke: #000;
+      stroke-opacity: 0.2;
+      stroke-width: .9;
+      .dead {
+        fill: #808080;
+      }
+    }
+  
+    // Allows interface with the GoL
+    .Interface {}
   }
-
-  // Allows interface with the GoL
-  .Interface {}
 }
