@@ -305,7 +305,7 @@ export default class Life extends Component {
    * 
    * @param {Event} e - object containing event data
    */
-  playGod = e => {
+  changeCell = e => {
     // pause the GoL
     this.setState({ paused: true })
 
@@ -335,10 +335,12 @@ export default class Life extends Component {
   }
 
   setPenTypeTrue = e => {
+    console.log(e, e.shiftKey)
     if (e.shiftKey) this.setState({ penType: false })
   }
   
   setPenTypeFalse = e => {
+    console.log(e, e.key)
     if (e.shiftKey) this.setState({ penType: true })
   }
 
@@ -360,12 +362,12 @@ export default class Life extends Component {
               width="100%"
               height="100%"
               fill="url(#grid)"
-              onClick={ this.playGod }
-              onMouseDown={() => this.setState({ mouseIsDown: true })}
+              onMouseDown={e => {
+                this.setState({ mouseIsDown: true })
+                this.changeCell(e)
+              }}
               onMouseUp={() => this.setState({ mouseIsDown: false })}
-              onMouseMove={ this.state.mouseIsDown && this._onMouseMove.bind(this) }
-              onKeyDown={ this.setPenTypeFalse }
-              onKeyUp={ this.setPenTypeTrue }
+              onMouseMove={ this.state.mouseIsDown ? this._onMouseMove.bind(this) : undefined }
             />
           </g>
         </svg>
