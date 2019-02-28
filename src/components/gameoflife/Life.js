@@ -32,6 +32,38 @@ export default class Life extends Component {
       penType: false
     }
   }
+
+  newGame = (randomize=false) => {
+    const { cols, rows } = this.state
+    // returns false vals
+    let cb = () => false
+    // if 'randomize' is true then mix in some trues
+    if (randomize) cb = () => Math.random() >= .8
+    // return a new grid
+    return new Array(cols).fill(null).map(() => new Array(rows).fill(null).map(() => cb()))
+  }
+
+  setPreset = ({ target: { value: preset }}) => {
+    // pause game
+    this.setState({ paused: true })
+
+    // if the option is 'randomize' set rand to true
+    const rand = preset === 'random'
+
+    // set blank grid
+    const newGrid = this.newGame(rand)
+
+    // if the preset is NOT 'random'
+    // loop through the preconfig and set all 
+    if (!rand) {
+      this.state.config[preset].forEach(c => {
+        newGrid[c[0]][c[1]] = true
+      })
+    }
+
+    // swap grids
+    this.setState({ grid: newGrid })
+  }
   
   /**
    * Sets whether the mouse is down and changes the type of the life-giving pen
@@ -252,6 +284,7 @@ export default class Life extends Component {
         </svg>
         {/* Allows user to interact with the game */}
         <div className="Interface">
+          {/* Pause/Play button */}
           <i
             className={'fa fa-play ' + (this.state.paused ? '' : 'unpaused')}
             id="start"
@@ -259,12 +292,14 @@ export default class Life extends Component {
             aria-hidden="true"
             onClick={() => this.setState(prevState => ({ paused: !prevState.paused }))}
           />
+          {/* Reset button */}
           <i
             className="fas fa-undo"
             id="reset"
             title="reset"
             onClick={ this.reset }
           />
+          {/* Info tooltip */}
           <i
             className="fas fa-info-circle"
             id="tooltip"
@@ -273,6 +308,16 @@ export default class Life extends Component {
               population: <span id="count">{ this.printPopulation() }</span>
             </p>
           </i>
+          {/* Preset options */}
+          <select id="presets">
+            <optgroup label="presets">
+              <option value="blank" data-option='0'>blank</option>
+              <option value="random" selected="selected" data-option='1'>randomize</option>
+              <option value="gosperGlider" data-option='2'>gosperGlider</option>
+              <option value="spiralFlower" data-option='3'>spiralFlower</option>
+              <option value="spiralFlower2" data-option='4'>spiralFlower2</option>
+            </optgroup>
+          </select>
         </div>
       </div>
     )

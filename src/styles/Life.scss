@@ -31,15 +31,17 @@
           color: blue;
         }
       }
+      /* Resets the game */
       #reset {
         cursor: pointer;
         margin-left: 2px;
         margin-right: 7px;
       }
-
       /* Displays current game data on hover */
       // information icon
       #tooltip {
+        margin-left: 2px;
+        margin-right: 6px;
         position: relative;
         display: inline-block;
         // hidden message
@@ -70,6 +72,13 @@
         // hover reveals hidden message
         &:hover #tooltiptext {
           visibility: visible;
+        }
+      }
+      /* Chooses preset for game */
+      #presets {
+        cursor: pointer;
+        &:focus {
+          outline: none
         }
       }
     }
