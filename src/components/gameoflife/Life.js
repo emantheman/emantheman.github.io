@@ -38,7 +38,12 @@ export default class Life extends Component {
                       [29,37],[33,33],[34,34],[35,34],[36,33],[35,32],
                       [34,32],[30,30],[31,29],[31,28],[30,27],[29,28],
                       [29,29],[27,33],[26,34],[26,32],[25,32],[24,33],
-                      [25,34],[37,35],[28,40],[23,31],[32,26]].map(([x, y]) => [x+15, y-3])
+                      [25,34],[37,35],[28,40],[23,31],[32,26]].map(([x, y]) => [x+15, y-4]),
+        snake: [[25,32],[26,32],[27,32],[28,32],[29,32],[30,32],
+                [31,32],[32,32],[34,32],[35,32],[36,32],[37,32],
+                [38,32],[42,32],[43,32],[44,32],[51,32],[52,32],
+                [53,32],[54,32],[55,32],[56,32],[57,32],[59,32],
+                [60,32],[61,32],[62,32],[63,32]].map(([x, y]) => [x, y-1])
       }
     }
   }
@@ -301,6 +306,8 @@ export default class Life extends Component {
     // get coordinates of event
     const { x, y } = this.getCoordPair(e)
 
+    console.log('[' + x + '][' + y + ']')
+
     // reverse cell-state at coordinates
     this.flipCell(x, y)
   }
@@ -362,6 +369,7 @@ export default class Life extends Component {
               <option value="random">random</option>
               <option value="gosperGlider">gosperGlider</option>
               <option value="spiralFlower">spiralFlower</option>
+              <option value="snake">snake</option>
             </optgroup>
           </select>
           {/* Speed options */}
