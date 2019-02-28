@@ -3,6 +3,7 @@
   .Life {
     margin-top: 50px;
     margin-left: 50px;
+    float: left;
     // Units of "life
     .Cell {
       cursor: pointer;
@@ -86,6 +87,55 @@
       }
     }
   }
+
+  /* The description and rules of the game */
+  .description {
+    width: 21%;
+    height: 602px;
+    overflow: auto;
+    float: right;
+    margin-right: 12px;
+    margin-top: 50px;
+    h2 {
+      border-bottom: 1px solid #eaecef;
+      margin-top: 0px;
+      padding-bottom: .3em;
+    }
+    blockquote {
+      margin-left: 1em;
+      border-left: .25em solid #dfe2e5;
+      color: #51575e;
+      padding: 0 1em;
+    }
+    hr {
+      background-color: #e1e4e8;
+      border: 0;
+      height: .25em;
+      margin: 24px 0;
+      padding: 0;
+    }
+    ul {
+      padding-inline-start: 20px;
+    }
+    li+li {
+      margin-top: .4em;
+    }
+    li, p, blockquote {
+      line-height: 1.5;
+    }
+    li {
+      list-style: square;
+    }
+    p {
+      margin-bottom: 16px;
+      margin-top: 0;
+    }
+  }
+}
+
+::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
 }
 
 @keyframes brief-grow {

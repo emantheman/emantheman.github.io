@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import Cell from './Cell'
 
-import '../../styles/Life.scss'
-
 export default class Life extends Component {
   constructor(props) {
     super(props)
@@ -306,7 +304,7 @@ export default class Life extends Component {
     // get coordinates of event
     const { x, y } = this.getCoordPair(e)
 
-    console.log('[' + x + '][' + y + ']')
+    console.log('[' + x + ',' + y + ']')
 
     // reverse cell-state at coordinates
     this.flipCell(x, y)
