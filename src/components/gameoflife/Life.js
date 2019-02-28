@@ -15,63 +15,33 @@ export default class Life extends Component {
           rows = 60 // and columns in the grid 
 
 
-    // returns an arbitrary boolean value
-    const randBool = () => Math.random() >= .8
+    // returns a 2d array of false values
+    const blankGrid = () => new Array(cols).fill(null).map(() => new Array(rows).fill(null).map(() => false))
     
     this.state = {
       cols,
       rows,
-      paused: true, // whether the game is paused,
+      paused: true,
       tick: 180, // time between each frame
-      grid: new Array(cols) // a 2d grid of arbitrary boolean values
-              .fill(null)
-              .map(() => new Array(rows)
-                          .fill(null)
-                          .map(() => randBool())),
-      mouseIsDown: false, // whether the mouse is down (for "drawing" cells)
-      penType: false
+      grid: blankGrid(),
+      default: blankGrid(),
+      mouseIsDown: false,
+      penType: false,
+      config: {
+        gosperGlider: [[1, 5],[1, 6],[2, 5],[2, 6],[11, 5],[11, 6],
+                      [11, 7],[12, 4],[12, 8],[13, 3],[13, 9],[14, 3],
+                      [14, 9],[15, 6],[16, 4],[16, 8],[17, 5],[17, 6],
+                      [17, 7],[18, 6],[21, 3],[21, 4],[21, 5],[22, 3],
+                      [22, 4],[22, 5],[23, 2],[23, 6],[25, 1],[25, 2],
+                      [25, 6],[25, 7],[35, 3],[35, 4],[36, 3],[36, 4]],
+        spiralFlower: [[30,33],[30,36],[31,37],[31,38],[30,39],[29,38],
+                      [29,37],[33,33],[34,34],[35,34],[36,33],[35,32],
+                      [34,32],[30,30],[31,29],[31,28],[30,27],[29,28],
+                      [29,29],[27,33],[26,34],[26,32],[25,32],[24,33],
+                      [25,34],[37,35],[28,40],[23,31],[32,26]]
+      }
     }
   }
-
-  newGame = (randomize=false) => {
-    const { cols, rows } = this.state
-    // returns false vals
-    let cb = () => false
-    // if 'randomize' is true then mix in some trues
-    if (randomize) cb = () => Math.random() >= .8
-    // return a new grid
-    return new Array(cols).fill(null).map(() => new Array(rows).fill(null).map(() => cb()))
-  }
-
-  setPreset = ({ target: { value: preset }}) => {
-    // pause game
-    this.setState({ paused: true })
-
-    // if the option is 'randomize' set rand to true
-    const rand = preset === 'random'
-
-    // set blank grid
-    const newGrid = this.newGame(rand)
-
-    // if the preset is NOT 'random'
-    // loop through the preconfig and set all 
-    if (!rand) {
-      this.state.config[preset].forEach(c => {
-        newGrid[c[0]][c[1]] = true
-      })
-    }
-
-    // swap grids
-    this.setState({ grid: newGrid })
-  }
-  
-  /**
-   * Sets whether the mouse is down and changes the type of the life-giving pen
-   * 
-   * @param {Boolean} type - the type that the life-pen is being set 
-   * (false=kill, true=resurrect)
-   */
-  setMouseDown = type => this.setState({ mouseIsDown: true, penType: type })
 
   /**
    * Flips the value of the current cell
@@ -99,7 +69,10 @@ export default class Life extends Component {
    * Prints the game's current cell population
    */
   printPopulation = () => {
+    // find the population
     const population = this.countPopulation()
+    if (!this.state.paused && population === 0) this.resetGrid()
+
     // if the population exceeds 100
     if (population > 100) {
       // returns a string in the form: '<digit exceeding 100, floored to the hundreds place>+'
@@ -115,14 +88,6 @@ export default class Life extends Component {
   }
 
   /**
-   * Check if the current cell is alive or dead
-   * 
-   * @param {Number} x - the x coordinate of the cell being checked
-   * @param {Number} y - the y coordinate of the cell being checked
-   */
-  isAlive = (x, y) => this.state.grid[x][y]
-
-  /**
    * Count the number of TRUE neighbors around the current cell
    * 
    * @param {Number} x - the x coordinate of the current cell
@@ -130,28 +95,81 @@ export default class Life extends Component {
    * @param {Boolean} c - the value of the current cell
    */
   updateCell = (x, y, c) => {
+    const { grid } = this.state
     let n = 0 // number of alive neighbors
-    const width = this.state.grid.length, // width and height of the containing svg, respectively
-          height = this.state.grid[0].length
+    const width = grid.length, // width and height of the containing svg, respectively
+          height = grid[0].length
     
     // loop through neighbors of current cell
     for (let i = -1; i <= 1; i++) {
       for (let j = -1; j <= 1; j++) {
         // skip current cell
         if (i === 0 && j === 0) continue
-        // check if neighbor is filled (wrapping around if index is out of bounds)
-        if (this.isAlive((x + i + width) % width, (y + j + height) % height)) n++
+
+        // store neighbor's x and y coordinates,
+        // add then mod coordinate by array-length to allow for wrap around
+        const nX = (x + i + width) % width, nY = (y + j + height) % height
+        // check if neighbor at coordinates is filled
+        if (grid[nX][nY]) n++
 
         // if their are more than 3 living neighbors the cell dies
         if (n > 3) return false
       }
     }
+    
     // if there are 3 neighbors the cell lives
     if (n === 3) return true
     // if there are 2 neighbors the cell stays the same
     if (n === 2) return c
     // if there is less than 2 the cell dies
     return false
+  }
+
+  /**
+   * Returns a new blank or randomized grid
+   * 
+   * @param {Boolean} randomize - if true the new grid is randomized
+   */
+  newGrid = (randomize=false) => {
+    const { cols, rows } = this.state
+    // returns false vals
+    let cb = () => false
+    // if 'randomize' is true then mix in some trues
+    if (randomize) cb = () => Math.random() >= .8
+    // return a new grid
+    return new Array(cols).fill(null).map(() => new Array(rows).fill(null).map(() => cb()))
+  }
+
+  /**
+   * Configures the grid to the value of the select element
+   * 
+   * @param {Event} preset - destructured event object of the form "preset = event.target.value", i.e.,
+   * the currently selected option
+   */
+  configureGrid = ({ target: { value: preset }}) => {
+    // pause game
+    this.setState({ paused: true })
+    
+    // if the preset is 'random' set rand to true
+    const rand = preset === 'random'
+    const blank = preset === 'blank' // same for blank
+
+    // set blank grid
+    const newGrid = this.newGrid(rand)
+
+
+    // if the preset is NOT 'random'
+    // loop through the preconfigured coordinates
+    // and set the newGrid at those coordinates to true
+    if (!rand && !blank) {
+      this.state.config[preset].forEach((coordPair) => {
+        const [x, y] = coordPair
+        newGrid[x][y] = true
+      })
+    }
+
+    // swap grids
+    this.setState({ grid: newGrid, default: newGrid })
   }
 
   /**
@@ -206,6 +224,7 @@ export default class Life extends Component {
       yPos += size // and increase yPosition, moving it down by one Cell-size
     }
 
+    // if the game isn't paused call the next frame
     setTimeout(() => {
       if (!paused) {
           this.updateGrid()
@@ -215,6 +234,16 @@ export default class Life extends Component {
     return Cells
   }
 
+  /**
+   * Pauses and sets grid to current default
+   */
+  resetGrid = () => {
+    this.setState({ paused: true })
+    setTimeout(() => {
+      this.setState({ grid: this.state.default })
+    }, 150)
+  }
+  
   /**
    * Returns an object containing the coordinates of an event
    * 
@@ -247,18 +276,6 @@ export default class Life extends Component {
     // reverse cell-state at coordinates
     this.flipCell(x, y)
   }
-
-  /**
-   * Pauses and re-randomizes GoL
-   */
-  reset = () => this.setState({
-    paused: true, 
-    grid: new Array(this.state.cols) // a 2d grid of arbitrary boolean values
-            .fill(null)
-            .map(() => new Array(this.state.rows)
-                        .fill(null)
-                        .map(() => Math.random() >= .8))
-  })
 
   render() {
     return (
@@ -297,7 +314,7 @@ export default class Life extends Component {
             className="fas fa-undo"
             id="reset"
             title="reset"
-            onClick={ this.reset }
+            onClick={ this.resetGrid }
           />
           {/* Info tooltip */}
           <i
@@ -309,13 +326,14 @@ export default class Life extends Component {
             </p>
           </i>
           {/* Preset options */}
-          <select id="presets">
+          <select
+            id="presets"
+            onChange={ this.configureGrid }>
             <optgroup label="presets">
-              <option value="blank" data-option='0'>blank</option>
-              <option value="random" selected="selected" data-option='1'>randomize</option>
-              <option value="gosperGlider" data-option='2'>gosperGlider</option>
-              <option value="spiralFlower" data-option='3'>spiralFlower</option>
-              <option value="spiralFlower2" data-option='4'>spiralFlower2</option>
+              <option value="blank">blank</option>
+              <option value="random">random</option>
+              <option value="gosperGlider">gosperGlider</option>
+              <option value="spiralFlower">spiralFlower</option>
             </optgroup>
           </select>
         </div>
