@@ -24,7 +24,7 @@ export default class Life extends Component {
       grid: blankGrid(),
       default: blankGrid(),
       mouseIsDown: false,
-      penType: false,
+      penType: true,
       config: {
         gosperGlider: [[1, 5],[1, 6],[2, 5],[2, 6],[11, 5],[11, 6],
                       [11, 7],[12, 4],[12, 8],[13, 3],[13, 9],[14, 3],
@@ -51,13 +51,21 @@ export default class Life extends Component {
    * 
    * @param {Number} x - the x-coordinate of the cell being set
    * @param {Number} y - the y-coordinate of the cell being set
+   * @param {Boolean} drawCell - whether or not cell is being manually drawn
    */
-  flipCell = (x, y) => {
+  flipCell = (x, y, drawCell=false) => {
     this.setState(prevState => {
       return { 
         grid: prevState.grid.map((col, i) => col.map((cell, j) => {
-          // if cell has coordinates (x, y), reverse cell-state
-          return i === x && j === y ? !cell : cell
+          // if at target coordinates (x, y), alter cell
+          if (i === x && j === y) {
+            // if cell is being drawn, return pen type
+            if (drawCell) return this.state.penType
+            // else reverse cell's state
+            return drawCell ? this.state.penType : !cell
+          }
+          // otherwise return cell
+          return cell
         }))
       }
     })
@@ -310,11 +318,37 @@ export default class Life extends Component {
     this.flipCell(x, y)
   }
 
+  /**
+   * Attaches event listener to mouse movement
+   * @param {Event} e - object containing event data destructured in the form: x/y = e.nativeEvent.offset<X/Y>
+   */
+  _onMouseMove = ({ nativeEvent: { offsetX: x, offsetY: y }}) => {
+    // pause the GoL
+    this.setState({ paused: true })
+
+    // correct for cell-size (10)
+    x = Math.floor(x/10)
+    y = Math.floor(y/10)
+
+    // create "draw" effect
+    if (this.state.mouseIsDown) this.flipCell(x, y, true) 
+  }
+
+  setPenTypeTrue = e => {
+    if (e.shiftKey) this.setState({ penType: false })
+  }
+  
+  setPenTypeFalse = e => {
+    if (e.shiftKey) this.setState({ penType: true })
+  }
+
   render() {
     return (
       <div className="Life">
         {/* Liquid crystal display for the miracle of Life */}
         <svg height={600} width={900} style={{ border: '1px solid black' }}>
+          {/* Units of Life! */}
+          { this.drawGrid() }
           {/* Lines that form the grid */}
           <g>
             <defs>
@@ -327,10 +361,13 @@ export default class Life extends Component {
               height="100%"
               fill="url(#grid)"
               onClick={ this.playGod }
+              onMouseDown={() => this.setState({ mouseIsDown: true })}
+              onMouseUp={() => this.setState({ mouseIsDown: false })}
+              onMouseMove={ this.state.mouseIsDown && this._onMouseMove.bind(this) }
+              onKeyDown={ this.setPenTypeFalse }
+              onKeyUp={ this.setPenTypeTrue }
             />
           </g>
-          {/* Units of Life! */}
-          { this.drawGrid() }
         </svg>
         {/* Allows user to interact with the game */}
         <div className="Interface">
