@@ -126,6 +126,30 @@ export default class Life extends Component {
   }
 
   /**
+   * Set tick rate for the GoL
+   * 
+   * @param {Event} setting - destructured event object of the form "setting = event.target.value", i.e.,
+   * the currently selected option
+   */
+  setTickRate = ({ target: { value: setting }}) => {
+    let delay
+    // set duration of delay in ms
+    switch (setting) {
+      case '3':
+        delay = 120
+        break
+      case '2':
+        delay = 400
+        break
+      default:
+        delay = 180
+    }
+
+    // set tick to speed
+    this.setState({ tick: delay })
+  }
+
+  /**
    * Returns a new blank or randomized grid
    * 
    * @param {Boolean} randomize - if true the new grid is randomized
@@ -238,12 +262,16 @@ export default class Life extends Component {
    * Pauses and sets grid to current default
    */
   resetGrid = () => {
+    // pause game
     this.setState({ paused: true })
+
+    // slight delay
     setTimeout(() => {
+      // reset grid to default
       this.setState({ grid: this.state.default })
     }, 150)
   }
-  
+
   /**
    * Returns an object containing the coordinates of an event
    * 
@@ -334,6 +362,16 @@ export default class Life extends Component {
               <option value="random">random</option>
               <option value="gosperGlider">gosperGlider</option>
               <option value="spiralFlower">spiralFlower</option>
+            </optgroup>
+          </select>
+          {/* Speed options */}
+          <select
+            id="speed"
+            onChange={ this.setTickRate }>
+            <optgroup label="speed">
+              <option value="1">default</option>
+              <option value="2">slow</option>
+              <option value="3">fast</option>
             </optgroup>
           </select>
         </div>

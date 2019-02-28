@@ -74,12 +74,15 @@
           visibility: visible;
         }
       }
-      /* Chooses preset for game */
-      #presets {
+      select {
         cursor: pointer;
         &:focus {
           outline: none
         }
+      }
+      /* Chooses preset for game */
+      #presets {
+        margin-right: 6px;
       }
     }
   }
