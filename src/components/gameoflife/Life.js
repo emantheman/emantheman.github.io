@@ -369,7 +369,7 @@ export default class Life extends Component {
             id="speed"
             onChange={ this.setTickRate }>
             <optgroup label="speed">
-              <option value="1">default</option>
+              <option value="1">medium</option>
               <option value="2">slow</option>
               <option value="3">fast</option>
             </optgroup>
