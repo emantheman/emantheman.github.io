@@ -7,14 +7,16 @@
     .Cell {
       cursor: pointer;
       fill: #808080;
-      width: 9.7px; // default 9.5
+      width: 9.7px; // default 9.7
       height: 9.7px; // change to '5' for interesting appearance
-      // transform-origin: 50% 50%;
-      // transform-box: fill-box;
-      // animation-name: brief-grow;
-      // animation-duration: .5s;
-      // animation-fill-mode: forwards;
-      // animation-timing-function: ease;
+      &.paused {
+        transform-origin: 50% 50%;
+        transform-box: fill-box;
+        animation-name: brief-grow;
+        animation-duration: .5s;
+        animation-fill-mode: forwards;
+        animation-timing-function: ease;
+      }
     }
   
     // Allows interface with the GoL
@@ -32,7 +34,7 @@
       #reset {
         cursor: pointer;
         margin-left: 2px;
-        margin-right: 6px;
+        margin-right: 7px;
       }
 
       /* Displays current game data on hover */

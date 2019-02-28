@@ -12,16 +12,17 @@ export default class Life extends Component {
     of the grid divided by the size of each cell(10)
     */
     const cols = 90, // number of rows
-          rows = 60 // and columns in the grid
+          rows = 60 // and columns in the grid 
+
 
     // returns an arbitrary boolean value
     const randBool = () => Math.random() >= .8
     
     this.state = {
-      cols: 90,
-      rows: 60,
+      cols,
+      rows,
       paused: true, // whether the game is paused,
-      tick: 200, // time between each frame
+      tick: 180, // time between each frame
       grid: new Array(cols) // a 2d grid of arbitrary boolean values
               .fill(null)
               .map(() => new Array(rows)
@@ -108,11 +109,11 @@ export default class Life extends Component {
         if (i === 0 && j === 0) continue
         // check if neighbor is filled (wrapping around if index is out of bounds)
         if (this.isAlive((x + i + width) % width, (y + j + height) % height)) n++
+
         // if their are more than 3 living neighbors the cell dies
         if (n > 3) return false
       }
     }
-
     // if there are 3 neighbors the cell lives
     if (n === 3) return true
     // if there are 2 neighbors the cell stays the same
@@ -127,21 +128,24 @@ export default class Life extends Component {
    * The rules are as follows: "A cell is resurrected if three of its neighbors are living.
    * It remains alive if two or three of its neighbors are living. Otherwise, it perishes."
    */
-  updateGrid = () => {
-    this.setState(prevState => {
+  updateGrid = () => this.setState(prevState => {
       return { grid: prevState.grid.map((col, i) => col.map((cell, j) => this.updateCell(i, j, cell))) }
-    })
-
-  }
+  })
 
   /**
-   * Draws the game of life
+   * Draws the game of life and calls next frame if the game is !paused
    */
   drawGrid = () => {
+    const {
+      grid,
+      paused,
+      tick
+    } = this.state
+
     const size = 10, // dimensions of each Cell
           Cells = [], // array of Cells
-          xAxis = this.state.grid.length, // width and length of the containing svg, respectively
-          yAxis = this.state.grid[0].length
+          xAxis = grid.length, // width and length of the containing svg, respectively
+          yAxis = grid[0].length
 
     let xPos = 0, // relative (x, y) coordinates of the Cell
         yPos = 0
@@ -149,7 +153,7 @@ export default class Life extends Component {
     for (let y = 0; y < yAxis; y++) {
       for (let x = 0; x < xAxis; x++) {
         // if the cell is alive
-        if (this.state.grid[x][y]) {
+        if (grid[x][y]) {
           // add a Cell to array of Cells
           Cells.push(
             <Cell
@@ -157,6 +161,7 @@ export default class Life extends Component {
               coordPair={ [x, y] }
               xPos={ xPos }
               yPos={ yPos }
+              paused={ paused }
               flipCell={ this.flipCell }
             />
           )
@@ -170,10 +175,10 @@ export default class Life extends Component {
     }
 
     setTimeout(() => {
-      if (!this.state.paused) {
+      if (!paused) {
           this.updateGrid()
       }
-    }, this.state.tick)
+    }, tick)
 
     return Cells
   }
@@ -204,7 +209,7 @@ export default class Life extends Component {
     // pause the GoL
     this.setState({ paused: true })
 
-    // get coordinates of click
+    // get coordinates of event
     const { x, y } = this.getCoordPair(e)
 
     // reverse cell-state at coordinates
@@ -235,7 +240,12 @@ export default class Life extends Component {
                 <path d="M 10 0 L 0 0 0 10" fill="none" stroke="gray" strokeWidth="0.1"/>
               </pattern>
             </defs>
-            <rect width="100%" height="100%" fill="url(#grid)" onClick={ this.playGod }/>
+            <rect
+              width="100%"
+              height="100%"
+              fill="url(#grid)"
+              onClick={ this.playGod }
+            />
           </g>
           {/* Units of Life! */}
           { this.drawGrid() }
@@ -243,7 +253,7 @@ export default class Life extends Component {
         {/* Allows user to interact with the game */}
         <div className="Interface">
           <i
-            className={ 'fa fa-play ' + (this.state.paused ? '' : 'unpaused') }
+            className={'fa fa-play ' + (this.state.paused ? '' : 'unpaused')}
             id="start"
             title="pause/play"
             aria-hidden="true"

@@ -17,12 +17,13 @@ export default class Cell extends Component {
       xPos,
       yPos,
       flipCell,
-      coordPair
+      coordPair,
+      paused
     } = this.props
 
     return (
       <rect
-        className="Cell"
+        className={'Cell ' + (paused ? 'paused' : '')}
         ref={ this.rectRef }
         x={ xPos }
         y={ yPos }
