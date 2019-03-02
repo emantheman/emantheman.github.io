@@ -20,6 +20,7 @@ export default class Life extends Component {
       cols,
       rows,
       paused: true,
+      generation: 0,
       tick: 180, // time between each frame
       grid: blankGrid(),
       default: blankGrid(),
@@ -100,13 +101,9 @@ export default class Life extends Component {
 
     // if the population exceeds 100
     if (population > 100) {
-      // returns a string in the form: '<digit exceeding 100, floored to the hundreds place>+'
-      // e.g., '500+'
-      return +(Math.floor(population/100.0) * 100) + '+'
-    } else if (population > 50) { // if the population exceeds 50
-      // returns a string in the form: '~<digit exceeding 50, floored to the tens place'
+      // returns a string in the form: '~<digit exceeding 100, floored to a multiple of 50'
       // e.g., '~70' -- where the '~' character denotes 'approximately'
-      return '~' + +(Math.ceil(population/10.0) * 10)
+      return '~' + +(Math.ceil(population/50.0) * 50)
     } else {
       return population
     }
@@ -228,7 +225,10 @@ export default class Life extends Component {
    * It remains alive if two or three of its neighbors are living. Otherwise, it perishes."
    */
   updateGrid = () => this.setState(prevState => {
-      return { grid: prevState.grid.map((col, i) => col.map((cell, j) => this.updateCell(i, j, cell))) }
+      return { 
+        grid: prevState.grid.map((col, i) => col.map((cell, j) => this.updateCell(i, j, cell))),
+        generation: prevState.generation + 1
+      }
   })
 
   /**
@@ -287,8 +287,8 @@ export default class Life extends Component {
    * Pauses and sets grid to current default
    */
   resetGrid = () => {
-    // pause game
-    this.setState({ paused: true })
+    // pause game and bring generations to zero
+    this.setState({ paused: true, generation: 0 })
 
     // slight delay
     setTimeout(() => {
@@ -408,7 +408,8 @@ export default class Life extends Component {
             id="tooltip"
           >
             <p id="tooltiptext">
-              population: <span id="count">{ this.printPopulation() }</span>
+              <p id="generation">generation: { this.state.generation }</p>
+              <p id="population">population: { this.printPopulation() }</p>
             </p>
           </i>
           {/* Preset options */}

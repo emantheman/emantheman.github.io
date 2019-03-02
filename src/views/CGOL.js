@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Life from '../components/gameoflife/Life'
 
 import '../styles/Life.scss'
@@ -10,10 +10,10 @@ const CGOL = () => (
       <h2>Conway's Game of Life</h2>
       <div>
         <p>
-          <strong>Life</strong>, a 0-player game devised by mathematician John Horton Conway, is an example
+          <strong>Life</strong>, a <span className="zero">0</span>-player game devised by mathematician John Horton Conway, is an example
           of "design and organization emerging in the absence of a designer." After providing an initial configuration,
           known as the <i>seed</i> of the game, an observer can lean back and behold as patterns—<i>creatures! structures!
-          symmatries!</i>—emerge briefly from chaotic soups to metastablize, lotus-like, atop puddles of mud.
+          symmetries!</i>—emerge briefly from chaotic soups and devolve back into cellular ash.
           Successive generations of Conway's game are computed by applying simple rules to simple creatures.
         </p>
         <hr/>
