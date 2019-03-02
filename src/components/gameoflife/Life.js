@@ -225,7 +225,7 @@ export default class Life extends Component {
    * It remains alive if two or three of its neighbors are living. Otherwise, it perishes."
    */
   updateGrid = () => this.setState(prevState => {
-      // 1. compute next generation
+      // 1. computes next generation
       // 2. increments generationCount
       return { 
         grid: prevState.grid.map((col, i) => col.map((cell, j) => this.updateCell(i, j, cell))),
@@ -234,13 +234,14 @@ export default class Life extends Component {
   })
 
   /**
-   * Draws the game of life and calls next frame if the game is !paused
+   * Draws cells on grid and calls next frame if the game is !paused
    */
   drawGrid = () => {
     const {
       grid,
       paused,
-      tick
+      tick,
+      penType
     } = this.state
 
     const size = 10, // dimensions of each Cell
@@ -259,11 +260,9 @@ export default class Life extends Component {
           Cells.push(
             <Cell
               key={ [x, y] }
-              coordPair={ [x, y] }
               xPos={ xPos }
               yPos={ yPos }
               paused={ paused }
-              flipCell={ this.flipCell }
             />
           )
         }
@@ -350,19 +349,22 @@ export default class Life extends Component {
     if (this.state.mouseIsDown) this.flipCell(x, y, true) 
   }
 
-  setPenTypeTrue = e => {
-    console.log(e, e.shiftKey)
-    if (e.shiftKey) this.setState({ penType: false })
-  }
-  
-  setPenTypeFalse = e => {
-    console.log(e, e.key)
-    if (e.shiftKey) this.setState({ penType: true })
+  /**
+   * If key pressed is shift key, changes penType
+   * If key pressed is spacebar, pause/play game
+   * @param {Event} e - object containing event data destructured in the form: e.shiftKey and e.keyCode
+   */
+  handleKeyDown = ({ shiftKey, keyCode }) => {
+    if (shiftKey) this.setState(prevState => ({ penType: !prevState.penType }))
+    if (keyCode === 32) this.setState(prevState => ({ paused: !prevState.paused }))
   }
 
   render() {
     return (
-      <div className="Life">
+      <div
+        className="Life"
+        onKeyDown={ this.handleKeyDown }
+        tabIndex={0}>
         {/* Liquid crystal display for the miracle of Life */}
         <svg height={600} width={900} style={{ border: '1px solid black' }}>
           {/* Units of Life! */}
@@ -410,8 +412,8 @@ export default class Life extends Component {
             id="tooltip"
           >
             <p id="tooltiptext">
-              <p id="generation">generation: { this.state.generation }</p>
-              <p id="population">population: { this.printPopulation() }</p>
+              <span id="generation">generation: { this.state.generation }</span>
+              <span id="population">population: { this.printPopulation() }</span>
             </p>
           </i>
           {/* Preset options */}
@@ -438,6 +440,13 @@ export default class Life extends Component {
               <option value="3">fast</option>
             </optgroup>
           </select>
+          {/* Current Pen Type - reverses onClick */}
+          <span
+            className={'pen ' + (this.state.penType ? 'draw' : '')}
+            onClick={() => this.setState(prevState => ({ penType: !prevState.penType }))}
+          >
+            <span>{ this.state.penType ? 'Draw' : 'Erase'}</span>
+          </span>
         </div>
       </div>
     )
