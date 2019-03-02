@@ -225,6 +225,8 @@ export default class Life extends Component {
    * It remains alive if two or three of its neighbors are living. Otherwise, it perishes."
    */
   updateGrid = () => this.setState(prevState => {
+      // 1. compute next generation
+      // 2. increments generationCount
       return { 
         grid: prevState.grid.map((col, i) => col.map((cell, j) => this.updateCell(i, j, cell))),
         generation: prevState.generation + 1
