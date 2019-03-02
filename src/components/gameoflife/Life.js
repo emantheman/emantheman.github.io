@@ -240,8 +240,7 @@ export default class Life extends Component {
     const {
       grid,
       paused,
-      tick,
-      penType
+      tick
     } = this.state
 
     const size = 10, // dimensions of each Cell
@@ -436,7 +435,7 @@ export default class Life extends Component {
             onChange={ this.setTickRate }>
             <optgroup label="speed">
               <option value="1">medium</option>
-              <option value="2">slow</option>
+              <option value="2">regular</option>
               <option value="3">fast</option>
             </optgroup>
           </select>
