@@ -167,8 +167,8 @@ export default class Life extends Component {
         delay = 180
     }
 
-    // set tick to speed
-    this.setState({ tick: delay })
+    // set tick speed and pause game
+    this.setState({ tick: delay, paused: true })
   }
 
   /**
@@ -435,7 +435,7 @@ export default class Life extends Component {
             onChange={ this.setTickRate }>
             <optgroup label="speed">
               <option value="1">medium</option>
-              <option value="2">regular</option>
+              <option value="2">slow</option>
               <option value="3">fast</option>
             </optgroup>
           </select>
