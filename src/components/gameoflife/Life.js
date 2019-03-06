@@ -220,43 +220,33 @@ export default class Life extends Component {
       tick
     } = this.state
 
-    const size = 10, // dimensions of each Cell
-          Cells = [], // array of Cells
-          xAxis = grid.length, // width and length of the containing svg, respectively
-          yAxis = grid[0].length
-
-    let xPos = 0, // relative (x, y) coordinates of the Cell
-        yPos = 0
-
-    for (let y = 0; y < yAxis; y++) {
-      for (let x = 0; x < xAxis; x++) {
-        // if the cell is alive
-        if (grid[x][y]) {
-          // add a Cell to array of Cells
-          Cells.push(
-            <Cell
-              key={ [x, y] }
-              xPos={ xPos }
-              yPos={ yPos }
-              paused={ paused }
-            />
-          )
-        }
-        // increase xPosition, moving it right by one Cell-size
-        xPos += size
-      }
-      // since the row is up,
-      xPos = 0 // reset xPosition
-      yPos += size // and increase yPosition, moving it down by one Cell-size
-    }
-
     // if the game isn't paused call the next frame
     setTimeout(() => {
       if (!paused) {
-          this.updateGrid()
+        this.updateGrid()
       }
     }, tick)
-
+    
+    // stores Cell components
+    const Cells = []
+    // traverse grid
+    grid.forEach((col, x) => col.forEach((cell, y) => {
+      // if Cell is alive
+      if (cell) {
+        // get it's position (coordinates multiplied by cell size)
+        const xPos = x * 10, yPos = y * 10
+        // and add the Cell to the array
+        Cells.push(
+          <Cell
+            key={ [x, y] }
+            xPos={ xPos }
+            yPos={ yPos }
+            pause={ paused }
+          />
+        )
+      }
+    }))
+    
     return Cells
   }
 
