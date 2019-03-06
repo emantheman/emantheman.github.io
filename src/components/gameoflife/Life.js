@@ -21,7 +21,7 @@ export default class Life extends Component {
       rows,
       paused: true,
       generation: 0,
-      tick: 180, // time between each frame
+      tick: 250, // time between each frame
       grid: blankGrid(),
       default: blankGrid(),
       mouseIsDown: false,
@@ -146,30 +146,6 @@ export default class Life extends Component {
     if (n === 2) return c
     // if there is less than 2 the cell dies
     return false
-  }
-
-  /**
-   * Set tick rate for the GoL
-   * 
-   * @param {Event} setting - destructured event object of the form "setting = event.target.value", i.e.,
-   * the currently selected option
-   */
-  setTickRate = ({ target: { value: setting }}) => {
-    let delay
-    // set duration of delay in ms
-    switch (setting) {
-      case '3':
-        delay = 120
-        break
-      case '2':
-        delay = 400
-        break
-      default:
-        delay = 180
-    }
-
-    // set tick speed and pause game
-    this.setState({ tick: delay, paused: true })
   }
 
   /**
@@ -431,16 +407,37 @@ export default class Life extends Component {
               <option value="butterfly">butterfly</option>
             </optgroup>
           </select>
-          {/* Speed options */}
-          <select
-            id="speed"
-            onChange={ this.setTickRate }>
-            <optgroup label="speed">
-              <option value="1">medium</option>
-              <option value="2">slow</option>
-              <option value="3">fast</option>
-            </optgroup>
-          </select>
+          {/* Tick rate range */}
+          <label>Tick delay:
+            <input
+              id="tick-delay"
+              type="range"
+              min="50"
+              max="450"
+              step="50"
+              list="steplist"
+              name="tickrate"
+              defaultValue=""
+              onChange={({target: { value }}) => {
+                const isPause = this.state.paused
+                this.setState({ paused: true, tick: value })
+                if (!isPause) setTimeout(() => {
+                  this.setState({ paused: false })
+                }, 400)
+              }}/>
+            <datalist id="steplist">
+              <option>50</option>
+              <option>100</option>
+              <option>150</option>
+              <option>200</option>
+              <option>250</option>
+              <option>300</option>
+              <option>350</option>
+              <option>400</option>
+              <option>450</option>
+            </datalist>
+            <em className="display-tickrate">{ this.state.tick }ms</em>
+          </label>
           {/* Current Pen Type - reverses onClick */}
           <span
             className={'pen ' + (this.state.penType ? 'draw' : '')}

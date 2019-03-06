@@ -87,7 +87,7 @@
         }
       }
       // removes focus from selectors
-      select {
+      select, input {
         cursor: pointer;
         &:focus {
           outline: none
@@ -113,6 +113,25 @@
         font-size: 12px;
         &.draw {
           background: #009a00;
+        }
+      }
+      // styles tickrate range
+      label {
+        font-variant: small-caps;
+        font-size: 15px;
+        padding-left: 4px;
+        #tick-delay {
+          position: relative;
+          top: 5px;
+          margin-left: 4px;
+          margin-right: 4px;
+        }
+        .display-tickrate {
+          text-align: right;
+          font-variant: normal;
+          font-size: 13px;
+          width: 44px;
+          display: inline-block;
         }
       }
     }
