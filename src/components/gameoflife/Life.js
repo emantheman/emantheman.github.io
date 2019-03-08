@@ -44,6 +44,9 @@ export default class Life extends Component {
                     [53,32],[54,32],[55,32],[56,32],[57,32],[59,32],
                     [60,32],[61,32],[62,32],[63,32]].map(([x, y]) => [x, y-1]),
         butterfly: [[45,27],[44,28],[46,28],[43,29],[47,29],[46,30],[44,30]],
+        ascension: [[45,27],[45,24],[44,25],[45,25],[46,25],[47,26],
+              [48,27],[48,28],[48,29],[47,29],[46,29],[44,29],
+              [43,29],[42,29],[42,28],[42,27],[43,26]],
         gammadion: [[44,29],[44,28],[45,28],[46,28],[46,29],[46,30],
                     [45,30],[44,30]].concat([[30,36],[31,37],[31,38],
                     [30,39],[29,38],[29,37],[33,33],[34,34],[35,34],
@@ -246,7 +249,7 @@ export default class Life extends Component {
         )
       }
     }))
-    
+
     return Cells
   }
 
@@ -395,6 +398,7 @@ export default class Life extends Component {
               <option value="megagammadion">megagammadion</option>
               <option value="dragonfly">dragonfly</option>
               <option value="butterfly">butterfly</option>
+              <option value="ascension">ascension</option>
             </optgroup>
           </select>
           {/* Tick rate range */}
