@@ -26,7 +26,7 @@ export default class Life extends Component {
       default: blankGrid(),
       mouseIsDown: false,
       penType: true,
-      config: {
+      config: { // preset cells
         gosperGlider: [[1, 5],[1, 6],[2, 5],[2, 6],[11, 5],[11, 6],
                       [11, 7],[12, 4],[12, 8],[13, 3],[13, 9],[14, 3],
                       [14, 9],[15, 6],[16, 4],[16, 8],[17, 5],[17, 6],
@@ -55,12 +55,12 @@ export default class Life extends Component {
                     [25,32],[24,33],[25,34],[37,35],[28,40],[23,31],
                     [32,26]].map(([x, y]) => [x+15, y-4])),
         megagammadion: [[44,29],[44,28],[45,28],[46,28],[46,29],[46,30],
-                        [45,30],[44,30],[45,31],[47,29],[45,27],[43,29]].concat([[30,36],[31,37],[31,38],
-                        [30,39],[29,38],[29,37],[33,33],[34,34],[35,34],
-                        [36,33],[35,32],[34,32],[30,30],[31,29],[31,28],
-                        [30,27],[29,28],[29,29],[27,33],[26,34],[26,32],
-                        [25,32],[24,33],[25,34],[37,35],[28,40],[23,31],
-                        [32,26]].map(([x, y]) => [x+15, y-4]))
+                        [45,30],[44,30],[45,31],[47,29],[45,27],[43,29]]
+                        .concat([[30,36],[31,37],[31,38],[30,39],[29,38],
+                        [29,37],[33,33],[34,34],[35,34],[36,33],[35,32],
+                        [34,32],[30,30],[31,29],[31,28],[30,27],[29,28],
+                        [29,29],[27,33],[26,34],[26,32],[25,32],[24,33],
+                        [25,34],[37,35],[28,40],[23,31],[32,26]].map(([x, y]) => [x+15, y-4]))
       }
     }
   }
@@ -336,15 +336,16 @@ export default class Life extends Component {
         tabIndex={0}>
         {/* Liquid crystal display for the miracle of Life */}
         <svg height={600} width={900} style={{ border: '1px solid black' }}>
-          {/* Units of Life! */}
+          {/* Injects units of Life into display */}
           { this.drawGrid() }
-          {/* Lines that form the grid */}
+          {/* Creates grid pattern */}
           <g>
             <defs>
               <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
                 <path d="M 10 0 L 0 0 0 10" fill="none" stroke="gray" strokeWidth="0.1"/>
               </pattern>
             </defs>
+            {/* Clickable "screen" placed in foreground to detect mouse events without cells interfering */}
             <rect
               width="100%"
               height="100%"
