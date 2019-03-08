@@ -244,7 +244,7 @@ export default class Life extends Component {
             key={ [x, y] }
             xPos={ xPos }
             yPos={ yPos }
-            pause={ paused }
+            paused={ paused }
           />
         )
       }
