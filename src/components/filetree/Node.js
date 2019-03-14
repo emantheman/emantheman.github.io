@@ -19,6 +19,7 @@ export default class Node extends Component {
   }
 
   createLeaf = (link, name, depth, path) => {
+    const { open } = this.state
     // determines whether leaf should be a plain folder, an external link,
     // or a link to a view and returns the corresponding jsx
     if (link === undefined) {
@@ -29,7 +30,7 @@ export default class Node extends Component {
           onMouseOut={ () => this.setState({ hover: false }) }
           onMouseDown={ () => this.setState({ active: true }) }
           onMouseUp={ () => this.setState({ active: false }) }
-          className={ 'folder ' + (depth === 0 ? 'root' : '') }>
+          className={ 'folder ' + (depth === 0 ? 'root ' : '') + (open ? 'open' : '') }>
           { name }
         </span>
       )
@@ -79,7 +80,7 @@ export default class Node extends Component {
 
   render() {
     // destructure
-    const { open } = this.state
+    const { open, hover } = this.state
     let { descendants: children, name, depth, link, currentPath } = this.props
 
     // set defaults
@@ -90,14 +91,14 @@ export default class Node extends Component {
     return (
       <li className={ depth === 0 ? 'tree' : '' }>
         <span>
-          { this.createLeaf(link, name, depth, currentPath) }
           {children.length > 0 && 
           <div className={ 'toggle-container ' + this.toggleVariants() }>
-            <span className={ 'toggle ' + (!open ? 'collapsed' : '') }/>
+            <span className={ 'toggle ' + (!open ? 'collapsed ' : '') + (hover ? 'hover' : '')}/>
           </div>}
+          { this.createLeaf(link, name, depth, currentPath) }
         </span>
         {/* the ul style is to offset the weird spacing around the index-hand I used for the root folder */}
-        <ul style={ depth === 0 ? {marginTop: '-9px'} : {}}>
+        <ul style={ depth === 0 ? {marginLeft: '-3px'} : {}}>
           { open && this.createChildren(children, depth, currentPath) }
         </ul>
       </li>

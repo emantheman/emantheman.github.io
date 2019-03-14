@@ -28,6 +28,7 @@ class App extends Component {
 
     return (
       <div className="App">
+        <div className="left-column"/>
         <FileTree
           branches={ branches }
           currentPath={ history.location.pathname }/>

@@ -1,11 +1,13 @@
+$hover-color:#2f0707; // #f8ff3b;
+$tree-color: white;
+
 .FileTree {
   // Default
   font-family: 'Roboto Slab', serif;
   position: fixed;
   z-index: 1;
   left: 10px;
-  top: -27px;
-  // when not WIERD HAND use top: 7px
+  top: -10px;
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
   -khtml-user-select: none; /* Konqueror HTML */
@@ -15,8 +17,11 @@
   // Tree
   .tree {
     list-style: none;
+    font-family: 'Hack';
+    font-weight: lighter;
     margin: 0;
     padding: 0;
+    margin-top: 7px;
     // unordered lists
     ul {
       list-style: none;
@@ -28,17 +33,21 @@
     .view-link, .external-link, .folder {
       cursor: pointer;
       text-decoration: none;
-      color: black;
+      color: $tree-color;
+      -webkit-transition: color .3s ease-out;
+      -moz-transition: color .3s ease-out;
+      -o-transition: color .3s ease-out;
+      transition: color .3s ease-out;
       // on hover
       &:hover {
-        color: blue;
+        color: $hover-color;// #690101;
       }
       // link to currently selected view
       &.current {
         font-style: italic;
       }
     }
-    // adds question mark after all links - except the currently selected - on hover
+    // adds question mark after not-currently-selected links on hover
     .view-link, .external-link {
       &:hover:not(.current) {
         &::after {
@@ -46,12 +55,21 @@
         }
       }
     }
-    // when NOT weird hand remove this block (.folder.root)
+    // root folder
     .folder.root {
       display: inline-block;
+      overflow: hidden;
       padding-top: 11px;
-      font-size: 55px;
-      height: 61px;
+      font-size: 19px;
+      position: relative;
+      top: 4px;
+      width: 10px;
+      transition: color .3s ease-out, width .5s ease-in-out;
+      &.open {
+        // -webkit-animation: extend 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) forwards;
+        // animation: extend 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) forwards;
+        width: 91%;
+      }
       & + .toggle-container {
         top: -17px;
       }
@@ -59,7 +77,8 @@
     // lists and their branches
     li {
       margin-left: 0.35em;
-      border-left: thin solid #000;
+      padding-top: 20px;
+      border-left: thin solid $tree-color;
       &:last-child {
         border-left: none;
       }
@@ -68,15 +87,16 @@
         height: 0.6em;
         margin-right: 0.1em;
         vertical-align: top;
-        border-bottom: thin solid #000;
+        border-bottom: thin solid $tree-color;
         content: "";
         display: inline-block;
       }
       &:last-child:before {
-        border-left: thin solid #000;
+        border-left: thin solid $tree-color;
+        height: 29px;
+        margin-top: -20px;
       }
     }
-    
     // Children toggle button
     // Box that holds plus/minus sign
     .toggle-container {
@@ -84,32 +104,37 @@
       width: 15px;
       height: 15px;
       position: relative;
-      right: -4px;
+      left: -3px;
       top: 2px;
       // box on hover
       &.hover {
-        background: #b2b4c32e;
+        background: rgba(143, 99, 99, 0.2);
       }
       // box while being clicked
       &.active {
-        box-shadow: inset 0px 0px 2px 1px #80808052;
+        box-shadow: inset 0px 0px 2px 1px rgba(57, 19, 19, 0.365);
       }
       // open box 
       &.open {
-        background: #f2f2f2;
-        box-shadow: inset 0px 0px 2px 3px rgba(128, 128, 128, 0.337);
+        background: #dd0808;
+        box-shadow: inset 0px 0px 2px 3px rgba(115, 42, 42, 0.337);
         // open box + hover
         &.hover {
-          box-shadow: inset 0px 0px 2px 3px rgba(164, 164, 164, 0.337);
+          box-shadow: inset 0px 0px 2px 3px rgba(124, 59, 59, 0.337);
           // open box + hover + active
           &.active {
-            box-shadow: inset 0px 0px 3px 3px rgba(103, 103, 103, 0.337);          
+            box-shadow: inset 0px 0px 3px 3px rgba(17, 8, 8, 0.426);          
           }
         }
       }
       // Plus / minus sign
       .toggle {
         position: relative;
+        // &.hover {
+        //   &::before, &::after {
+        //     background-color: $hover-color;
+        //   }
+        // }
         &::before, &::after {
           content: '';
           display: block;
@@ -119,7 +144,7 @@
           width: 8px;
           height: 2px;
           margin-top: -1px;
-          background-color: #000;
+          background-color: $tree-color;
           -webkit-transform-origin: 50% 50%;
           -ms-transform-origin: 50% 50%;
           transform-origin: 50% 50%;
