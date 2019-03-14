@@ -98,7 +98,7 @@ export default class Node extends Component {
           { this.createLeaf(link, name, depth, currentPath) }
         </span>
         {/* the ul style is to offset the weird spacing around the index-hand I used for the root folder */}
-        <ul style={ depth === 0 ? {marginLeft: '-3px'} : {}}>
+        <ul style={ depth === 0 ? {marginLeft: '-2px'} : {}}>
           { open && this.createChildren(children, depth, currentPath) }
         </ul>
       </li>
