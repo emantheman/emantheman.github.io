@@ -336,13 +336,14 @@ export default class Life extends Component {
         tabIndex={0}>
         {/* Liquid crystal display for the miracle of Life */}
         <svg height={600} width={900} style={{ border: '1px solid black' }}>
+          <rect width="100%" height="100%" fill="black"/>
           {/* Injects units of Life into display */}
           { this.drawGrid() }
           {/* Creates grid pattern */}
           <g>
             <defs>
               <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
-                <path d="M 10 0 L 0 0 0 10" fill="none" stroke="gray" strokeWidth="0.1"/>
+                <path d="M 10 0 L 0 0 0 10" fill="none" stroke="gray" strokeWidth="0.2"/>
               </pattern>
             </defs>
             {/* Clickable "screen" placed in foreground to detect mouse events without cells interfering */}

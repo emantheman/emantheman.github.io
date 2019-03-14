@@ -12,7 +12,7 @@
     /* Units of "life */
     .Cell {
       cursor: pointer;
-      fill: #808080;
+      fill: #4da843; // #808080;
       width: 9.7px; // default 9.7
       height: 9.7px; // change to '5' for interesting appearance
       // if game is paused, cells "swell" onBirth

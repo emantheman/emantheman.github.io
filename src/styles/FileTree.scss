@@ -1,5 +1,9 @@
 $hover-color:#2f0707; // #f8ff3b;
 $tree-color: white;
+$purple: #673dcf;
+$pink: #ed3e74;
+$orange: #ee5735;
+$green: #4da843;
 
 .FileTree {
   // Default
@@ -63,7 +67,7 @@ $tree-color: white;
       font-size: 19px;
       position: relative;
       top: 4px;
-      width: 10px;
+      // width: 10px;
       transition: color .3s ease-out, width .5s ease-in-out;
       &.open {
         // -webkit-animation: extend 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) forwards;
