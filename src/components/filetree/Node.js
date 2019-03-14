@@ -6,9 +6,16 @@ export default class Node extends Component {
     super(props)
   
     this.state = {
-       open: false,
-       hover: false,
-       active: false
+      open: false,
+      hover: false,
+      active: false
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.menuOpen !== this.props.menuOpen) {
+      // open menu upstream on click when menu is closed
+      this.setState({ open: this.props.menuOpen })
     }
   }
 
@@ -30,7 +37,7 @@ export default class Node extends Component {
           onMouseOut={ () => this.setState({ hover: false }) }
           onMouseDown={ () => this.setState({ active: true }) }
           onMouseUp={ () => this.setState({ active: false }) }
-          className={ 'folder ' + (depth === 0 ? 'root ' : '') + (open ? 'open' : '') }>
+          className={ 'folder ' + (depth === 0 ? 'root ' : '') + (open ? 'open ' : '') }>
           { name }
         </span>
       )
@@ -59,7 +66,7 @@ export default class Node extends Component {
     }
   }
 
-  createChildren = (children, depth, path) => children.map(({ name: childName, link, descendants: grandChildren }, index) => (
+  createChildren = (children, depth, path) => children.map(({ link, name: childName, descendants: grandChildren }, index) => (
     <Node
       key={ index }
       name={ childName }
@@ -81,23 +88,31 @@ export default class Node extends Component {
   render() {
     // destructure
     const { open, hover } = this.state
-    let { descendants: children, name, depth, link, currentPath } = this.props
+    let {
+      descendants: children,
+      name,
+      depth,
+      link,
+      currentPath,
+      toggleMenu,
+      menuOpen
+    } = this.props
 
     // set defaults
     depth = depth || 0
     // const children = this.props.children || []
     children = children || []
-    
+
     return (
-      <li className={ depth === 0 ? 'tree' : '' }>
-        <span>
+      <li className={ (depth === 0 ? 'tree ' : '') }>
+        <span onClick={() => depth === 0 && toggleMenu(open)}>
           {children.length > 0 && 
           <div className={ 'toggle-container ' + this.toggleVariants() }>
             <span className={ 'toggle ' + (!open ? 'collapsed ' : '') + (hover ? 'hover' : '')}/>
           </div>}
-          { this.createLeaf(link, name, depth, currentPath) }
+          { (menuOpen || depth !== 0) && this.createLeaf(link, name, depth, currentPath) }
         </span>
-        {/* the ul style is to offset the weird spacing around the index-hand I used for the root folder */}
+        {/* subnodes */}
         <ul style={ depth === 0 ? {marginLeft: '-2px'} : {}}>
           { open && this.createChildren(children, depth, currentPath) }
         </ul>

@@ -13,10 +13,16 @@ class App extends Component {
   constructor(props) {
     super(props)
   
-    this.state = {}
+    this.state = {
+      expanded: false
+    }
   }
-  
+
+  toggleMenu = isOpen => this.setState({ expanded: !isOpen })
+  openMenu = () => this.setState({ expanded: true })
+
   render() {
+    const { expanded } = this.state
     const { history } = this.props
 
     const Routes = routes.map((route, index) => {
@@ -28,10 +34,15 @@ class App extends Component {
 
     return (
       <div className="App">
-        <div className="left-column"/>
-        <FileTree
-          branches={ branches }
-          currentPath={ history.location.pathname }/>
+        <div
+          className={ "left-column " + (expanded ? 'open' : '')}
+          onClick={ !expanded ? this.openMenu : undefined }>
+          <FileTree
+            branches={ branches }
+            currentPath={ history.location.pathname }
+            toggleMenu={ this.toggleMenu }
+            menuOpen={ expanded }/>
+        </div>
         <Path path={ history.location.pathname }/>
         <main>
           { Routes }

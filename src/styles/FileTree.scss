@@ -1,17 +1,37 @@
-$hover-color:#2f0707; // #f8ff3b;
-$tree-color: white;
 $purple: #673dcf;
+$blue: #2196F3;
 $pink: #ed3e74;
 $orange: #ee5735;
 $green: #4da843;
+$red: #dd0808;
+$yellow: #f7ff00;
+$hover-color:white; // #f8ff3b;
+$tree-color: white;
+$plus-sign: white;
+$minus-sign: black;
+$box-color: white;
+
+// for toggle box
+$red-background-open: $red;
+$red-box-shadow-open: inset 0px 0px 2px 3px rgba(115, 42, 42, 0.337);
+$red-box-shadow-open-and-hover: inset 0px 0px 2px 3px rgba(124, 59, 59, 0.337);
+$red-box-shadow-open-and-hover-and-active: inset 0px 0px 3px 3px rgba(17, 8, 8, 0.426);
+$red-box-shadow-active: inset 0px 0px 2px 1px rgba(57, 19, 19, 0.365);
+$red-background-hover: rgba(143, 99, 99, 0.2);
+$black-background-open: $red;
+$black-box-shadow-open: inset 0px 0px 2px 3px rgba(115, 42, 42, 0.337);
+$black-box-shadow-open-and-hover: inset 0px 0px 2px 3px rgba(124, 59, 59, 0.337);
+$black-box-shadow-open-and-hover-and-active: inset 0px 0px 3px 3px rgba(17, 8, 8, 0.426);
+$black-box-shadow-active: inset 0px 0px 2px 1px rgba(57, 19, 19, 0.365);
+$black-background-hover: rgba(143, 99, 99, 0.2);
 
 .FileTree {
   // Default
   font-family: 'Roboto Slab', serif;
   position: fixed;
   z-index: 1;
-  left: 10px;
-  top: -10px;
+  left: 7px;
+  top: -15px;
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
   -khtml-user-select: none; /* Konqueror HTML */
@@ -67,16 +87,14 @@ $green: #4da843;
       font-size: 19px;
       position: relative;
       top: 4px;
-      // width: 10px;
       transition: color .3s ease-out, width .5s ease-in-out;
-      &.open {
-        // -webkit-animation: extend 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) forwards;
-        // animation: extend 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) forwards;
-        width: 91%;
-      }
       & + .toggle-container {
         top: -17px;
       }
+    }
+    // all sub-root folders
+    .folder {
+      margin-left: 2px;
     }
     // lists and their branches
     li {
@@ -108,37 +126,39 @@ $green: #4da843;
       width: 15px;
       height: 15px;
       position: relative;
+      border-radius: 2px;
       left: -3px;
       top: 2px;
       // box on hover
       &.hover {
-        background: rgba(143, 99, 99, 0.2);
+        background: rgba(189, 189, 189, 0.2);
       }
       // box while being clicked
       &.active {
-        box-shadow: inset 0px 0px 2px 1px rgba(57, 19, 19, 0.365);
+        box-shadow: inset 0px 0px 2px 1px rgba(116, 116, 116, 0.365);
       }
       // open box 
       &.open {
-        background: #dd0808;
-        box-shadow: inset 0px 0px 2px 3px rgba(115, 42, 42, 0.337);
-        // open box + hover
-        &.hover {
-          box-shadow: inset 0px 0px 2px 3px rgba(124, 59, 59, 0.337);
-          // open box + hover + active
-          &.active {
-            box-shadow: inset 0px 0px 3px 3px rgba(17, 8, 8, 0.426);          
+        background: $box-color;
+        // box-shadow: inset 0px 0px 2px 3px rgba(223, 223, 223, 0.337);
+        // // open box + hover
+        // &.hover {
+        //   box-shadow: inset 0px 0px 2px 3px rgba(203, 203, 203, 0.337);
+        //   // open box + hover + active
+        //   &.active {
+        //     box-shadow: inset 0px 0px 3px 3px rgba(63, 63, 63, 0.426);          
+        //   }
+        // }
+        // colors minus sign
+        .toggle {
+          &::before, &::after {
+            background-color: $minus-sign;
           }
         }
       }
       // Plus / minus sign
       .toggle {
         position: relative;
-        // &.hover {
-        //   &::before, &::after {
-        //     background-color: $hover-color;
-        //   }
-        // }
         &::before, &::after {
           content: '';
           display: block;
@@ -148,7 +168,7 @@ $green: #4da843;
           width: 8px;
           height: 2px;
           margin-top: -1px;
-          background-color: $tree-color;
+          background-color: $plus-sign;
           -webkit-transform-origin: 50% 50%;
           -ms-transform-origin: 50% 50%;
           transform-origin: 50% 50%;

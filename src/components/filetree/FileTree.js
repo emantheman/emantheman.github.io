@@ -10,14 +10,25 @@ export default class FileTree extends Component {
   }
 
   render() {
-    const { currentPath, branches: {name, link, descendants} } = this.props
+    const {
+      currentPath,
+      toggleMenu,
+      menuOpen,
+      branches: {
+        name,
+        link,
+        descendants
+      }
+    } = this.props
     return (
       <div className="FileTree">
         <Node
           name={ name }
           link={ link }
           descendants={ descendants }
-          currentPath={ currentPath }/>
+          currentPath={ currentPath }
+          toggleMenu={ toggleMenu }
+          menuOpen={ menuOpen }/>
       </div>
     )
   }

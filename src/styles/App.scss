@@ -1,9 +1,20 @@
+$orange: #ee5735;
+$red: #dd0808;
+$pink: #ed3e74;
+$purple: #673dcf;
+$green: #4da843;
+$black: #000;
 .left-column {
-  background-color: #dd0808;// #e60049;// 
+  background-color: $black;// #e60049;// 
   position: fixed;
   left: 0;
   top: 0;
   height: 100vh;
-  width: 204px;
+  width: 25px;
+  transition: width .5s cubic-bezier(0.77, 0.03, 0.2, 1);
+  cursor: pointer;
+  &.open {
+    width: 204px;
+    cursor: unset;
+  }
 }
-// make .left-column width: 50px; when root is closed

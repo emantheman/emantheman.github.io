@@ -1,11 +1,11 @@
 // ☟, ☞, ☛, ✹, ※, ⁂, ☯
 // for terminal-like file-tree branches see https://en.wikipedia.org/wiki/Box-drawing_character
 const branches = {
-  name: 'emmanuel_price',
+  name: 'emmanuel_price/',
   descendants: [{
-    name: 'code',
+    name: 'code/',
     descendants: [{
-      name: 'projects',
+      name: 'projects/',
       descendants: [{
         name: 'concat',
         link: {
@@ -27,7 +27,7 @@ const branches = {
       }]
     }]
   }, {
-    name: 'info',
+    name: 'info/',
     descendants: [{
       name: 'about',
       link: {
@@ -35,7 +35,7 @@ const branches = {
         url: '/about'
       }
     }, {
-      name: 'contact',
+      name: 'contact/',
       descendants: [{
         name: 'github',
         link: {
