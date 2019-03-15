@@ -94,12 +94,27 @@ $black-background-hover: rgba(143, 99, 99, 0.2);
     // all sub-root folders
     .folder {
       margin-left: 2px;
+      &:not(.root) {
+        // animation-name: fade-in;
+        // animation-duration: 1s;
+        // animation-timing-function: cubic-bezier(1, 0.21, 0.45, 0.99);
+      }
     }
     // lists and their branches
     li {
       margin-left: 0.35em;
       padding-top: 20px;
       border-left: thin solid $tree-color;
+      &:not(.first-gen) {
+        animation-name: fade-in;
+        animation-duration: 1s;
+        animation-timing-function: cubic-bezier(0.33, 0.56, 0.59, 1.01);
+      }
+      &.first-gen {
+        animation-name: fade-in;
+        animation-duration: 1.2s;
+        animation-timing-function: cubic-bezier(0.49, 0.04, 0.58, 1);
+      }
       &:last-child {
         border-left: none;
       }

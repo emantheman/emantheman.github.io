@@ -104,7 +104,7 @@ export default class Node extends Component {
     children = children || []
 
     return (
-      <li className={ (depth === 0 ? 'tree ' : '') }>
+      <li className={ (depth === 0 ? 'tree ' : '') + (depth === 1 ? 'first-gen ' : '')}>
         <span onClick={() => depth === 0 && toggleMenu(open)}>
           {children.length > 0 && 
           <div className={ 'toggle-container ' + this.toggleVariants() }>
