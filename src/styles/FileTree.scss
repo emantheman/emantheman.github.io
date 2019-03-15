@@ -107,7 +107,7 @@ $black-background-hover: rgba(143, 99, 99, 0.2);
       border-left: thin solid $tree-color;
       &:not(.first-gen) {
         animation-name: fade-in;
-        animation-duration: 1s;
+        animation-duration: 1.2s;
         animation-timing-function: cubic-bezier(0.33, 0.56, 0.59, 1.01);
       }
       &.first-gen {
