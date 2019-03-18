@@ -1,10 +1,15 @@
 /* Container for the game and its description*/
 .CGOL {
-  padding-left: 14%;
+  padding-left: 10px;
+  opacity: 1;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+  animation-duration: 1s;
   /* The petri dish that is Life */
   .Life {
-    margin-top: 50px;
-    margin-left: 26px;
+    margin-top: 10px;
+    margin-left: 24px;
     float: left;
     &:focus {
       outline: none;
@@ -14,7 +19,7 @@
       cursor: pointer;
       fill: #4da843; // #808080;
       width: 9.7px; // default 9.7
-      height: 9.7px; // change to '5' for interesting appearance
+      height: 9.7px;
       // if game is paused, cells "swell" onBirth
       &.paused {
         transform-origin: 50% 50%;
@@ -138,11 +143,11 @@
   }
   /* The description and rules of the game */
   .description {
-    width: 21%;
+    width: 306px;
     height: 602px;
     float: right;
     margin-right: 29px;
-    margin-top: 50px;
+    margin-top: 9px;
     // header that floats above the description
     h2 {
       border-bottom: 1px solid #eaecef;
@@ -157,7 +162,7 @@
     }
     // div that contains description
     & > div {
-      height: 566px;
+      height: 637px;
       border-bottom: 1px solid #eaecef;
       overflow: auto;
       blockquote {
@@ -209,4 +214,13 @@
   } 100% {
     transform: scale(1)
   }
+}
+
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }

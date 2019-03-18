@@ -1,20 +1,22 @@
-$orange: #ee5735;
-$red: #dd0808;
-$pink: #ed3e74;
-$purple: #673dcf;
-$green: #4da843;
-$black: #000;
+$bgc: rgba(0, 0, 0, 0.844);
+$bgc-on-hover: rgba(0, 0, 0, 0.860);
 .left-column {
-  background-color: $black;// #e60049;// 
+  background-color: $bgc;// #e60049;// 
   position: fixed;
   left: 0;
   top: 0;
   height: 100vh;
   width: 25px;
-  transition: width .5s cubic-bezier(0.77, 0.03, 0.2, 1);
+  transition: width .5s cubic-bezier(0.77, 0.03, 0.2, 1), background-color .1s linear;
+  // transition-property: width, background-color;
+  // transition-duration: .5s;
+  // transition-timing-function: cubic-bezier(0.77, 0.03, 0.2, 1);
   cursor: pointer;
   &.open {
     width: 204px;
     cursor: unset;
+  }
+  &:hover {
+    background-color: $bgc-on-hover;
   }
 }

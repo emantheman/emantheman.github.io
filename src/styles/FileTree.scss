@@ -1,29 +1,8 @@
-$purple: #673dcf;
-$blue: #2196F3;
-$pink: #ed3e74;
-$orange: #ee5735;
-$green: #4da843;
-$red: #dd0808;
-$yellow: #f7ff00;
-$hover-color:white; // #f8ff3b;
+$hover-color:white;
 $tree-color: white;
 $plus-sign: white;
 $minus-sign: black;
 $box-color: white;
-
-// for toggle box
-$red-background-open: $red;
-$red-box-shadow-open: inset 0px 0px 2px 3px rgba(115, 42, 42, 0.337);
-$red-box-shadow-open-and-hover: inset 0px 0px 2px 3px rgba(124, 59, 59, 0.337);
-$red-box-shadow-open-and-hover-and-active: inset 0px 0px 3px 3px rgba(17, 8, 8, 0.426);
-$red-box-shadow-active: inset 0px 0px 2px 1px rgba(57, 19, 19, 0.365);
-$red-background-hover: rgba(143, 99, 99, 0.2);
-$black-background-open: $red;
-$black-box-shadow-open: inset 0px 0px 2px 3px rgba(115, 42, 42, 0.337);
-$black-box-shadow-open-and-hover: inset 0px 0px 2px 3px rgba(124, 59, 59, 0.337);
-$black-box-shadow-open-and-hover-and-active: inset 0px 0px 3px 3px rgba(17, 8, 8, 0.426);
-$black-box-shadow-active: inset 0px 0px 2px 1px rgba(57, 19, 19, 0.365);
-$black-background-hover: rgba(143, 99, 99, 0.2);
 
 .FileTree {
   // Default
@@ -94,11 +73,6 @@ $black-background-hover: rgba(143, 99, 99, 0.2);
     // all sub-root folders
     .folder {
       margin-left: 2px;
-      &:not(.root) {
-        // animation-name: fade-in;
-        // animation-duration: 1s;
-        // animation-timing-function: cubic-bezier(1, 0.21, 0.45, 0.99);
-      }
     }
     // lists and their branches
     li {

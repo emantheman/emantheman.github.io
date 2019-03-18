@@ -7,18 +7,6 @@ const branches = {
     descendants: [{
       name: 'projects/',
       descendants: [{
-        name: 'concat',
-        link: {
-          type: 'view',
-          url: '/code/projects/concatenate'
-        }
-      }, {
-        name: 'kigo',
-        link: {
-          type: 'view',
-          url: '/code/projects/kigo'
-        }
-      }, {
         name: 'cogl',
         link: {
           type: 'view',
@@ -27,12 +15,18 @@ const branches = {
       }]
     }]
   }, {
-    name: 'info/',
+    name: 'about/',
     descendants: [{
-      name: 'about',
+      name: 'me',
       link: {
         type: 'view',
-        url: '/about'
+        url: '/me'
+      }
+    }, {
+      name: 'inspiration',
+      link: {
+        type: 'view',
+        url: '/info/inspiration'
       }
     }, {
       name: 'contact/',
@@ -55,12 +49,6 @@ const branches = {
           url: 'https://www.codewars.com/users/naturalbornchiller/'
         }
       }]
-    }, {
-      name: 'inspiration',
-      link: {
-        type: 'view',
-        url: '/info/inspiration'
-      }
     }]
   }]
 }

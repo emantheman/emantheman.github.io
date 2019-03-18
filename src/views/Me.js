@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import AtvImg from '../components/AtvImg'
-import '../styles/About.scss'
+import '../styles/Me.scss'
 
-class About extends Component {
+class Me extends Component {
   render() {
     return (
       <div className="About">
@@ -33,4 +33,4 @@ class About extends Component {
   }
 }
 
-export default About
+export default Me

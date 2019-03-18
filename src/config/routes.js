@@ -1,17 +1,13 @@
 import Home from '../views/Home'
-import About from '../views/About'
-import Concatenate from '../views/Concatenate'
+import Me from '../views/Me'
 import CGOL from '../views/CGOL'
 
 const routes = [{
   path: '/',
   view: Home
 }, {
-  path: '/about',
-  view: About,
-}, {
-  path: '/code/projects/concatenate',
-  view: Concatenate
+  path: '/me',
+  view: Me,
 }, {
   path: '/code/projects/conwaysgameoflife',
   view: CGOL

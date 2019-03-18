@@ -9,8 +9,8 @@ export default class Life extends Component {
     note: this is calculated from the height(600) and width(900)
     of the grid divided by the size of each cell(10)
     */
-    const cols = 90, // number of rows
-          rows = 60 // and columns in the grid 
+    const cols = 106, // number of rows
+          rows = 67 // and columns in the grid 
 
 
     // returns a 2d array of false values
@@ -335,8 +335,7 @@ export default class Life extends Component {
         onKeyDown={ this.handleKeyDown }
         tabIndex={0}>
         {/* Liquid crystal display for the miracle of Life */}
-        <svg height={600} width={900} style={{ border: '1px solid black' }}>
-          <rect width="100%" height="100%" fill="black"/>
+        <svg height={670} width={1060} style={{ border: '1px solid black' }}>
           {/* Injects units of Life into display */}
           { this.drawGrid() }
           {/* Creates grid pattern */}
