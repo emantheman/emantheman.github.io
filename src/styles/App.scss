@@ -1,6 +1,7 @@
 $bgc: rgba(0, 0, 0, 0.844);
 $bgc-on-hover: rgba(0, 0, 0, 0.860);
 .left-column {
+  overflow: hidden;
   background-color: $bgc;// #e60049;// 
   position: fixed;
   left: 0;

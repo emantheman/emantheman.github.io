@@ -5,12 +5,16 @@ export default class Life extends Component {
   constructor(props) {
     super(props)
 
+    // set svg height: 93vh;
+    //         width: 73vw;
+    // make col and row number dependent on svg offset width and height
+
     /*
     note: this is calculated from the height(600) and width(900)
-    of the grid divided by the size of each cell(10)
+    of the grid divided by the size of each cell(15)
     */
-    const cols = 106, // number of rows
-          rows = 67 // and columns in the grid 
+    const cols = 70, // number of rows
+          rows = 44 // and columns in the grid 
 
 
     // returns a 2d array of false values
@@ -19,6 +23,7 @@ export default class Life extends Component {
     this.state = {
       cols,
       rows,
+      cellSize: 15,
       paused: true,
       generation: 0,
       tick: 250, // time between each frame
@@ -196,6 +201,9 @@ export default class Life extends Component {
 
     // swap grids
     this.setState({ grid: newGrid, default: newGrid })
+
+    // remove focus from select dropdown
+    this.configSelect.blur()
   }
 
   /**
@@ -220,7 +228,8 @@ export default class Life extends Component {
     const {
       grid,
       paused,
-      tick
+      tick,
+      cellSize
     } = this.state
 
     // if the game isn't paused call the next frame
@@ -237,7 +246,7 @@ export default class Life extends Component {
       // if Cell is alive
       if (cell) {
         // get it's position (coordinates multiplied by cell size)
-        const xPos = x * 10, yPos = y * 10
+        const xPos = x * cellSize, yPos = y * cellSize
         // and add the Cell to the array
         Cells.push(
           <Cell
@@ -279,8 +288,8 @@ export default class Life extends Component {
     pt.y = e.nativeEvent.clientY
     pt = pt.matrixTransform(svg.getScreenCTM().inverse());
     return {
-      x: Math.floor(pt.x / 10),
-      y: Math.floor(pt.y / 10) 
+      x: Math.floor(pt.x/this.state.cellSize),
+      y: Math.floor(pt.y/this.state.cellSize) 
     }
   }
 
@@ -311,8 +320,8 @@ export default class Life extends Component {
     this.setState({ paused: true })
 
     // correct for cell-size (10)
-    x = Math.floor(x/10)
-    y = Math.floor(y/10)
+    x = Math.floor(x/this.state.cellSize)
+    y = Math.floor(y/this.state.cellSize)
 
     // create "draw" effect
     if (this.state.mouseIsDown) this.flipCell(x, y, true) 
@@ -335,14 +344,17 @@ export default class Life extends Component {
         onKeyDown={ this.handleKeyDown }
         tabIndex={0}>
         {/* Liquid crystal display for the miracle of Life */}
-        <svg height={670} width={1060} style={{ border: '1px solid black' }}>
+        <svg
+          height={660}
+          width={1050}
+          style={{ border: '1px solid black' }}>
           {/* Injects units of Life into display */}
           { this.drawGrid() }
           {/* Creates grid pattern */}
           <g>
             <defs>
-              <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
-                <path d="M 10 0 L 0 0 0 10" fill="none" stroke="gray" strokeWidth="0.2"/>
+              <pattern id="grid" width={this.state.cellSize} height={this.state.cellSize} patternUnits="userSpaceOnUse">
+                <path d={`M ${this.state.cellSize} 0 L 0 0 0 ${this.state.cellSize}`} fill="none" stroke="gray" strokeWidth="0.2"/>
               </pattern>
             </defs>
             {/* Clickable "screen" placed in foreground to detect mouse events without cells interfering */}
@@ -388,6 +400,7 @@ export default class Life extends Component {
           </i>
           {/* Preset options */}
           <select
+            ref={select => {this.configSelect = select;}}
             id="presets"
             onChange={ this.configureGrid }>
             <optgroup label="presets">
@@ -402,6 +415,13 @@ export default class Life extends Component {
               <option value="ascension">ascension</option>
             </optgroup>
           </select>
+          {/* Current Pen Type - reverses onClick */}
+          <span
+            className={'pen ' + (this.state.penType ? 'draw' : '')}
+            onClick={() => this.setState(prevState => ({ penType: !prevState.penType }))}
+          >
+            <span>{ this.state.penType ? 'Draw' : 'Erase'}</span>
+          </span>
           {/* Tick rate range */}
           <label>Tick delay:
             <input
@@ -433,13 +453,6 @@ export default class Life extends Component {
             </datalist>
             <em className="display-tickrate">{ this.state.tick }ms</em>
           </label>
-          {/* Current Pen Type - reverses onClick */}
-          <span
-            className={'pen ' + (this.state.penType ? 'draw' : '')}
-            onClick={() => this.setState(prevState => ({ penType: !prevState.penType }))}
-          >
-            <span>{ this.state.penType ? 'Draw' : 'Erase'}</span>
-          </span>
         </div>
       </div>
     )
