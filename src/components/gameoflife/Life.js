@@ -87,13 +87,17 @@ export default class Life extends Component {
         rows = 44
         cellSize = 15
       }
+
       return {
         cols,
         rows,
         cellSize,
-        grid: this.newGrid(),
-        enlarged: !enlarged
+        enlarged: !enlarged,
+        paused: true
       }
+    }, () => {
+      // reset grid
+      this.setState({ grid: this.newGrid() })
     })
   }
 
