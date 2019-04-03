@@ -71,36 +71,6 @@ export default class Life extends Component {
     }
   }
 
-  changeCellSize = () => {
-    this.setState(({ enlarged }) => {
-      // if the cells are currently enlarged
-      let rows, cols, cellSize
-      if (enlarged) {
-        // shrink cells; increase grid density
-        cols = 105
-        rows = 66
-        cellSize = 10
-      // otherwise,
-      } else {
-        // enlarge cells; reduce grid density
-        cols = 70
-        rows = 44
-        cellSize = 15
-      }
-
-      return {
-        cols,
-        rows,
-        cellSize,
-        enlarged: !enlarged,
-        paused: true
-      }
-    }, () => {
-      // reset grid
-      this.setState({ grid: this.newGrid() })
-    })
-  }
-
   /**
    * Flips the value of the current cell
    * 
@@ -370,6 +340,39 @@ export default class Life extends Component {
     if (keyCode === 32) this.setState(prevState => ({ paused: !prevState.paused }))
   }
 
+  /**
+   * Changes cell size and density of grid
+   */
+  changeCellSize = () => {
+    this.setState(({ enlarged }) => {
+      // if the cells are currently enlarged
+      let rows, cols, cellSize
+      if (enlarged) {
+        // shrink cells; increase grid density
+        cols = 105
+        rows = 66
+        cellSize = 10
+      // otherwise,
+      } else {
+        // enlarge cells; reduce grid density
+        cols = 70
+        rows = 44
+        cellSize = 15
+      }
+
+      return {
+        cols,
+        rows,
+        cellSize,
+        enlarged: !enlarged,
+        paused: true
+      }
+    }, () => {
+      // reset grid
+      this.setState({ grid: this.newGrid() })
+    })
+  }
+
   render() {
     return (
       <div
@@ -420,6 +423,12 @@ export default class Life extends Component {
             id="reset"
             title="reset"
             onClick={ this.resetGrid }
+          />
+          {/* Change cell size */}
+          <i
+            className={`fa fa-search-${this.state.enlarged ? 'minus' : 'plus'} magnifier`} 
+            aria-hidden="true"
+            onClick={this.changeCellSize}
           />
           {/* Info tooltip */}
           <i
@@ -486,12 +495,6 @@ export default class Life extends Component {
             </datalist>
             <em className="display-tickrate">{ this.state.tick }ms</em>
           </label>
-          {/* Change cell size */}
-          <i
-            className={`fa fa-search-${this.state.enlarged ? 'minus' : 'plus'} magnifier`} 
-            aria-hidden="true"
-            onClick={this.changeCellSize}
-          />
         </div>
       </div>
     )
