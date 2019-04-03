@@ -13,7 +13,6 @@ const activate = absPath => {
       absPath = absPath.slice(0, lastSlash)
     }
   }
-  // links.unshift({ absPath: '/', relPath: '*'})
   return links.map((link, index) => (
     <React.Fragment key={ index }>
       { link.relPath === '*' ? '' : '/' }

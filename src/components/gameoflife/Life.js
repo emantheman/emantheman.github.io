@@ -31,6 +31,7 @@ export default class Life extends Component {
       default: blankGrid(),
       mouseIsDown: false,
       penType: true,
+      enlarged: true,
       config: { // preset cells
         gosperGlider: [[1, 5],[1, 6],[2, 5],[2, 6],[11, 5],[11, 6],
                       [11, 7],[12, 4],[12, 8],[13, 3],[13, 9],[14, 3],
@@ -68,6 +69,32 @@ export default class Life extends Component {
                         [25,34],[37,35],[28,40],[23,31],[32,26]].map(([x, y]) => [x+15, y-4]))
       }
     }
+  }
+
+  changeCellSize = () => {
+    this.setState(({ enlarged }) => {
+      // if the cells are currently enlarged
+      let rows, cols, cellSize
+      if (enlarged) {
+        // shrink cells; increase grid density
+        cols = 105
+        rows = 66
+        cellSize = 10
+      // otherwise,
+      } else {
+        // enlarge cells; reduce grid density
+        cols = 70
+        rows = 44
+        cellSize = 15
+      }
+      return {
+        cols,
+        rows,
+        cellSize,
+        grid: this.newGrid(),
+        enlarged: !enlarged
+      }
+    })
   }
 
   /**
@@ -128,7 +155,7 @@ export default class Life extends Component {
   updateCell = (x, y, c) => {
     const { grid } = this.state
     let n = 0 // number of alive neighbors
-    const width = grid.length, // width and height of the containing svg, respectively
+    const width = grid.length, // width and height of the grid, respectively
           height = grid[0].length
     
     // loop through neighbors of current cell
@@ -228,6 +255,7 @@ export default class Life extends Component {
     const {
       grid,
       paused,
+      enlarged,
       tick,
       cellSize
     } = this.state
@@ -254,6 +282,7 @@ export default class Life extends Component {
             xPos={ xPos }
             yPos={ yPos }
             paused={ paused }
+            enlarged={ enlarged }
           />
         )
       }
@@ -319,7 +348,7 @@ export default class Life extends Component {
     // pause the GoL
     this.setState({ paused: true })
 
-    // correct for cell-size (10)
+    // correct for cell-size
     x = Math.floor(x/this.state.cellSize)
     y = Math.floor(y/this.state.cellSize)
 
@@ -453,6 +482,12 @@ export default class Life extends Component {
             </datalist>
             <em className="display-tickrate">{ this.state.tick }ms</em>
           </label>
+          {/* Change cell size */}
+          <i
+            className={`fa fa-search-${this.state.enlarged ? 'minus' : 'plus'} magnifier`} 
+            aria-hidden="true"
+            onClick={this.changeCellSize}
+          />
         </div>
       </div>
     )

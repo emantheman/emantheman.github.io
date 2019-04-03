@@ -9,7 +9,7 @@ const routes = [{
   path: '/me',
   view: Me,
 }, {
-  path: '/code/projects/conwaysgameoflife',
+  path: '/projects/life',
   view: CGOL
 }]
 

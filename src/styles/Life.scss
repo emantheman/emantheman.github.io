@@ -130,6 +130,7 @@
       // styles tickrate range
       label {
         font-variant: small-caps;
+        font-weight: bold;
         font-size: 15px;
         padding-left: 5px;
         #tick-delay {
@@ -141,10 +142,19 @@
         .display-tickrate {
           text-align: right;
           font-variant: normal;
+          font-weight: 500;
           font-size: 13px;
           width: 44px;
           display: inline-block;
         }
+      }
+      // styles magnifying glass
+      .magnifier {
+        cursor: pointer;
+        position: relative;
+        top: 2px;
+        left: 6px;
+        font-size: 19px;
       }
     }
   }

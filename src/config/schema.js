@@ -3,16 +3,13 @@
 const branches = {
   name: 'emmanuel_price/',
   descendants: [{
-    name: 'code/',
+    name: 'projects/',
     descendants: [{
-      name: 'projects/',
-      descendants: [{
-        name: 'cogl',
-        link: {
-          type: 'view',
-          url: '/code/projects/conwaysgameoflife'
-        }
-      }]
+      name: 'life',
+      link: {
+        type: 'view',
+        url: '/projects/life'
+      }
     }]
   }, {
     name: 'about/',
@@ -20,17 +17,23 @@ const branches = {
       name: 'me',
       link: {
         type: 'view',
-        url: '/me'
+        url: '/about/me'
       }
     }, {
-      name: 'inspiration',
+      name: 'quotes',
       link: {
         type: 'view',
-        url: '/info/inspiration'
+        url: '/about/quotes'
       }
     }, {
       name: 'contact/',
       descendants: [{
+        name: 'email',
+        link: {
+          type: 'anchor',
+          href: 'mailto:mail@emmanuelprice.com'
+        }
+      }, {
         name: 'github',
         link: {
           type: 'anchor',
