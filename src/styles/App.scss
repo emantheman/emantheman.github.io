@@ -2,16 +2,14 @@ $bgc: rgba(0, 0, 0, 0.844);
 $bgc-on-hover: rgba(0, 0, 0, 0.860);
 .left-column {
   overflow: hidden;
-  background-color: $bgc;// #e60049;// 
+  background-color: $bgc;
   position: fixed;
+  z-index: 1;
   left: 0;
   top: 0;
   height: 100vh;
   width: 25px;
   transition: width .5s cubic-bezier(0.77, 0.03, 0.2, 1), background-color .1s linear;
-  // transition-property: width, background-color;
-  // transition-duration: .5s;
-  // transition-timing-function: cubic-bezier(0.77, 0.03, 0.2, 1);
   cursor: pointer;
   &.open {
     width: 204px;

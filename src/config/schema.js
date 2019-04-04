@@ -31,7 +31,7 @@ const branches = {
         name: 'email',
         link: {
           type: 'anchor',
-          href: 'mailto:mail@emmanuelprice.com'
+          url: 'mailto:mail@emmanuelprice.com'
         }
       }, {
         name: 'github',
