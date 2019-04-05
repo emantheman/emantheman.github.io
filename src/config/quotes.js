@@ -11,9 +11,9 @@ const quotes = [{
   author: 'George Bernard Shaw',
   content: 'A life spent making mistakes is not only more honorable, but more useful than a life spent doing nothing.'
 }, {
-  url: '',
+  url: 'https://www.youtube.com/watch?v=aySqymiraBA',
   author: 'Terence Mckenna',
-  content: "We have to create culture, don't watch TV, don't read magazines, don't even listen to NPR. Create your own roadshow. The nexus of space and time where you are now is the most immediate sector of your universe, and if you're worrying about Michael Jackson or Bill Clinton or somebody else, then you are disempowered, you're giving it all away to icons, icons which are maintained by an electronic media so that you want to dress like X or have lips like Y. This is shit-brained, this kind of thinking. That is all cultural diversion, and what is real is you and your friends and your associations, your highs, your orgasms, your hopes, your plans, your fears. And we are told 'no', we're unimportant, we're peripheral. 'Get a degree, get a job, get a this, get a that.' And then you're a player, you don't want to even play in that game. You want to reclaim your mind and get it out of the hands of the cultural engineers who want to turn you into a half-baked moron consuming all this trash that's being manufactured out of the bones of a dying world."
+  content: "We have to create culture, don't watch TV, don't read magazines, don't even listen to NPR. Create your own roadshow. The nexus of space and time where you are now is the most immediate sector of your universe, and if you're worrying about Michael Jackson or Bill Clinton or somebody else, then you are disempowered, you're giving it all away to icons, icons which are maintained by an electronic media so that you want to dress like X or have lips like Y. This is shit-brained, this kind of thinking . . . You want to reclaim your mind and get it out of the hands of the cultural engineers who want to turn you into a half-baked moron consuming all this trash that's being manufactured out of the bones of a dying world."
 }, {
   url: 'https://www.brainyquote.com/quotes/john_f_kennedy_108094',
   author: 'John F. Kennedy',
@@ -22,6 +22,13 @@ const quotes = [{
   url: 'https://everydaypowerblog.com/lao-tzu-quotes/',
   author: 'Lao Tzu',
   content: 'A good traveler has no fixed plans and is not intent on arriving.'
-}]
+}].sort((a, b) => { // sort alphabetically by first name
+  if (b.author > a.author) {
+    return -1
+  } else if (b.author < a.author) {
+    return 1
+  }
+  return 0
+})
 
 export default quotes
