@@ -1,9 +1,14 @@
 .Quotes {
+  font-family: 'Roboto Slab', georgia, serif;
+  font-size: 16px;
+  font-weight: 300;
+  height: 100%;
+  line-height: 1.625rem;
   align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 10% 5%;
+  margin: 10% 0%;
   width: 100%;
   .display {
     max-width: 45rem;
