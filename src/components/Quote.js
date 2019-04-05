@@ -11,7 +11,19 @@ const Quote = props => (
     </a>:
     <blockquote className="content">
       { props.content.map((q, i) => (
-        <p key={i}>{ q }</p>
+        <React.Fragment>
+          {/* Separates multiple quotes from same author */}
+          { !!i && <hr align="left"/>}
+          <p>
+            {/* Breaks up quote with linebreaks if '\n' is present in quote */}
+            { q.split('\n').map(line => (
+              <React.Fragment>
+                {line}<br/>
+              </React.Fragment>
+            )) }
+          </p>
+          {/* <p key={i}>{ q.split('\n').join(<br/>) }</p> */}
+        </React.Fragment>
       ))}
     </blockquote>
   </div>

@@ -9,7 +9,7 @@ const quotes = [{
 }, {
   url: 'https://www.goodreads.com/quotes/5520-a-life-spent-making-mistakes-is-not-only-more-honorable',
   author: 'George Bernard Shaw',
-  content: ['A life spent making mistakes is not only more honorable, but more useful than a life spent doing nothing.']
+  content: ['A life spent making mistakes is not only more honorable, but more useful than a life spent doing nothing.', 'The reasonable man adapts himself to the world: the unreasonable one persists in trying to adapt the world to himself. Therefore all progress depends on the unreasonable man.', 'Youth is wasted on the young.']
 }, {
   url: 'https://www.youtube.com/watch?v=aySqymiraBA',
   author: 'Terence Mckenna',
@@ -42,6 +42,38 @@ const quotes = [{
   url: '',
   author: 'Philip K. Dick',
   content: ['Reality is that which, when you stop believing in it, doesn\'t go away.', 'Just because something bears the aspect of the inevitable one should not, therefore, go along willingly with it.']
+}, {
+  url: '',
+  author: 'Epicurus',
+  content: ['Is God willing to prevent evil, but not able? Then he is not omnipotent.\nIs he able, but not willing? Then he is malevolent.\nIs he both able and willing? Then whence cometh evil?\nIs he neither able nor willing? Then why call him God?']
+}, {
+  url: '',
+  author: 'Marcus Aurelius',
+  content: ['Everything we hear is an opinion, not a fact. Everything we see is a perspective, not the truth.', 'When another blames you or hates you, or people voice similar criticisms, go to their souls, penetrate inside and see what sort of people they are. You will realize that there is no need to be racked with anxiety.']
+}, {
+  url: '',
+  author: 'Charles Bukowski',
+  content: ["Some people never go crazy. What truly horrible lives they must lead.", "Sometimes you climb out of bed in the morning and you think, I'm not going to make it, but you laugh inside — remembering all the times you've felt that way.", "There's a bluebird in my heart that wants to get out\nbut I'm too tough for him,\nI say, stay in there, I'm not going to let anybody see you."]
+}, {
+  url: '',
+  author: 'Ernest Hemingway',
+  content: ["There is no friend as loyal as a book."]
+}, {
+  url: '',
+  author: 'Oscar Wilde',
+  content: ["Most people are other people. Their thoughts are someone else's opinions, their lives a mimicry, their passions a quotation.", "Be yourself; everyone else is already taken."]
+}, {
+  url: '',
+  author: 'Franz Kafka',
+  content: ["I think we ought to read only the kind of books that wound or stab us. If the book we're reading doesn't wake us up with a blow to the head, what are we reading for? So that it will make us happy, as you write? Good Lord, we would be happy precisely if we had no books, and the kind of books that make us happy are the kind we could write ourselves if we had to. But we need books that affect us like a disaster, that grieve us deeply, like the death of someone we loved more than ourselves, like being banished into forests far from everyone, like a suicide. A book must be the axe for the frozen sea within us. That is my belief.", "I usually solve problems by letting them devour me."]
+}, {
+  url: '',
+  author: 'Mawlana Jalal-al-Din Rumi',
+  content: ["Raise your words, not voice. It is rain that grows flowers, not thunder.", "Your task is not to seek for love, but merely to seek and find all the barriers within yourself that you have built against it."]
+}, {
+  url: '',
+  author: 'Paulo Coelho',
+  content: ["A child can teach an adult three things: to be happy for no reason, to always be busy with something, and to know how to demand with all his might that which he desires."]
 }].sort((a, b) => { // sort alphabetically by first name
   if (b.author > a.author) {
     return -1
