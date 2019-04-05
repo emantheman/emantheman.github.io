@@ -85,8 +85,8 @@ $box-color: white;
         animation-timing-function: cubic-bezier(0.33, 0.56, 0.59, 1.01);
       }
       &.first-gen {
-        animation-name: fade-in;
-        animation-duration: 1.2s;
+        animation-name: fade-in-delayed;
+        animation-duration: 1.4s;
         animation-timing-function: cubic-bezier(0.49, 0.04, 0.58, 1);
       }
       &:last-child {
@@ -176,7 +176,13 @@ $box-color: white;
   }
 }
 
-@keyframes fade-in {
-  from { opacity: 0;}
-  to { opacity: 1; }
+@keyframes fade-in { to { opacity: 1; } }
+@keyframes fade-in-delayed {
+  0% {
+    opacity: 0;
+  } 20% {
+    opacity: 0;
+  } 100% {
+    opacity: 1;
+  }
 }

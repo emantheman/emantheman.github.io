@@ -7,7 +7,7 @@ const routes = [{
   path: '/',
   view: Home
 }, {
-  path: '/me',
+  path: '/about/me',
   view: Me,
 }, {
   path: '/projects/life',
