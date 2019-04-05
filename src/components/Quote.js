@@ -10,7 +10,9 @@ const Quote = props => (
       { props.author }
     </a>:
     <blockquote className="content">
-      <p>{ props.content }</p>
+      { props.content.map((q, i) => (
+        <p key={i}>{ q }</p>
+      ))}
     </blockquote>
   </div>
 )

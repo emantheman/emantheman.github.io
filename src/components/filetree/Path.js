@@ -25,7 +25,7 @@ const activate = absPath => {
 
 const Path = props => (
   <span key={props.path} className="Path">
-    *{ activate(props.path) }
+    *{ props.path }
   </span>
 )
 
