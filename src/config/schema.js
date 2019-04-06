@@ -12,16 +12,22 @@ const branches = {
           type: 'view',
           url: '/projects/code/life'
         }
+      }, {
+        name: 'concat',
+        link: {
+          type: 'view',
+          url: '/projects/code/concat'
+        }
       }]
     }, {
       name: 'writing/',
       descendants: [{
         name: 'stories/',
         descendants: [{
-          name: 'cold_cuts',
+          name: 'coldcuts',
           link: {
             type: 'view',
-            url: '/projects/writing/stories/cold_cuts'
+            url: '/projects/writing/stories/coldcuts'
           }
         }, {
           name: 'pig',
@@ -40,6 +46,12 @@ const branches = {
           }
         }]
       }]
+    }, {
+      name: 'art',
+      link: {
+        type: 'view',
+        url: '/projects/art'
+      }
     }]
   }, {
     name: 'about/',

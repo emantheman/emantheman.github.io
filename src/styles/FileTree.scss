@@ -51,6 +51,12 @@ $box-color: white;
     }
     // adds question mark after not-currently-selected links on hover
     .view-link, .external-link {
+      &::before {
+        content: '∙';
+        margin-right: 8px;
+        font-weight: bold;
+        font-style: normal;
+      }
       &:hover:not(.current) {
         &::after {
           content: '?'
