@@ -5,11 +5,41 @@ const branches = {
   descendants: [{
     name: 'projects/',
     descendants: [{
-      name: 'life',
-      link: {
-        type: 'view',
-        url: '/projects/life'
-      }
+      name: 'code/',
+      descendants: [{
+        name: 'life',
+        link: {
+          type: 'view',
+          url: '/projects/code/life'
+        }
+      }]
+    }, {
+      name: 'writing/',
+      descendants: [{
+        name: 'stories/',
+        descendants: [{
+          name: 'cold_cuts',
+          link: {
+            type: 'view',
+            url: '/projects/writing/stories/cold_cuts'
+          }
+        }, {
+          name: 'pig',
+          link: {
+            type: 'view',
+            url: '/projects/writing/stories/pig'
+          }
+        }]
+      }, {
+        name: 'poems/',
+        descendants: [{
+          name: 'beached',
+          link: {
+            type: 'view',
+            url: '/projects/writing/poems/beached'
+          }
+        }]
+      }]
     }]
   }, {
     name: 'about/',

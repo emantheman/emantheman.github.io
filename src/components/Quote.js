@@ -2,13 +2,9 @@ import React from 'react'
 
 const Quote = props => (
   <div className="Quote">
-    <a
-      className="author"
-      href={ props.url }
-      rel="noopener noreferrer"
-      target="_blank">
+    <span className="author">
       { props.author }
-    </a>:
+    </span>:
     <blockquote className="content">
       { props.content.map((q, i) => (
         <React.Fragment>
