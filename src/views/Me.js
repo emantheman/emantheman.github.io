@@ -6,14 +6,14 @@ class Me extends Component {
   render() {
     return (
       <div className="About">
-        <AtvImg
+        {/* <AtvImg
           layers={[
             'http://kloc.pm/images/back.png',
             'http://kloc.pm/images/front.png',
           ]}
           staticFallback={ 'http://kloc.pm/images/kloc-icon-flattened.jpg' }
           isStatic={ false }
-          style={{ width: 480, height: 285, float: 'left', marginRight: '11px' }}/>
+          style={{ width: 480, height: 285, float: 'left', marginRight: '11px' }}/> */}
         <h1>
           Emmanuel Price
         </h1>

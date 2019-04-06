@@ -24,16 +24,10 @@ const branches = {
       descendants: [{
         name: 'stories/',
         descendants: [{
-          name: 'coldcuts',
+          name: 'cc',
           link: {
             type: 'view',
-            url: '/projects/writing/stories/coldcuts'
-          }
-        }, {
-          name: 'pig',
-          link: {
-            type: 'view',
-            url: '/projects/writing/stories/pig'
+            url: '/projects/writing/stories/cold_cuts.pdf'
           }
         }]
       }, {
@@ -42,7 +36,7 @@ const branches = {
           name: 'beached',
           link: {
             type: 'view',
-            url: '/projects/writing/poems/beached'
+            url: '/projects/writing/poems/beached.pdf'
           }
         }]
       }]
