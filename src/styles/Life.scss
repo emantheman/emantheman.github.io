@@ -8,8 +8,10 @@
   animation-duration: 1s;
   /* The petri dish that is Life */
   .Life {
+    position: relative;
     margin-top: 10px;
     margin-left: 24px;
+    height: 99%;
     float: left;
     &:focus {
       outline: none;
@@ -34,6 +36,8 @@
     }
     /* Allows interface with the GoL */
     .Interface {
+      height: 1.5em;
+      width: 1044px;
       background: #3f3f3f;
       margin-top: -3px;
       color: white;
@@ -164,11 +168,10 @@
   }
   /* The description and rules of the game */
   .description {
+    position: absolute;
+    right: 36px;
+    top: 8px;
     width: 306px;
-    height: 602px;
-    float: right;
-    margin-right: 29px;
-    margin-top: 9px;
     // header that floats above the description
     h2 {
       border-bottom: 1px solid #eaecef;
@@ -183,7 +186,7 @@
     }
     // div that contains description
     & > div {
-      height: 637px;
+      height: 660px;
       border-bottom: 1px solid #eaecef;
       overflow: auto;
       blockquote {
