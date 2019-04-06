@@ -113,7 +113,9 @@ export default class Node extends Component {
           { (menuOpen || depth !== 0) && this.createLeaf(link, name, depth, currentPath) }
         </span>
         {/* subnodes */}
-        <ul style={ depth === 0 ? {marginLeft: '-2px'} : {}}>
+        <ul
+          className={ depth === 0 ? 'progeny' : ''}
+          style={ depth === 0 ? {marginLeft: '-2px'} : {}}>
           { open && this.createChildren(children, depth, currentPath) }
         </ul>
       </li>

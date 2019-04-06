@@ -5,6 +5,9 @@ $minus-sign: black;
 $box-color: white;
 
 .FileTree {
+  ::-webkit-scrollbar { 
+    display: none; 
+  }
   // Default
   font-family: 'Roboto Slab', serif;
   position: absolute;
@@ -24,6 +27,11 @@ $box-color: white;
     margin: 0;
     padding: 0;
     margin-top: 7px;
+    // first ul
+    .progeny {
+      height: 95vh;
+      overflow: auto;
+    }
     // unordered lists
     ul {
       list-style: none;
