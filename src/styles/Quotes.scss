@@ -2,7 +2,7 @@
   font-family: 'Roboto Slab', georgia, serif;
   font-size: 16px;
   font-weight: 300;
-  height: 100%;
+  height: unset;
   line-height: 1.625rem;
   align-items: center;
   display: flex;
@@ -13,6 +13,7 @@
   .display {
     max-width: 45rem;
     .Quote {
+      height: unset;
       .author {
         color: rgba(23, 24, 25, 0.75);
         display: inline-block;
