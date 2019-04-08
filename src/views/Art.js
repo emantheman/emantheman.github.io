@@ -19,11 +19,16 @@ const IMAGES = [{
   thumbnail: 'https://lh3.googleusercontent.com/dxdor_GpNGqNnHEJZP62L2yAtnUicsNZozKZPsN4ia2jcqrnsUa82UNySplXWHCND80V3QNdzwYYbQJi6CXmkQYTgAgzzUFMLdmg6mvlYAhUn9BpCBvqjWegzgi1i2-s67BSzUcpZA=w2400',
   caption: 'Cherry tree',
   orientation: 'square'
+}, {
+  src: 'https://lh3.googleusercontent.com/x0OKFo7GiMSHTpA75rGwPTp-KSH6RGeEm0aKkeB1zyqHHOkiA3KY-MpjfhT-lIuU4-WqHLFuWEMagl8jSxFR1odrD9VTAvB2MrDKr40WFclj5xVQNdwtNPnHnlWVxestqc4onXU0gQ=w2400',
+  thumbnail: 'https://lh3.googleusercontent.com/x0OKFo7GiMSHTpA75rGwPTp-KSH6RGeEm0aKkeB1zyqHHOkiA3KY-MpjfhT-lIuU4-WqHLFuWEMagl8jSxFR1odrD9VTAvB2MrDKr40WFclj5xVQNdwtNPnHnlWVxestqc4onXU0gQ=w2400',
+  caption: 'Self',
+  orientation: 'square'
 }]
 
 const Art = () => (
   <div className="Art">
-    <h3>My Artwork</h3>
+    <h2 className="header">My Artwork</h2>
     <Gallery images={IMAGES}/>
   </div>
 )
