@@ -22,23 +22,17 @@ const branches = {
     }, {
       name: 'writing/',
       descendants: [{
-        name: 'stories/',
-        descendants: [{
-          name: 'cc',
-          link: {
-            type: 'view',
-            url: '/projects/writing/stories/cold_cuts.pdf'
-          }
-        }]
+        name: 'cc',
+        link: {
+          type: 'view',
+          url: '/projects/writing/cold_cuts.pdf'
+        }
       }, {
-        name: 'poems/',
-        descendants: [{
-          name: 'beached',
-          link: {
-            type: 'view',
-            url: '/projects/writing/poems/beached.pdf'
-          }
-        }]
+        name: 'beached',
+        link: {
+          type: 'view',
+          url: '/projects/writing/beached.pdf'
+        }
       }]
     }, {
       name: 'art',

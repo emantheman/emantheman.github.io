@@ -5,6 +5,7 @@ import Quotes from '../views/Quotes'
 import Concatenate from '../views/Concatenate'
 import ColdCuts from '../views/ColdCuts'
 import Beached from '../views/Beached'
+import Art from '../views/Art'
 
 const routes = [{
   path: '/',
@@ -22,11 +23,14 @@ const routes = [{
   path: '/projects/code/concat',
   view: Concatenate
 }, {
-  path: '/projects/writing/stories/cold_cuts.pdf',
+  path: '/projects/writing/cold_cuts.pdf',
   view: ColdCuts
 }, {
-  path: '/projects/writing/poems/beached.pdf',
+  path: '/projects/writing/beached.pdf',
   view: Beached
+}, {
+  path: '/projects/art',
+  view: Art
 }]
 
 export default routes
