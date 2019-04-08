@@ -83,6 +83,12 @@ const branches = {
         }
       }]
     }]
+  }, {
+    name: 'resume',
+    link: {
+      type: 'view',
+      url: '/resume.pdf'
+    }
   }]
 }
 

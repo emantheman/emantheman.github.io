@@ -22,12 +22,6 @@ class Me extends Component {
           My two main focuses as an adult have been towards programming and meditation. While the two things seem unrelated at first, I see them as equal opposites. One (programming) requires a detective's eye for the abberant. The other (meditation) is concerned with erasing distinction.<br/><br/>
           It is this paradox which most informs my work: Programming forces me to solve problems on an atomic scale; meditation allows me to return easily and frequently to the big picture (a feature of this being that many "problems" need not be solved, simply removed).
         </p>
-        <p>
-          
-        </p>
-        <h6>
-          Interests: deceptive simplicity, unequivocal interactions, mountains
-        </h6>
       </div>
     )
   }

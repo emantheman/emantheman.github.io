@@ -6,6 +6,7 @@ import Concatenate from '../views/Concatenate'
 import ColdCuts from '../views/ColdCuts'
 import Beached from '../views/Beached'
 import Art from '../views/Art'
+import Resume from '../views/Resume'
 
 const routes = [{
   path: '/',
@@ -31,6 +32,9 @@ const routes = [{
 }, {
   path: '/projects/art',
   view: Art
+}, {
+  path: '/resume.pdf',
+  view: Resume
 }]
 
 export default routes
