@@ -14,13 +14,9 @@ export default class Contact extends Component {
     }
   }
   
-  handleChange = e => {
-    const { name, value } = e.target
-    this.setState(prevState => {
-      return { 
-        ...prevState,
-        [name]: value
-      }
+  handleChange = ({ target: { name, value }}) => {
+    this.setState({
+      [name]: value
     })
   }
 
