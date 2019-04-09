@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-// import '../styles/Contact.scss
+import '../styles/Contact.scss'
 
 export default class Contact extends Component {
   constructor(props) {
@@ -25,7 +25,7 @@ export default class Contact extends Component {
   render() {
     return (
       <div className="Contact">
-        <h3 className="header">Contact</h3>
+        <h2 className="header">Contact</h2>
         <p>Send a message below!</p>
         <form>
           <label for="firstName">First Name:
