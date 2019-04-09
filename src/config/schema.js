@@ -89,6 +89,12 @@ const branches = {
       type: 'view',
       url: '/resume.pdf'
     }
+  }, {
+    name: 'contact',
+    link: {
+      type: 'view',
+      url: '/contact'
+    }
   }]
 }
 
