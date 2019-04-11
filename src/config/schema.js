@@ -55,33 +55,6 @@ const branches = {
         type: 'view',
         url: '/about/quotes'
       }
-    }, {
-      name: 'contact/',
-      descendants: [{
-        name: 'email',
-        link: {
-          type: 'anchor',
-          url: 'mailto:mail@emmanuelprice.com'
-        }
-      }, {
-        name: 'github',
-        link: {
-          type: 'anchor',
-          url: 'https://github.com/naturalbornchiller/'
-        }
-      }, {
-        name: 'linkedin',
-        link: {
-          type: 'anchor',
-          url: 'https://www.linkedin.com/in/emmanuelprice/'
-        }
-      }, {
-        name: 'codewars',
-        link: {
-          type: 'anchor',
-          url: 'https://www.codewars.com/users/naturalbornchiller/'
-        }
-      }]
     }]
   }, {
     name: 'resume',

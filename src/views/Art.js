@@ -12,7 +12,7 @@ const IMAGES = [{
 }, {
   src: 'https://lh3.googleusercontent.com/NIwrNyz5soiMxo3r2U6eftM2vhNMZNIRpEzL-cF_MPX37mI_ZSn2WOvpZX_Cv1TAGnxgPK7PBWWrnX2I1UOOlr3Fbp_P5XNLI1c4NGQaE1YES9uqsdygXeXcGxz6M0lrQi-W6xzNwA=w2400',
   thumbnail: 'https://lh3.googleusercontent.com/NIwrNyz5soiMxo3r2U6eftM2vhNMZNIRpEzL-cF_MPX37mI_ZSn2WOvpZX_Cv1TAGnxgPK7PBWWrnX2I1UOOlr3Fbp_P5XNLI1c4NGQaE1YES9uqsdygXeXcGxz6M0lrQi-W6xzNwA=w2400',
-  caption: 'Woodland creature (16-bit)',
+  caption: 'Raindeer (16-bit)',
   orientation: 'square'
 }, {
   src: 'https://lh3.googleusercontent.com/dxdor_GpNGqNnHEJZP62L2yAtnUicsNZozKZPsN4ia2jcqrnsUa82UNySplXWHCND80V3QNdzwYYbQJi6CXmkQYTgAgzzUFMLdmg6mvlYAhUn9BpCBvqjWegzgi1i2-s67BSzUcpZA=w2400',
