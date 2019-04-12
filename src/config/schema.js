@@ -3,72 +3,81 @@
 const branches = {
   name: 'emmanuel_price/',
   descendants: [{
-    name: 'projects/',
-    descendants: [{
       name: 'code/',
       descendants: [{
         name: 'life',
         link: {
           type: 'view',
-          url: '/projects/code/life'
+          url: '/code/life'
         }
       }, {
         name: 'concat',
         link: {
           type: 'view',
-          url: '/projects/code/concat'
+          url: '/code/concat'
         }
       }]
     }, {
-      name: 'writing/',
+      name: 'other/',
       descendants: [{
-        name: 'cc',
+        name: 'writing/',
+        descendants: [{
+          name: 'cc',
+          link: {
+            type: 'view',
+            url: '/other/writing/cold_cuts.pdf'
+          }
+        }, {
+          name: 'beached',
+          link: {
+            type: 'view',
+            url: '/other/writing/beached.pdf'
+          }
+        }]
+      }, {
+        name: 'art',
         link: {
           type: 'view',
-          url: '/projects/writing/cold_cuts.pdf'
+          url: '/other/art'
         }
       }, {
-        name: 'beached',
+        name: 'quotes',
         link: {
           type: 'view',
-          url: '/projects/writing/beached.pdf'
+          url: '/other/quotes'
         }
       }]
     }, {
-      name: 'art',
-      link: {
-        type: 'view',
-        url: '/projects/art'
-      }
-    }]
-  }, {
-    name: 'about/',
+    name: 'info/',
     descendants: [{
-      name: 'me',
+      name: 'bio',
       link: {
         type: 'view',
-        url: '/about/me'
+        url: '/info/bio'
       }
     }, {
-      name: 'quotes',
+      name: 'resume',
       link: {
         type: 'view',
-        url: '/about/quotes'
+        url: '/info/resume.pdf'
+      }
+    }, {
+      name: 'contact',
+      link: {
+        type: 'view',
+        url: '/info/contact'
       }
     }]
-  }, {
-    name: 'resume',
-    link: {
-      type: 'view',
-      url: '/resume.pdf'
-    }
-  }, {
-    name: 'contact',
-    link: {
-      type: 'view',
-      url: '/contact'
-    }
   }]
 }
 
 export default branches
+
+/**
+ * emmanuel/
+ * |
+ *  - code/ 
+ * |
+ *  - other/
+ * 
+ */

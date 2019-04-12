@@ -1,5 +1,5 @@
 import Home from '../views/Home'
-import Me from '../views/Me'
+import Bio from '../views/Bio'
 import CGOL from '../views/CGOL'
 import Quotes from '../views/Quotes'
 import Concatenate from '../views/Concatenate'
@@ -13,31 +13,31 @@ const routes = [{
   path: '/',
   view: Home
 }, {
-  path: '/about/me',
-  view: Me,
+  path: '/info/bio',
+  view: Bio,
 }, {
-  path: '/projects/code/life',
+  path: '/code/life',
   view: CGOL
 }, {
-  path: '/about/quotes',
+  path: '/other/quotes',
   view: Quotes
 }, {
-  path: '/projects/code/concat',
+  path: '/code/concat',
   view: Concatenate
 }, {
-  path: '/projects/writing/cold_cuts.pdf',
+  path: '/other/writing/cold_cuts.pdf',
   view: ColdCuts
 }, {
-  path: '/projects/writing/beached.pdf',
+  path: '/other/writing/beached.pdf',
   view: Beached
 }, {
-  path: '/projects/art',
+  path: '/other/art',
   view: Art
 }, {
-  path: '/resume.pdf',
+  path: '/info/resume.pdf',
   view: Resume
 }, {
-  path: '/contact',
+  path: '/info/contact',
   view: Contact
 }]
 

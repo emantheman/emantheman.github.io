@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import AtvImg from '../components/AtvImg'
-import '../styles/Me.scss'
+// import AtvImg from '../components/AtvImg'
+import '../styles/Bio.scss'
 
-class Me extends Component {
+export default class Bio extends Component {
   render() {
     return (
       <div className="About">
@@ -25,6 +25,4 @@ class Me extends Component {
       </div>
     )
   }
-}
-
-export default Me
+} 
