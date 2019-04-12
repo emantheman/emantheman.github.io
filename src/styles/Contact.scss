@@ -1,7 +1,51 @@
 .Contact {
-  margin: 10% auto;
-  width: 50%;
+  font-family: 'Roboto Slab', serif;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 704px;
+  height: 550px;
+  font-size: 20px;
+  .header, p {
+    text-align: center;
+  }
+  p {
+    font-size: 18px;
+  }
+  span {
+    color: red;
+  }
   label {
     display: block;
+    position: relative;
+    width: 430px;
+    margin: 40px auto;
+    color: rgba(0, 0, 0, 0.762);
+  }
+  input[type="text"], input[type="email"], input[type="tel"], textarea {
+    position: absolute;
+    right: 0;
+    font-size: 20px;
+    border-radius: 3px;
+    border: 1px solid #00000080;
+    width: 291px;
+  }
+  textarea {
+    height: 106px;
+    resize: none;
+    font-size: 16px;
+  }
+  .send {
+    width: 50px;
+    margin: 108px auto;
+  }
+  #name {
+    margin-bottom: 71px;
+    input:last-child {
+      bottom: -35px;
+    }
   }
 }

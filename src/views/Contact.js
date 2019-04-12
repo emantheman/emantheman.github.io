@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import MaskedInput from 'react-text-mask'
 
 import '../styles/Contact.scss'
 
@@ -10,10 +11,15 @@ export default class Contact extends Component {
       firstName: '',
       lastName: '',
       email: '',
+      telNo: '',
       message: '',
     }
   }
   
+  /**
+   * Changes state
+   * @param {Event} e - deconstructed event object in the form { name, value } = event.target
+   */
   handleChange = ({ target: { name, value }}) => {
     this.setState({
       [name]: value
@@ -25,45 +31,76 @@ export default class Contact extends Component {
   render() {
     return (
       <div className="Contact">
-        <h2 className="header">Contact</h2>
-        <p>Send a message below!</p>
+        <h1 className="header">Contact</h1>
+        <p>Feel free to reach out with questions, thoughts, music recommendations..!</p>
         <form>
-          <label for="firstName">First Name:
+          {/* Name */}
+          <label id="name" for="firstName">Name<span>*</span>:
             <input
               type="text"
               id="firstName"
               name="firstName"
               value={this.state.firstName}
-              onChange={this.handleChange}/>
-          </label>
-          <label for="lastName">Last Name:
+              onChange={this.handleChange}
+              placeholder="First"/>
             <input
               type="text"
               id="lastName"
               name="lastName"
               value={this.state.lastName}
-              onChange={this.handleChange}/>
+              onChange={this.handleChange}
+              placeholder="Last"/>
           </label>
-          <label for="email">Email:
+          {/* Tel */}
+          <label for="telNo">Phone:
+            <Masked
+              value={this.state.value}
+              onChange={this.handleChange}
+              type="tel"
+              mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+              placeholder="(333) 333-4444"/>
+          </label>
+          {/* Email */}
+          <label for="email">Email<span>*</span>:
             <input
               type="email"
               id="email"
               name="email"
               value={this.state.email}
-              onChange={this.handleChange}/>
+              onChange={this.handleChange}
+              placeholder="elonmusk@unemployed.com"/>
           </label>
-          <label for="message">Message:
+          {/* Content of Message */}
+          <label for="message">Message<span>*</span>:
             <textarea
               id="message"
               name="message"
               value={this.state.message}
-              onChange={this.handleChange}/>
+              onChange={this.handleChange}
+              placeholder="What's on your mind?"/>
           </label>
-          <label for="submit">Submit!
-            <input type="submit" id="submit" name="submit"/>
+          {/* Submit Button */}
+          <label class="send" for="send">
+            <input type="submit" id="send" name="send" value="Send"/>
           </label>
         </form>
       </div>
+    )
+  }
+}
+
+
+class Masked extends React.Component {
+  onChange = event => this.props.onChange(event)
+  render() {
+    return (
+      <MaskedInput
+        type={this.props.type}
+        mask={this.props.mask}
+        value={this.props.value}
+        onChange={this.onChange}
+        placeholder={this.props.placeholder}
+      />
     )
   }
 }

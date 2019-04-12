@@ -21,6 +21,9 @@ $bgc-on-hover: rgba(0, 0, 0, 0.860);
 }
 
 * {
+  &:focus {
+    outline: none;
+  }
   ::-webkit-scrollbar {
     display: none;
   }
