@@ -21,6 +21,7 @@ export default class Contact extends Component {
    * @param {Event} e - deconstructed event object in the form { name, value } = event.target
    */
   handleChange = ({ target: { name, value }}) => {
+    if (name === 'telNo' && value.match(/{L}/gi))
     this.setState({
       [name]: value
     })
@@ -35,7 +36,7 @@ export default class Contact extends Component {
         <p>Feel free to reach out with questions, thoughts, music recommendations..!</p>
         <form>
           {/* Name */}
-          <label id="name" for="firstName">Name<span>*</span>:
+          <label id="name" htmlFor="firstName">Name<span>*</span>:
             <input
               type="text"
               id="firstName"
@@ -52,7 +53,7 @@ export default class Contact extends Component {
               placeholder="Last"/>
           </label>
           {/* Tel */}
-          <label for="telNo">Phone:
+          <label htmlFor="telNo">Phone:
             <Masked
               value={this.state.value}
               onChange={this.handleChange}
@@ -61,17 +62,17 @@ export default class Contact extends Component {
               placeholder="(333) 333-4444"/>
           </label>
           {/* Email */}
-          <label for="email">Email<span>*</span>:
+          <label htmlFor="email">Email<span>*</span>:
             <input
               type="email"
               id="email"
               name="email"
               value={this.state.email}
               onChange={this.handleChange}
-              placeholder="elonmusk@unemployed.com"/>
+              placeholder="random@person.org"/>
           </label>
           {/* Content of Message */}
-          <label for="message">Message<span>*</span>:
+          <label htmlFor="message">Message<span>*</span>:
             <textarea
               id="message"
               name="message"
@@ -80,7 +81,7 @@ export default class Contact extends Component {
               placeholder="What's on your mind?"/>
           </label>
           {/* Submit Button */}
-          <label class="send" for="send">
+          <label className="send" htmlFor="send">
             <input type="submit" id="send" name="send" value="Send"/>
           </label>
         </form>
@@ -91,7 +92,10 @@ export default class Contact extends Component {
 
 
 class Masked extends React.Component {
-  onChange = event => this.props.onChange(event)
+  onChange = event => {
+    if (event.target.type === 'tel' && event.target.value.match(/{L}/g)) return
+    this.props.onChange(event)
+  }
   render() {
     return (
       <MaskedInput

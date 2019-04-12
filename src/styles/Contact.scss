@@ -31,21 +31,29 @@
     font-size: 20px;
     border-radius: 3px;
     border: 1px solid #00000080;
-    width: 291px;
+    width: 290px;
+    padding: 3px 4px;
   }
   textarea {
     height: 106px;
     resize: none;
     font-size: 16px;
   }
-  .send {
-    width: 50px;
-    margin: 108px auto;
-  }
   #name {
     margin-bottom: 71px;
     input:last-child {
-      bottom: -35px;
+      bottom: -40px;
+    }
+  }
+  .send {
+    width: 85px;
+    margin: 108px auto;
+    #send {
+      cursor: pointer;
+      font-size: 21px;
+      border: 1px solid #a6a6a6;
+      padding: 6px 16px;
+      border-radius: 6px;
     }
   }
 }
