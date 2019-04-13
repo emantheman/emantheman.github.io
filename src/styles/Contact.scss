@@ -7,7 +7,7 @@
   bottom: 0;
   left: 0;
   width: 704px;
-  height: 550px;
+  height: 650px;
   font-size: 20px;
   .header, p {
     text-align: center;
@@ -17,6 +17,7 @@
   }
   span {
     color: red;
+    transition: color .3s;
     &.filled {
       color: rgba(0, 0, 0, 0.762);
     }
