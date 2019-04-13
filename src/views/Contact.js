@@ -21,6 +21,8 @@ export default class Contact extends Component {
    * @param {Event} e - deconstructed event object in the form { name, value } = event.target
    */
   handleChange = ({ target: { name, value }}) => {
+    if ((name === 'firstName' && /[-0-9 !@#$%^&*()_+=[\]{};':"\\|,.<>/?]/g.test(value)) ||
+        (name === 'lastName' && /[0-9 !@#$%^&*()_+=[\]{};':"\\|,.<>/?]/g.test(value))) return
     this.setState({
       [name]: value
     })
@@ -38,12 +40,12 @@ export default class Contact extends Component {
     } = this.state
     return (
       <div className="Contact">
-        <h1 className="header">Contact</h1>
+        <h2 className="header">Contact</h2>
         <p>Feel free to reach out with questions, thoughts, music recommendations..!</p>
         <form>
           {/* Name */}
           <label id="name" htmlFor="firstName">Name
-            <span className={firstName.length > 0 && lastName.length > 0? 'filled' : ''}>*</span>:
+            <span className={/^[-A-Za-z]{2,10}$/.test(firstName) && /^[-A-Za-z]{2,10}$/.test(lastName) ? 'filled' : ''}>*</span>:
             <input
               type="text"
               id="firstName"
@@ -71,7 +73,7 @@ export default class Contact extends Component {
           </label>
           {/* Email */}
           <label htmlFor="email">Email
-            <span className={email.length > 0 ? 'filled' : ''}>*</span>:
+            <span className={/^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,11})$/.test(email) ? 'filled' : ''}>*</span>:
             <input
               type="email"
               id="email"

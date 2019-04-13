@@ -12,6 +12,9 @@
   .header, p {
     text-align: center;
   }
+  .header {
+    font-size: 1.8em;
+  }
   p {
     font-size: 18px;
   }
@@ -30,6 +33,7 @@
     color: rgba(0, 0, 0, 0.762);
   }
   input[type="text"], input[type="email"], input[type="tel"], textarea {
+    font-family: NolanNext-Regular,helvetica,arial,sans-serif;
     position: absolute;
     right: 0;
     font-size: 20px;
