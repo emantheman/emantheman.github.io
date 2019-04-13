@@ -22,13 +22,13 @@ const branches = {
       descendants: [{
         name: 'writing/',
         descendants: [{
-          name: 'cc',
+          name: 'cc.pdf',
           link: {
             type: 'view',
             url: '/other/writing/cold_cuts.pdf'
           }
         }, {
-          name: 'beached',
+          name: 'beachd.pdf',
           link: {
             type: 'view',
             url: '/other/writing/beached.pdf'
@@ -56,16 +56,16 @@ const branches = {
         url: '/info/bio'
       }
     }, {
-      name: 'resume',
-      link: {
-        type: 'view',
-        url: '/info/resume.pdf'
-      }
-    }, {
       name: 'contact',
       link: {
         type: 'view',
         url: '/info/contact'
+      }
+    }, {
+      name: 'resume.pdf',
+      link: {
+        type: 'view',
+        url: '/info/resume.pdf'
       }
     }]
   }]

@@ -17,6 +17,9 @@
   }
   span {
     color: red;
+    &.filled {
+      color: rgba(0, 0, 0, 0.762);
+    }
   }
   label {
     display: block;
@@ -42,7 +45,7 @@
   #name {
     margin-bottom: 71px;
     input:last-child {
-      bottom: -40px;
+      bottom: -44px;
     }
   }
   .send {
