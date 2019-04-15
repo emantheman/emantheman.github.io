@@ -12,6 +12,12 @@ export default class Gallery extends Component {
     }
   }
 
+  /**
+   * Opens lightbox at index of image clicked.
+   * 
+   * @param {Number} index - index of image
+   * @param {Event} event - event object
+   */
   openLightbox = (index, event) => {
     event.preventDefault()
     this.setState({
@@ -20,26 +26,46 @@ export default class Gallery extends Component {
     })
   }
 
+  /**
+   * Closes lightbox.
+   */
   closeLightbox = () => this.setState({ 
     lightboxIsOpen: false,
     currentImage: 0
   })
 
+  /**
+   * Goes to the previous image.
+   */
   gotoPrev = () => this.setState(prevState => {
     return { currentImage: prevState.currentImage - 1 }
   })
 
+  /**
+   * Goes to the next image.
+   */
   gotoNext = () => this.setState(prevState => {
     return { currentImage: prevState.currentImage + 1 }
   })
 
+  /**
+   * Goes to the image at index.
+   * 
+   * @param {Number} index - the index of the image
+   */
   gotoImage = index => this.setState({ currentImage: index })
 
+  /**
+   * If it's not the last image, calls gotoNext().
+   */
   handleImageClick = () => {
     if (this.state.currentImage === this.props.images.length - 1) return
     this.gotoNext()
   }
 
+  /**
+   * Renders thumbnail versions of the images.
+   */
   renderGallery = () => {
     const { images } = this.props
     if (!images) return

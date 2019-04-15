@@ -18,7 +18,16 @@ class App extends Component {
     }
   }
 
+  /**
+   * Reverses menu's openness.
+   * 
+   * @param {Boolean} isOpen - true if the menu is open
+   */
   toggleMenu = isOpen => this.setState({ expanded: !isOpen })
+
+  /**
+   * Opens menu.
+   */
   openMenu = () => this.setState({ expanded: true })
 
   render() {

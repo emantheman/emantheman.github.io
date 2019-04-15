@@ -1,7 +1,8 @@
 .Bio {
   font-family: 'Roboto Slab', serif;
-  width: 65%;
-  height: 355px;
+  color: rgba(0, 0, 0, 0.9);
+  width: 705px;
+  max-height: 525px;
   margin: auto;
   position: absolute;
   right: 0;
@@ -10,13 +11,20 @@
   bottom: 0;
   opacity: 1;
   font-size: 19px;
-  text-align: center;
 	animation-name: fadeInOpacity;
 	animation-iteration-count: 1;
 	animation-timing-function: ease-in;
   animation-duration: 1s;
   p {
     font-size: 1.1em;
+    margin-bottom: 3em;
+    & > sup {
+      font-size: 13px;
+    }
+  }
+  h5 {
+    font-size: 16px;
+    margin: 5px 0;
   }
 }
 
