@@ -1,6 +1,5 @@
 .Bio {
   font-family: 'Roboto Slab', serif;
-  color: rgba(0, 0, 0, 0.9);
   width: 705px;
   max-height: 525px;
   margin: auto;
@@ -15,12 +14,15 @@
 	animation-iteration-count: 1;
 	animation-timing-function: ease-in;
   animation-duration: 1s;
+  strong, h5 {
+    color: rgba(0, 0, 0, 0.9);
+  }
   p {
     font-size: 1.1em;
     margin-bottom: 3em;
-    & > sup {
-      font-size: 13px;
-    }
+  }
+  sup {
+    font-size: 15px;
   }
   h5 {
     font-size: 16px;
