@@ -17,8 +17,8 @@ const quotes = [{
   author: 'Lao Tzu',
   content: ['A good traveler has no fixed plans and is not intent on arriving.']
 }, {
-  author: 'Anon',
-  content: ['Elegance, where it relates to design, is synonymous with "deceptive simplicity"; it denotes the stashing of complex work in plain view.']
+  author: 'E. W. Dijkstra',
+  content: ['Always try to work as closely as possible at the boundary of your abilities. Do this, because it is the only way of discovering how that boundary should be moved forward.', 'Perfecting oneself is as much unlearning as it is learning.']
 }, {
   author: 'Robert Frost',
   content: ['In three words I can sum up everything I\'ve learned about life: it goes on.']

@@ -1,21 +1,22 @@
-.About {
+.Bio {
   font-family: 'Roboto Slab', serif;
-  margin: 145px auto;
   width: 65%;
+  height: 355px;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
   opacity: 1;
+  font-size: 19px;
+  text-align: center;
 	animation-name: fadeInOpacity;
 	animation-iteration-count: 1;
 	animation-timing-function: ease-in;
   animation-duration: 1s;
-  h1 {
-    font-weight: 500;
-  }
   p {
     font-size: 1.1em;
-  }
-  h6 {
-    margin-top: 7em;
-    text-align: center;
   }
 }
 
