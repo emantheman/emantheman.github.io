@@ -29,6 +29,11 @@ export default class Contact extends Component {
   }
   
   /**
+   * If all inputs are valid, returns true
+   */
+  formReady = () => Object.values(this.state).every(input => input.isValid === true)
+
+  /**
    * Determines whether the change in input is valid, then sets the validity of the corresponding input in state.
    * 
    * @param {String} name - the name of the input
@@ -141,7 +146,7 @@ export default class Contact extends Component {
     event.preventDefault()
 
     // if state contains invalid inputs, exit procedure
-    if (!Object.values(this.state).every(input => input.isValid === true)) return
+    if (!this.formReady()) return
 
     // copy data
     const data = {...this.state}
@@ -224,7 +229,12 @@ export default class Contact extends Component {
           </label>
           {/* Submit Button */}
           <label className="send" htmlFor="send">
-            <input type="submit" id="send" name="send" value="Send"/>
+            <input
+              type="submit"
+              id="send"
+              name="send"
+              value="Send"
+              className={this.formReady() ? '' : 'inactive'}/>
           </label>
         </form>
       </div>
