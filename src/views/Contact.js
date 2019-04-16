@@ -15,20 +15,130 @@ export default class Contact extends Component {
       message: '',
     }
   }
+
+  /**
+   * Correctly initializes state.
+   * 
+   * (This was done out of laziness (Or DRYness if I'm being charitable))
+   */
+  componentWillMount() {
+    const obj = {}
+    for (const input in this.state)
+      obj[input] = { value: '', isValid: false }
+    this.setState({ ...obj })
+  }
   
   /**
-   * Changes state
+   * Determines whether the change in input is valid, then sets the validity of the corresponding input in state.
+   * 
+   * @param {String} name - the name of the input
+   * @param {String} value - the user-inputted text
+   */
+  validateChange = (name, value) => {
+    // result from previous validity test
+    let prevResult = this.state[name].isValid
+    // will store result from latest validity test
+    let isValid
+
+    // test the validity of the input
+    // reflect change in state
+    switch (name) {
+      case 'firstName':
+      case 'lastName':
+        // result from latest validity test
+        isValid = !/[0-9 !@#$%^&*()_+=[\]{};':"\\|,.<>/?]/g.test(value)
+        // if not valid return false
+        if (!isValid) return false
+        // if the result has changed, re-setState
+        if (prevResult !== isValid) {
+          this.setState(prevState => {
+            return {
+              [name]: {
+                ...prevState[name],
+                isValid
+              }
+            }
+          })
+        }
+        break
+      case 'telNo':
+        // result from latest validity test
+        isValid = (value.match(/[0-9]/g) || []).length === 10
+
+        // if new result does not match prev result, re-setState
+        if (prevResult !== isValid) {
+          this.setState(prevState => {
+            return {
+              [name]: {
+                ...prevState[name],
+                isValid
+              }
+            }
+          })
+        }
+        break
+      case 'email':
+        // result from latest validity test
+        isValid = /^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,11})$/.test(value)
+        // if the result has changed, re-setState
+        if (prevResult !== isValid) {
+          this.setState(prevState => {
+            return {
+              [name]: {
+                ...prevState[name],
+                isValid
+              }
+            }
+          })
+        }
+        break
+      default:
+        // result from latest validity test
+        isValid = value.length > 10
+        // if result differs from prev result, re-setState
+        if (prevResult !== isValid) {
+          this.setState(prevState => {
+            return {
+              [name]: {
+                ...prevState[name],
+                isValid
+              }
+            }
+          })
+        }
+        break
+    }
+    return true
+  }
+
+  /**
+   * Changes state.
+   * 
    * @param {Event} e - deconstructed event object in the form { name, value } = event.target
    */
   handleChange = ({ target: { name, value }}) => {
-    if ((name === 'firstName' && /[-0-9 !@#$%^&*()_+=[\]{};':"\\|,.<>/?]/g.test(value)) ||
-        (name === 'lastName' && /[0-9 !@#$%^&*()_+=[\]{};':"\\|,.<>/?]/g.test(value))) return
-    this.setState({
-      [name]: value
+    // if NOT valid exit procedure
+    if (!this.validateChange(name, value)) return
+    
+    // reflect changes to input in state
+    this.setState(prevState => {
+      return {
+        [name]: {
+          ...prevState[name],
+          value
+        }
+      }
     })
   }
 
-  // PHOLDER FOR ON FORM SUBMIT
+  /**
+   * If all inputs are valid sends data.
+   * 
+   * @param {Event} event - event object
+   */
+  handleSubmit = event => {
+    
+  }
 
   render() {
     const {
@@ -45,26 +155,27 @@ export default class Contact extends Component {
         <form>
           {/* Name */}
           <label id="name" htmlFor="firstName">Name
-            <span className={/^[-A-Za-z]{2,10}$/.test(firstName) && /^[-A-Za-z]{2,10}$/.test(lastName) ? 'filled' : ''}>*</span>:
+            <span className={firstName.isValid && lastName.isValid ? 'filled' : ''}>*</span>:
             <input
               type="text"
               id="firstName"
               name="firstName"
-              value={firstName}
+              value={firstName.value}
               onChange={this.handleChange}
               placeholder="First"/>
             <input
               type="text"
               id="lastName"
               name="lastName"
-              value={lastName}
+              value={lastName.value}
               onChange={this.handleChange}
               placeholder="Last"/>
           </label>
           {/* Tel */}
-          <label htmlFor="telNo">Phone:
+          <label htmlFor="telNo">Phone
+            <span className={telNo.isValid ? 'filled' : ''}>*</span>:
             <Masked
-              value={telNo}
+              value={telNo.value}
               onChange={this.handleChange}
               name="telNo"
               type="tel"
@@ -73,22 +184,22 @@ export default class Contact extends Component {
           </label>
           {/* Email */}
           <label htmlFor="email">Email
-            <span className={/^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,11})$/.test(email) ? 'filled' : ''}>*</span>:
+            <span className={email.isValid ? 'filled' : ''}>*</span>:
             <input
               type="email"
               id="email"
               name="email"
-              value={email}
+              value={email.value}
               onChange={this.handleChange}
               placeholder="random@person.org"/>
           </label>
           {/* Content of Message */}
           <label htmlFor="message">Message
-            <span className={message.length > 0 ? 'filled' : ''}>*</span>:
+            <span className={message.isValid ? 'filled' : ''}>*</span>:
             <textarea
               id="message"
               name="message"
-              value={message}
+              value={message.value}
               onChange={this.handleChange}
               placeholder="What's on your mind, friend?"/>
           </label>
