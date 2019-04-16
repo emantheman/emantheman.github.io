@@ -12,7 +12,7 @@ export default class Contact extends Component {
       lastName: '',
       email: '',
       telNo: '',
-      message: '',
+      message: ''
     }
   }
 
@@ -137,7 +137,26 @@ export default class Contact extends Component {
    * @param {Event} event - event object
    */
   handleSubmit = event => {
-    
+    // prevents page refresh
+    event.preventDefault()
+
+    // if state contains invalid inputs, exit procedure
+    if (!Object.values(this.state).every(input => input.isValid === true)) return
+
+    // copy data
+    const data = {...this.state}
+
+    // send data
+    this.sendData(data)
+  }
+
+  /**
+   * Sends data to server
+   * 
+   * @param {Object} data - user inputted data
+   */
+  sendData = data => {
+    console.log(data)
   }
 
   render() {
