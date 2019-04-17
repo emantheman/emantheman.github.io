@@ -8,12 +8,17 @@ $bgc-on-hover: rgba(0, 0, 0, 0.860);
   left: 0;
   top: 0;
   height: 100vh;
-  width: 25px;
-  transition: width .5s cubic-bezier(0.77, 0.03, 0.2, 1), background-color .1s linear;
+  width: 0;
+  transition: width .5s cubic-bezier(0.77, 0.03, 0.2, 1),
+              background-color .1s linear;
   cursor: pointer;
-  &.open {
+  &.open,
+  &.shown.open {
     width: 204px;
     cursor: unset;
+  }
+  &.shown {
+    width: 25px;
   }
   &:hover {
     background-color: $bgc-on-hover;

@@ -14,7 +14,9 @@ class App extends Component {
     super(props)
   
     this.state = {
-      expanded: false
+      expanded: false,
+      shown: true,
+      shownTimer: setTimeout(() => this.setState({shown: false}), 4000)
     }
   }
 
@@ -30,8 +32,25 @@ class App extends Component {
    */
   openMenu = () => this.setState({ expanded: true })
 
+  /**
+   * Shows menu for ten seconds on mousemovement.
+   */
+  showMenu = () => {
+    const { expanded, shownTimer } = this.state
+
+    // if menu is open, do nothing
+    if (expanded) return
+
+    // clear timer
+    clearTimeout(shownTimer)
+    this.setState({
+      shown: true,
+      shownTimer: setTimeout(() => this.setState({shown: false}), 4000)
+    })
+  }
+
   render() {
-    const { expanded } = this.state
+    const { expanded, shown } = this.state
     const { history } = this.props
 
     const Routes = routes.map((route, index) => {
@@ -42,9 +61,12 @@ class App extends Component {
     })
 
     return (
-      <div className="App">
+      <div
+        className="App"
+        style={{width: '100vw', height: '100vh'}}
+        onMouseMove={this.showMenu}>
         <div
-          className={ "left-column " + (expanded ? 'open' : '')}
+          className={ "left-column " + (shown ? 'shown ' : '') + (expanded ? 'open' : '')}
           onClick={ !expanded ? this.openMenu : undefined }>
           <FileTree
             branches={ branches }
