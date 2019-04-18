@@ -149,7 +149,7 @@ export default class Contact extends Component {
     if (!this.formReady()) return
 
     // copy data
-    const data = {...this.state}
+    const data = { ...this.state }
 
     // send data
     this.sendData(data)
@@ -184,23 +184,23 @@ export default class Contact extends Component {
               type="text"
               id="firstName"
               name="firstName"
-              value={firstName.value}
-              onChange={this.handleChange}
+              value={ firstName.value }
+              onChange={ this.handleChange }
               placeholder="First"/>
             <input
               type="text"
               id="lastName"
               name="lastName"
-              value={lastName.value}
-              onChange={this.handleChange}
+              value={ lastName.value }
+              onChange={ this.handleChange }
               placeholder="Last"/>
           </label>
           {/* Tel */}
           <label htmlFor="telNo">Phone
             <span className={telNo.isValid ? 'filled' : ''}>*</span>:
             <Masked
-              value={telNo.value}
-              onChange={this.handleChange}
+              value={ telNo.value }
+              onChange={ this.handleChange }
               name="telNo"
               type="tel"
               mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
@@ -213,8 +213,8 @@ export default class Contact extends Component {
               type="email"
               id="email"
               name="email"
-              value={email.value}
-              onChange={this.handleChange}
+              value={ email.value }
+              onChange={ this.handleChange }
               placeholder="random@person.org"/>
           </label>
           {/* Content of Message */}
@@ -223,8 +223,8 @@ export default class Contact extends Component {
             <textarea
               id="message"
               name="message"
-              value={message.value}
-              onChange={this.handleChange}
+              value={ message.value }
+              onChange={ this.handleChange }
               placeholder="What's on your mind, friend?"/>
           </label>
           {/* Submit Button */}

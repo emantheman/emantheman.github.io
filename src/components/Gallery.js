@@ -20,6 +20,7 @@ export default class Gallery extends Component {
    */
   openLightbox = (index, event) => {
     event.preventDefault()
+    this.props.menu.lock()
     this.setState({
       lightboxIsOpen: true,
       currentImage: index
@@ -29,10 +30,13 @@ export default class Gallery extends Component {
   /**
    * Closes lightbox.
    */
-  closeLightbox = () => this.setState({ 
-    lightboxIsOpen: false,
-    currentImage: 0
-  })
+  closeLightbox = () => {
+    this.props.menu.unlock()
+    this.setState({ 
+      lightboxIsOpen: false,
+      currentImage: 0
+    })
+  }
 
   /**
    * Goes to the previous image.

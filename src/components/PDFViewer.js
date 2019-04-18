@@ -1,14 +1,25 @@
-import React from 'react'
+import React, { Component } from 'react'
 
 import '../styles/App.scss'
 
-const PDFViewer = props => (
-  <embed
-    style={{ height: '100vh' }}
-    width="100%"
-    height="100%"
-    src={ props.src }
-    type="application/pdf"/>
-)
+export default class PDFViewer extends Component {
 
-export default PDFViewer
+  componentWillMount() {
+    this.props.menu.lock()
+  }
+
+  componentWillUnmount() {
+    this.props.menu.unlock()
+  }
+
+  render() {
+    const { src } = this.props
+    return (
+      <embed
+        title="pdf"
+        style={{ height: '100vh', width: '100vw' }}
+        src={ src }
+        type="application/pdf"/>
+    )
+  }
+}

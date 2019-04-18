@@ -1,8 +1,10 @@
 import React from 'react'
-import PDFViewer from '../components//PDFViewer'
+import PDFViewer from '../components/PDFViewer'
 
-const Resume = () => (
-  <PDFViewer src="documents/resume.pdf"/>
+const Resume = props => (
+  <PDFViewer
+    menu={ props.menu }
+    src="documents/resume.pdf"/>
 )
 
 export default Resume

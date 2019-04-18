@@ -26,10 +26,12 @@ const IMAGES = [{
   orientation: 'square'
 }]
 
-const Art = () => (
+const Art = props => (
   <div className="Art">
     <h2 className="header">My Artwork</h2>
-    <Gallery images={IMAGES}/>
+    <Gallery
+      menu={ props.menu }
+      images={ IMAGES }/>
   </div>
 )
 

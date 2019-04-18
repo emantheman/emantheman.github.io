@@ -16,7 +16,8 @@ class App extends Component {
     this.state = {
       expanded: false,
       shown: true,
-      shownTimer: setTimeout(() => this.setState({shown: false}), 4000)
+      shownTimer: setTimeout(() => this.setState({ shown: false }), 5000),
+      locked: false
     }
   }
 
@@ -25,7 +26,7 @@ class App extends Component {
    * 
    * @param {Boolean} isOpen - true if the menu is open
    */
-  toggleMenu = isOpen => this.setState({ expanded: !isOpen })
+  toggleMenu = isOpen => this.setState({ expanded: !isOpen }, () => this.showMenu())
 
   /**
    * Opens menu.
@@ -33,7 +34,7 @@ class App extends Component {
   openMenu = () => this.setState({ expanded: true })
 
   /**
-   * Shows menu for ten seconds on mousemovement.
+   * Shows menu for 5 seconds on mousemovement.
    */
   showMenu = () => {
     const { expanded, shownTimer } = this.state
@@ -45,28 +46,40 @@ class App extends Component {
     clearTimeout(shownTimer)
     this.setState({
       shown: true,
-      shownTimer: setTimeout(() => this.setState({shown: false}), 4000)
+      shownTimer: setTimeout(() => this.setState({ shown: false }), 5000)
+    })
+  }
+
+  /**
+   * Locks menu in place and allows to hide away, respectively
+   */
+  menu = {
+    lock: () => this.setState({ locked: true }),
+    unlock: () => this.setState({
+      shown: true,
+      locked: false,
+      shownTimer: setTimeout(() => this.setState({ shown: false }), 5000) 
     })
   }
 
   render() {
-    const { expanded, shown } = this.state
+    const { expanded, shown, locked } = this.state
     const { history } = this.props
 
     const Routes = routes.map((route, index) => {
       const { path, view: View } = route
       return <Route key={ index }
                     exact path={ path }
-                    render={ () => <View/> }/>
+                    render={() => <View menu={ this.menu }/>}/>
     })
 
     return (
       <div
         className="App"
-        style={{width: '100vw', height: '100vh'}}
-        onMouseMove={this.showMenu}>
+        style={{ width: '100vw', height: '100vh' }}
+        onMouseMove={ this.showMenu }>
         <div
-          className={ "left-column " + (shown ? 'shown ' : '') + (expanded ? 'open' : '')}
+          className={"left-column " + ((locked || shown) ? 'shown ' : '') + (expanded ? 'open' : '')}
           onClick={ !expanded ? this.openMenu : undefined }>
           <FileTree
             branches={ branches }

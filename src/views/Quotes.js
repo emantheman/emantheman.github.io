@@ -8,10 +8,10 @@ const Quotes = () => (
     <div className="display">
       { quotes.map((q, i) => (
         <Quote
-          key={i}
-          url={q.url}
-          author={q.author}
-          content={q.content}/>
+          key={ i }
+          url={ q.url }
+          author={ q.author }
+          content={ q.content }/>
       ))}
     </div>
   </div>
