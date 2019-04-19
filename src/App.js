@@ -51,7 +51,7 @@ class App extends Component {
   }
 
   /**
-   * Locks menu in place and allows to hide away, respectively
+   * Locks menu in place and allows menu to slide neatly out of view, respectively.
    */
   menu = {
     lock: () => this.setState({ locked: true }),
@@ -79,7 +79,7 @@ class App extends Component {
         style={{ width: '100vw', height: '100vh' }}
         onMouseMove={ this.showMenu }>
         <div
-          className={"left-column " + ((locked || shown) ? 'shown ' : '') + (expanded ? 'open' : '')}
+          className={"left-column " + (locked || shown ? 'shown ' : '') + (expanded ? 'open' : '')}
           onClick={ !expanded ? this.openMenu : undefined }>
           <FileTree
             branches={ branches }

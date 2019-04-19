@@ -62,6 +62,12 @@ const branches = {
         url: '/info/contact'
       }
     }, {
+      name: 'github',
+      link: {
+        type: 'anchor',
+        url: 'https://github.com/naturalbornchiller'
+      }
+    }, {
       name: 'resume.pdf',
       link: {
         type: 'view',
