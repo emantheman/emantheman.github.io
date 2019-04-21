@@ -1,0 +1,65 @@
+.Home {
+  width: 100vw;
+  height: 100vh;
+  background-color: salmon;
+  .supercontainer {
+    background-color: inherit;
+    position: absolute;
+    margin: auto;
+    text-align: right;
+    right: 600px;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 615px;
+    height: 305px;
+    .container {
+      position: relative;
+      background-color: inherit;
+      border-right: 1px solid white;
+      overflow: hidden;
+      padding-right: 15px;
+      z-index: 1;
+      .link {
+        text-decoration: none;
+        .text {
+          color: white;
+          font-weight: bold;
+          font-size: 8em;
+        }
+      }
+    }
+    .mystery-block {
+      position: absolute;
+      margin: auto;
+      color: #642e27;
+      height: 96px;
+      width: 600px;
+      left: 640px;
+      top: 0;
+      bottom: 0;
+      text-align: left;
+      font-style: italic;
+      font-size: 81px;
+      animation: reveal 3.7s forwards;
+      &.lg-text {
+        font-size: 60px;
+      }
+    }
+  }
+}
+
+@keyframes reveal {
+  0% {
+    left: 100px;
+  }
+  20% {
+    left: 640px;
+  }
+  65% {
+    left: 640px;
+  }
+  100% {
+    left: 100px;
+  }
+}

@@ -15,9 +15,10 @@ class App extends Component {
   
     this.state = {
       expanded: false,
-      shown: true,
+      shown: false,
       shownTimer: setTimeout(() => this.setState({ shown: false }), 5000),
-      locked: false
+      locked: false,
+      stowed: true
     }
   }
 
@@ -56,14 +57,19 @@ class App extends Component {
   menu = {
     lock: () => this.setState({ locked: true }),
     unlock: () => this.setState({
-      shown: true,
+      shown: false,
       locked: false,
+      shownTimer: setTimeout(() => this.setState({ shown: false }), 5000) 
+    }),
+    unstow: () => this.setState({
+      stowed: false,
+      shown: true,
       shownTimer: setTimeout(() => this.setState({ shown: false }), 5000) 
     })
   }
 
   render() {
-    const { expanded, shown, locked } = this.state
+    const { expanded, shown, locked, stowed } = this.state
     const { history } = this.props
 
     const Routes = routes.map((route, index) => {
@@ -77,7 +83,7 @@ class App extends Component {
       <div
         className="App"
         style={{ width: '100vw', height: '100vh' }}
-        onMouseMove={ this.showMenu }>
+        onMouseMove={ stowed ? undefined : this.showMenu }>
         <div
           className={"left-column " + (locked || shown ? 'shown ' : '') + (expanded ? 'open' : '')}
           onClick={ !expanded ? this.openMenu : undefined }>
