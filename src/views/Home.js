@@ -10,6 +10,8 @@ export default class Home extends Component {
     'Web Developer',
     'Meditator',
     'Book Reader',
+    'Writer',
+    'Creative',
     'Hiker',
     'Mentor',
     'Visionary',
