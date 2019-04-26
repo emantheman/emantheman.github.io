@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-export default class Node extends Component {
+class Node extends Component {
   constructor(props) {
     super(props)
   
@@ -19,18 +19,31 @@ export default class Node extends Component {
     }
   }
 
+  /**
+   * Hides and displays children on click.
+   */
   toggleChildren = () => {
-    if (this.props.descendants.length > 0) {
+    if (this.props.children.length > 0) {
       this.setState(prevState => this.setState({ open: !prevState.open }))
     }
   }
 
-  createLeaf = (link, name, depth, path) => {
+  /**
+   * Creates a 'leaf' in the dendrogram.
+   * 
+   * The type of the leaf corresponds to the type of link:
+   *    'view' => <Link/>
+   *    'anchor' => <a target="_blank"/>
+   *     undefined => <span className="folder"/>
+   */
+  createLeaf = () => {
     const { open } = this.state
+    const { link, name, depth, path } = this.props
+    let leaf
     // determines whether leaf should be a plain folder, an external link,
     // or a link to a view and returns the corresponding jsx
-    if (link === undefined) {
-      return (
+    if (link === undefined) { // if not a link, leaf is a folder
+      leaf = (
         <span
           onClick={ this.toggleChildren }
           onMouseEnter={ () => this.setState({ hover: true }) }
@@ -41,8 +54,8 @@ export default class Node extends Component {
           { name }
         </span>
       )
-    } else if (link.type === 'anchor') {
-      return (
+    } else if (link.type === 'anchor') { // if type is "anchor", link is external
+      leaf = (
         <a
           className="external-link"
           href={ link.url }
@@ -50,10 +63,11 @@ export default class Node extends Component {
           rel="noopener noreferrer">{ name }
         </a>
       )
-    } else {
-      return (
+    } else { // if type is "view", link is relative
+      leaf = (
         <Link
           to={ link.url }
+          target={ link.newTab ? '_blank' : '_self' }
           onClick={ this.toggleChildren }
           onMouseEnter={ () => this.setState({ hover: true }) }
           onMouseOut={ () => this.setState({ hover: false }) }
@@ -64,18 +78,29 @@ export default class Node extends Component {
         </Link>
       )
     }
+
+    return leaf
   }
 
-  createChildren = (children, depth, path) => children.map(({ link, name: childName, descendants: grandChildren }, index) => (
-    <Node
-      key={ index }
-      name={ childName }
-      link={ link }
-      descendants={ grandChildren || [] }
-      currentPath={ path }
-      depth={ depth + 1 }/>
-  ))
+  /**
+   * Renders the children of the current node.
+   */
+  createChildren = () => {
+    const { depth, path, children } = this.props
+    return children.map(({ link, name, children }, index) => (
+      <Node
+        key={ index }
+        name={ name }
+        link={ link }
+        children={ children }
+        path={ path }
+        depth={ depth + 1 } />
+    ))
+  }
 
+  /**
+   * Returns the className associated with each folder.
+   */
   toggleVariants = () => {
     const { open, hover, active } = this.state
     let classNames = ''
@@ -88,20 +113,12 @@ export default class Node extends Component {
   render() {
     // destructure
     const { open, hover } = this.state
-    let {
-      descendants: children,
-      name,
+    const {
+      children,
       depth,
-      link,
-      currentPath,
       toggleMenu,
       menuOpen
     } = this.props
-
-    // set defaults
-    depth = depth || 0
-    // const children = this.props.children || []
-    children = children || []
 
     return (
       <li className={ (depth === 0 ? 'tree ' : '') + (depth === 1 ? 'first-gen ' : '')}>
@@ -110,15 +127,25 @@ export default class Node extends Component {
           <div className={ 'toggle-container ' + this.toggleVariants() }>
             <span className={ 'toggle ' + (!open ? 'collapsed ' : '') + (hover ? 'hover' : '')}/>
           </div>}
-          { (menuOpen || depth !== 0) && this.createLeaf(link, name, depth, currentPath) }
+          { (menuOpen || depth !== 0) && this.createLeaf() }
         </span>
         {/* subnodes */}
         <ul
           className={ depth === 0 ? 'progeny' : ''}
           style={ depth === 0 ? {marginLeft: '-2px'} : {}}>
-          { open && this.createChildren(children, depth, currentPath) }
+          { open && this.createChildren() }
         </ul>
       </li>
     )
   }
 }
+
+/**
+ * Sets the default props.
+ */
+Node.defaultProps = {
+  depth: 0,
+  children: []
+}
+
+export default Node

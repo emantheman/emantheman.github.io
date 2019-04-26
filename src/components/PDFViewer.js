@@ -5,11 +5,11 @@ import '../styles/App.scss'
 export default class PDFViewer extends Component {
 
   componentWillMount() {
-    this.props.menu.lock()
+    this.props.menu.stow()
   }
 
   componentWillUnmount() {
-    this.props.menu.unlock()
+    this.props.menu.unstow()
   }
 
   render() {

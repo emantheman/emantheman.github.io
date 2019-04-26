@@ -5,13 +5,13 @@ import '../../styles/FileTree.scss'
 
 const FileTree = props => {
   const {
-    currentPath,
+    path,
     toggleMenu,
     menuOpen,
     branches: {
       name,
       link,
-      descendants
+      children
     }
   } = props
   return (
@@ -19,8 +19,8 @@ const FileTree = props => {
       <Node
         name={ name }
         link={ link }
-        descendants={ descendants }
-        currentPath={ currentPath }
+        children={ children }
+        path={ path }
         toggleMenu={ toggleMenu }
         menuOpen={ menuOpen }/>
     </div>

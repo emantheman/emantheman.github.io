@@ -30,7 +30,7 @@ export default class Home extends Component {
           <Prism
             descriptors={ epithets }
             affixed="web developer"
-            spinRate={ 2.5 }
+            spinRate={ 3 }
             startDelay={ 3 }/>
         </div>
       </div>

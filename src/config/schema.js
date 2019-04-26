@@ -1,13 +1,14 @@
 // for terminal-like file-tree branches see https://en.wikipedia.org/wiki/Box-drawing_character
 const branches = {
   name: 'emmanuel_price/',
-  descendants: [{
+  children: [{
       name: 'code/',
-      descendants: [{
+      children: [{
         name: 'life',
         link: {
           type: 'view',
-          url: '/code/life'
+          url: '/code/life',
+          newTab: true
         }
       }, {
         name: 'concat',
@@ -18,19 +19,21 @@ const branches = {
       }]
     }, {
       name: 'other/',
-      descendants: [{
+      children: [{
         name: 'writing/',
-        descendants: [{
+        children: [{
           name: 'cc.pdf',
           link: {
             type: 'view',
-            url: '/other/writing/cold_cuts.pdf'
+            url: '/other/writing/cold_cuts.pdf',
+            newTab: true
           }
         }, {
           name: 'beachd.pdf',
           link: {
             type: 'view',
-            url: '/other/writing/beached.pdf'
+            url: '/other/writing/beached.pdf',
+            newTab: true
           }
         }]
       }, {
@@ -48,7 +51,7 @@ const branches = {
       }]
     }, {
     name: 'info/',
-    descendants: [{
+    children: [{
       name: 'bio',
       link: {
         type: 'view',
@@ -70,7 +73,8 @@ const branches = {
       name: 'resume.pdf',
       link: {
         type: 'view',
-        url: '/info/resume.pdf'
+        url: '/info/resume.pdf',
+        newTab: true
       }
     }]
   }]

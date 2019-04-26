@@ -5,22 +5,22 @@ import { StyleSheet, css } from 'aphrodite/no-important'
 const spinKeyframes = {
   0: {
   '0%': { transform: 'rotateX(0)' },
-  '20%': { transform: 'rotateX(-90deg)' },
+  '18%': { transform: 'rotateX(-90deg)' },
   '100%': { transform: 'rotateX(-90deg)' },
   },
   1: {
   '0%': { transform: 'rotateX(-90deg)' },
-  '20%': { transform: 'rotateX(-180deg)' },
+  '18%': { transform: 'rotateX(-180deg)' },
   '100%': { transform: 'rotateX(-180deg)' },
   }, 
   2: {
   '0%': { transform: 'rotateX(-180deg)' },
-  '20%': { transform: 'rotateX(-270deg)' },
+  '18%': { transform: 'rotateX(-270deg)' },
   '100%': { transform: 'rotateX(-270deg)' },
   },
   3: {
   '0%': { transform: 'rotateX(-270deg)' },
-  '20%': { transform: 'rotateX(-360deg)' },
+  '18%': { transform: 'rotateX(-360deg)' },
   '100%': { transform: 'rotateX(-360deg)' },
   }
 }
@@ -100,6 +100,7 @@ class Prism extends Component {
         animationName: [spinKeyframes[animation]],
         animationTimingFunction: 'ease',
         animationDuration: `${spinRate}s`,
+        animationFillMode: 'forwards'
       },
       side: {
         position: 'absolute',

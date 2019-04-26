@@ -1,4 +1,7 @@
 const quotes = [{
+  author: 'Daniel Kahneman',
+  content: ['A reliable way to make people believe in falsehoods is frequent repetition, because familiarity is not easily distinguished from truth. Authoritarian institutions and marketers have always known this fact.']
+}, {
   author: 'Antoine-Marie-Roger de Saint-Exupery',
   content: ['Perfection is achieved, not when there is nothing more to add, but when there is nothing left to take away.']
 }, {
