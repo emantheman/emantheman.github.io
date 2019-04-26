@@ -61,6 +61,10 @@ class App extends Component {
       locked: false,
       shownTimer: setTimeout(() => this.setState({ shown: false }), 5000) 
     }),
+    stow: () => this.setState({
+      stowed: true,
+      shown: false
+    }),
     unstow: () => this.setState({
       stowed: false,
       shown: true,

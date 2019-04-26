@@ -2,17 +2,27 @@ import React, { Component } from 'react'
 
 import { StyleSheet, css } from 'aphrodite/no-important'
 
-// Prism spin animation
 const spinKeyframes = {
+  0: {
   '0%': { transform: 'rotateX(0)' },
-  '5%': { transform: 'rotateX(-90deg)' },
-  '25%': { transform: 'rotateX(-90deg)' },
-  '30%': { transform: 'rotateX(-180deg)' },
-  '50%': { transform: 'rotateX(-180deg)' },
-  '55%': { transform: 'rotateX(-270deg)' },
-  '75%': { transform: 'rotateX(-270deg)' },
-  '80%': { transform: 'rotateX(-360deg)' },
-  '100%': { transform: 'rotateX(-360deg)' }
+  '20%': { transform: 'rotateX(-90deg)' },
+  '100%': { transform: 'rotateX(-90deg)' },
+  },
+  1: {
+  '0%': { transform: 'rotateX(-90deg)' },
+  '20%': { transform: 'rotateX(-180deg)' },
+  '100%': { transform: 'rotateX(-180deg)' },
+  }, 
+  2: {
+  '0%': { transform: 'rotateX(-180deg)' },
+  '20%': { transform: 'rotateX(-270deg)' },
+  '100%': { transform: 'rotateX(-270deg)' },
+  },
+  3: {
+  '0%': { transform: 'rotateX(-270deg)' },
+  '20%': { transform: 'rotateX(-360deg)' },
+  '100%': { transform: 'rotateX(-360deg)' },
+  }
 }
 
 class Prism extends Component {
@@ -20,6 +30,8 @@ class Prism extends Component {
     super(props)
   
     this.state = {
+      playAnimation: false,
+      animation: 0,
       i: 0,
       j: 1, 
       k: 2
@@ -38,8 +50,11 @@ class Prism extends Component {
     return [cssVal, cssUnit]
   }
 
+  /**
+   * Returns classes for inline styling!
+   */
   styles = () => {
-    let {
+    const {
       fontSize,
       positionRight,
       positionBottom,
@@ -48,16 +63,14 @@ class Prism extends Component {
       height,
       width,
       spinRate,
-      startDelay,
       prismBorder,
       prismBoxShadow,
       backgroundColor,
       fontColor
     } = this.props
-
-    // defaults
-    spinRate = `${spinRate * 4}s`
-    startDelay = startDelay + 's'
+    const {
+      animation
+    } = this.state
 
     // break val up into number and unit, e.g., [ '100', 'px' ]
     const [ heightValue, heightUnits ] = this.parseCSSVal(height)
@@ -76,17 +89,17 @@ class Prism extends Component {
         top: positionTop,
         fontSize
       },
-      spinner: {
-        animationName: [spinKeyframes],
-        animationIterationCount: 'infinite',
-        animationTimingFunction: 'ease',
-        animationDuration: spinRate,
-        animationDelay: startDelay,
+      rectangle: {
         transformOrigin: `0 ${halfHeight}`,
         margin: '0 auto',
         position: 'relative',
         transformStyle: 'preserve-3d',
         width: width
+      },
+      spin: {
+        animationName: [spinKeyframes[animation]],
+        animationTimingFunction: 'ease',
+        animationDuration: `${spinRate}s`,
       },
       side: {
         position: 'absolute',
@@ -119,23 +132,36 @@ class Prism extends Component {
 
   componentDidMount() {
     const { startDelay } = this.props
+    // convert delay from seconds to milliseconds
+    const msDelay = startDelay * 1000
+    // wait for <msDelay>ms to start animation
     setTimeout(() => {
-      this.startCycle()
-    }, startDelay * 1000)
+      // playAnimation
+      this.setState({ playAnimation: true })
+      // begin cycling through animation steps
+      this.cycleAnimation()
+    }, msDelay)
   }
 
   /**
    * Starts cycling through descriptors.
    */
-  startCycle = () => {
+  cycleAnimation = () => {
     const { spinRate } = this.props
-    // calls cycle descriptors,
-    this.cycleDescriptors()
-    // waits until cycle has completed (10 sec),
+    // convert spinrate from seconds to milliseconds
+    const msSpin = spinRate * 1000
+    // waits until cycle has completed
     setTimeout(() => {
-      // recurses.
-      this.startCycle()
-    }, spinRate * 4000)
+      // calls next animation.
+      this.setState(prevState => {
+        // changes descriptors if prism-face is hidden
+        if (prevState.animation === 3) this.cycleDescriptors()
+        // increments animationCycle
+        return { animation: (prevState.animation + 1) % 4 }
+      })
+      // after timeout is complete, recurses
+      this.cycleAnimation()
+    }, msSpin)
   }
 
   /**
@@ -155,13 +181,22 @@ class Prism extends Component {
   }
 
   render() {
-    const { i, j, k } = this.state
+    const { i, j, k, playAnimation } = this.state
     const { affixed, descriptors } = this.props
-    const { Prism, spinner, side, face1, face2, face3, face4 } = this.styles()
+    const {
+      Prism,
+      rectangle,
+      spin, 
+      side, 
+      face1,
+      face2,
+      face3,
+      face4
+    } = this.styles()
 
     return (
       <div className={css(Prism)}>
-        <div className={css(spinner)}>
+        <div className={css(rectangle, playAnimation && spin)}>
           <div className={css(side, face1)}>
             { affixed }.
           </div>
@@ -191,7 +226,7 @@ Prism.defaultProps = {
   height: '60px',
   width: '370px',
   spinRate: 2.5,
-  startDelay: 3,
+  startDelay: 0,
   prismBorder: 'rgba(245, 117, 103, 0.707)',
   prismBoxShadow: 'rgba(247, 158, 158, 0.351)',
 }

@@ -2,22 +2,20 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
 import Prism from '../components/Prism'
+import epithets from '../config/epithets'
 
 import '../styles/Home.scss'
 
-const DESCRIPTORS = [
-  'meditator',
-  'book-reader',
-  'creative',
-  'hiker',
-  'mentor',
-  'visionary',
-]
-
 export default class Home extends Component {
+  componentWillMount() {
+    // stows side menu
+    this.props.menu.stow()
+  }
+
   componentWillUnmount() {
+    // unstows side menu
     this.props.menu.unstow()
-    // add class which includes hide-animation.
+    /* add class which includes hide-animation. */
   }
 
   render() {
@@ -30,7 +28,7 @@ export default class Home extends Component {
             Manny Price, 
           </Link>
           <Prism
-            descriptors={ DESCRIPTORS }
+            descriptors={ epithets }
             affixed="web developer"
             spinRate={ 2.5 }
             startDelay={ 3 }/>
