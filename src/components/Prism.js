@@ -2,29 +2,6 @@ import React, { Component } from 'react'
 
 import { StyleSheet, css } from 'aphrodite/no-important'
 
-const spinKeyframes = {
-  0: {
-  '0%': { transform: 'rotateX(0)' },
-  '18%': { transform: 'rotateX(-90deg)' },
-  '100%': { transform: 'rotateX(-90deg)' },
-  },
-  1: {
-  '0%': { transform: 'rotateX(-90deg)' },
-  '18%': { transform: 'rotateX(-180deg)' },
-  '100%': { transform: 'rotateX(-180deg)' },
-  }, 
-  2: {
-  '0%': { transform: 'rotateX(-180deg)' },
-  '18%': { transform: 'rotateX(-270deg)' },
-  '100%': { transform: 'rotateX(-270deg)' },
-  },
-  3: {
-  '0%': { transform: 'rotateX(-270deg)' },
-  '18%': { transform: 'rotateX(-360deg)' },
-  '100%': { transform: 'rotateX(-360deg)' },
-  }
-}
-
 class Prism extends Component {
   constructor(props) {
     super(props)
@@ -36,6 +13,42 @@ class Prism extends Component {
       j: 1, 
       k: 2
     }
+  }
+
+  componentWillMount() {
+    // initialize keyframes
+    this.spinKeyframes = this.initializeKeyframes()
+  }
+
+  /**
+   * Uses props to initialize spin animation.
+   */
+  initializeKeyframes = () => {
+    const { reverseRotation } = this.props
+    const sign = reverseRotation ? -1 : 1
+    const spin = {}
+    let deg = 0
+    for (let i = 0; i < 4; i++) {
+      spin[i] = {}
+      spin[i]['0%'] = { transform: `rotateX(${sign*deg}deg)` }
+      deg += 90
+      spin[i]['18%'] = { transform: `rotateX(${sign*deg}deg)` }
+      spin[i]['100%'] = { transform: `rotateX(${sign*deg}deg)` }
+    }
+    return spin
+  }
+
+  componentDidMount() {
+    const { startDelay } = this.props
+    // convert delay from seconds to milliseconds
+    const msDelay = startDelay * 1000
+    // wait for <msDelay>ms to start animation
+    setTimeout(() => {
+      // playAnimation
+      this.setState({ playAnimation: true })
+      // begin cycling through animation steps
+      this.cycleAnimation()
+    }, msDelay)
   }
 
   /**
@@ -97,7 +110,7 @@ class Prism extends Component {
         width: width
       },
       spin: {
-        animationName: [spinKeyframes[animation]],
+        animationName: [this.spinKeyframes[animation]],
         animationTimingFunction: 'ease',
         animationDuration: `${spinRate}s`,
         animationFillMode: 'forwards'
@@ -129,19 +142,6 @@ class Prism extends Component {
       }
     })
     return styles
-  }
-
-  componentDidMount() {
-    const { startDelay } = this.props
-    // convert delay from seconds to milliseconds
-    const msDelay = startDelay * 1000
-    // wait for <msDelay>ms to start animation
-    setTimeout(() => {
-      // playAnimation
-      this.setState({ playAnimation: true })
-      // begin cycling through animation steps
-      this.cycleAnimation()
-    }, msDelay)
   }
 
   /**
@@ -217,6 +217,7 @@ class Prism extends Component {
 }
 
 Prism.defaultProps = {
+  reverseRotation: false,
   fontSize: '50px',
   fontColor: 'white',
   backgroundColor: 'salmon',

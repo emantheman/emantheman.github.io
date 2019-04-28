@@ -22,16 +22,14 @@ export default class Home extends Component {
     return (
       <div className="Home">
         <div className="container">
-          <Link
-            className="link"
-            to="/info/bio">
+          <Link className="link" to="/info/bio">
             Manny Price, 
           </Link>
           <Prism
             descriptors={ epithets }
             affixed="web developer"
             spinRate={ 3 }
-            startDelay={ 3 }/>
+            startDelay={3}/>
         </div>
       </div>
     )

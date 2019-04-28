@@ -3,6 +3,8 @@ const epithets = [
   'book-reader',
   'creative',
   'hiker',
+  'gamer',
+  'chess-player',
   'mentor',
   'visionary',
   'logophile'
