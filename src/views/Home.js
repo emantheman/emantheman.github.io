@@ -29,7 +29,7 @@ export default class Home extends Component {
             descriptors={ epithets }
             affixed="web developer"
             spinRate={ 3 }
-            startDelay={3}/>
+            startDelay={ 3 }/>
         </div>
       </div>
     )

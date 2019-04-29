@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import MaskedInput from 'react-text-mask'
+import axios from 'axios'
+import baseURL from '../config/server'
 
 import '../styles/Contact.scss'
 
@@ -148,20 +150,31 @@ export default class Contact extends Component {
     // if state contains invalid inputs, exit procedure
     if (!this.formReady()) return
 
-    // copy data
-    const data = { ...this.state }
+    // copy data from inputs
+    const data = {}
+    for (const input in this.state)
+      data[input] = this.state[input].value
 
     // send data
-    this.sendData(data)
+    this.sendEmail(data)
   }
 
   /**
-   * Sends data to server
+   * Sends email object to server.
    * 
-   * @param {Object} data - user inputted data
+   * @param {Object} data - inputs from user
    */
-  sendData = data => {
-    console.log(data)
+  sendEmail = data => {
+    // create subject-line
+    const subject = `New message from ${data.firstName} ${data.lastName}`
+    // format message
+    const content = `This is a message from ${data.firstName} ${data.lastName}, whose email is ${data.email} and whose phone number is ${data.telNo}.\n\n"${data.message}"`
+    // store in data object
+    const email = { subject, content }
+    // post to api
+    axios.post(`${baseURL}/email`, email)
+      .then(res => console.log('Sent!', res))
+      .catch(() => console.error('Error on send!!'))
   }
 
   render() {
@@ -172,11 +185,12 @@ export default class Contact extends Component {
       telNo,
       message
     } = this.state
+
     return (
       <div className="Contact">
         <h2 className="header">Contact</h2>
         <p>Feel free to reach out with questions, thoughts, music recommendations..!</p>
-        <form>
+        <form onSubmit={ this.handleSubmit }>
           {/* Name */}
           <label id="name" htmlFor="firstName">Name
             <span className={firstName.isValid && lastName.isValid ? 'filled' : ''}>*</span>:
