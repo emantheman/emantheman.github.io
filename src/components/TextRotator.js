@@ -7,17 +7,17 @@ class TextRotator extends Component {
     super(props)
   
     this.state = {
-      playAnimation: false,
+      facetext: [],
       animation: 0,
-      words: []
+      idx: 4
     }
   }
 
   componentWillMount() {
-    // initialize keyframes
+    // init keyframes
     this.spinKeyframes = this.initializeKeyframes()
-    // set words
-    this.setState({ words: this.props.words })
+    // init words
+    this.setState({ facetext: this.props.words.slice(0, 4) })
   }
 
   componentWillUnmount() {
@@ -37,25 +37,17 @@ class TextRotator extends Component {
       spin[i] = {}
       spin[i]['0%'] = { transform: `rotateX(${sign*deg}deg)` }
       deg += 90
-      spin[i]['18%'] = { transform: `rotateX(${sign*deg}deg)` }
+      spin[i]['10%'] = { transform: `rotateX(${sign*deg}deg)` }
       spin[i]['100%'] = { transform: `rotateX(${sign*deg}deg)` }
     }
     return spin
   }
 
   componentDidMount() {
-    const { startDelay } = this.props
-    // sentinel for asynchronous tasks
+    // sentinel for halting asynchronous tasks
     this._isMounted = true
-    // convert delay from seconds to milliseconds
-    const msDelay = startDelay * 1000
-    // wait for <msDelay>ms to start animation
-    setTimeout(() => {
-      // playAnimation
-      this.setState({ playAnimation: true })
-      // begin cycling through animation steps
-      this.cycleAnimation()
-    }, msDelay)
+    // start rotating
+    this.rotateText()
   }
 
   /**
@@ -152,89 +144,65 @@ class TextRotator extends Component {
   }
 
   /**
-   * Starts cycling through words.
+   * Rotates text and swaps a word
    */
-  cycleAnimation = () => {
+  rotateText = () => {
     const { spinRate } = this.props
-    // convert spinrate from seconds to milliseconds
-    const msSpin = spinRate * 1000
-    // waits until cycle has completed
+    // convert rate to ms
+    const delay = spinRate * 1000
+    // set delay
     setTimeout(() => {
-      // calls next animation.
+      // rotate text
       this.setState(prevState => {
-        // changes words if prism-face is hidden
-        this.cyclewords()
-        // increments animationCycle
-        return { animation: (prevState.animation + 1) % 4 }
+        const { facetext, animation, idx } = prevState
+        const { words } = this.props
+        const len = words.length
+        // index of hidden face
+        const h = (animation - 1) % len
+        // copy facetext
+        const newText = [...facetext]
+        // set hidden 
+        newText[h] = words[idx]
+        return {
+          facetext: newText, // 
+          idx: (idx + 1) % len, // inc index
+          animation: (animation + 1) % 4 // inc animation
+        }
       })
-      // if component is still mounted, function recurses
-      if (this._isMounted) this.cycleAnimation()
-      console.log('Recursed!')
-    }, msSpin)
-  }
 
-  /**
-   * TODO: Move only 1, the one right before the current index
-   * 
-   * @param {Array} arr - an array
-   */
-  exchangeWord = (arr, i) => {
-    // item to transplant
-    const plucked = arr[i]
-    // words[0 through 3, excluding i] to pin in place
-    const pinned = [0,1,2,3].filter(idx => idx !== i).map(idx => [idx, arr[idx]])
-    // rest of arr
-    const rest = arr.slice(4)
-    // put pinned words back in place
-    pinned.forEach(([idx, word]) => rest.splice(idx, 0, word))
-    // combine sections
-    rest.push(plucked)
-    return rest
-  }
-
-  /**
-   * Cycles through words.
-   */
-  cyclewords = () => {
-    // Shifts each index up to a new descriptor
-    this.setState(prevState => {
-      const { words, animation } = prevState
-      const index = (animation + 2) % 4
-      return {
-        words: this.exchangeWord(words, index)
-      }
-    })
+      // if component is mounted, recurse
+      if (this._isMounted) this.rotateText()
+    }, delay)
   }
 
   render() {
-    const { playAnimation, words } = this.state
+    const { facetext } = this.state
     const { affixed } = this.props
+    const styles = this.styles()
     const {
       Prism,
       rectangle,
       spin, 
-      side, 
-      face1,
-      face2,
-      face3,
-      face4
-    } = this.styles()
+      side
+    } = styles
+
+    // generate faces
+    const Faces = facetext.map((ft, i) => {
+      // if prop 'affixed' was passed, set face1 to affixed
+      if (affixed && i === 0) ft = affixed
+      return (
+        <div
+          key={i}
+          className={css(side, styles[`face${i + 1}`])}>
+            { ft }.
+        </div>
+      )
+    })
 
     return (
       <div className={css(Prism)}>
-        <div className={css(rectangle, playAnimation && spin)}>
-          <div className={css(side, face1)}>
-            { affixed || words[0] }.
-          </div>
-          <div className={css(side, face2)}>
-            { words[1] }.
-          </div>
-          <div className={css(side, face3)}>
-            { words[2] }.
-          </div>
-          <div className={css(side, face4)}>
-            { words[3] }.
-          </div>
+        <div className={css(rectangle, spin)}>
+          { Faces }
         </div>
       </div>
     )
@@ -251,10 +219,9 @@ TextRotator.defaultProps = {
   positionTop: '6px',
   positionLeft: 'unset',
   positionBottom: 'unset',
-  height: '60px',
+  height: '64px',
   width: '370px',
   spinRate: 2.5,
-  startDelay: 0,
   prismBorder: 'unset',
   prismBoxShadow: 'unset',
 }
