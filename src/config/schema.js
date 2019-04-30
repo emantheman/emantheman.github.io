@@ -61,7 +61,7 @@ const branches = {
       name: 'github',
       link: {
         type: 'anchor',
-        url: 'https://github.com/naturalbornchiller'
+        url: 'https://github.com/emantheman'
       }
     }, {
       name: 'resume.pdf',

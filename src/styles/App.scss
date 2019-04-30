@@ -1,6 +1,7 @@
 $bgc: rgba(0, 0, 0, 0.844);
 $bgc-on-hover: rgba(0, 0, 0, 0.860);
 .left-column {
+  cursor: pointer;
   overflow: hidden;
   background-color: $bgc;
   position: fixed;
@@ -8,17 +9,15 @@ $bgc-on-hover: rgba(0, 0, 0, 0.860);
   left: 0;
   top: 0;
   height: 100vh;
-  width: 0;
+  width: 25px;
   transition: width .5s cubic-bezier(0.77, 0.03, 0.2, 1),
               background-color .1s linear;
-  cursor: pointer;
-  &.open,
-  &.shown.open {
+  &.open {
     width: 204px;
     cursor: unset;
   }
-  &.shown {
-    width: 25px;
+  &.stowed {
+    width: 0;
   }
   &:hover {
     background-color: $bgc-on-hover;
