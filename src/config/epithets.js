@@ -1,4 +1,5 @@
 const epithets = [
+  'web developer',
   'meditator',
   'book-reader',
   'creative',

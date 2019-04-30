@@ -36,8 +36,8 @@ class TextRotator extends Component {
     for (let i = 0; i < 4; i++) {
       spin[i] = {}
       spin[i]['0%'] = { transform: `rotateX(${sign*deg}deg)` }
+      spin[i]['90%'] = { transform: `rotateX(${sign*deg}deg)` }
       deg += 90
-      spin[i]['10%'] = { transform: `rotateX(${sign*deg}deg)` }
       spin[i]['100%'] = { transform: `rotateX(${sign*deg}deg)` }
     }
     return spin
@@ -46,14 +46,13 @@ class TextRotator extends Component {
   componentDidMount() {
     // sentinel for halting asynchronous tasks
     this._isMounted = true
-    // start rotating
+    // start animation
     this.rotateText()
   }
 
   /**
-   * Takes css value in the form '<Number><Units>' and returns ['<Number>', '<Units>'].
+   * Takes css value in the form '100px' and outputs: ['100', 'px'].
    * 
-   * E.g., '100px' --> ['100', 'px']
    * @param {String} css - css value to be parsed.
    */
   parseCSSVal = css => {
@@ -144,7 +143,7 @@ class TextRotator extends Component {
   }
 
   /**
-   * Rotates text and swaps a word
+   * Rotates text and swaps a word.
    */
   rotateText = () => {
     const { spinRate } = this.props
@@ -176,6 +175,7 @@ class TextRotator extends Component {
   }
 
   render() {
+    // destructure
     const { facetext } = this.state
     const { affixed } = this.props
     const styles = this.styles()
@@ -199,6 +199,7 @@ class TextRotator extends Component {
       )
     })
 
+    // render component
     return (
       <div className={css(Prism)}>
         <div className={css(rectangle, spin)}>
