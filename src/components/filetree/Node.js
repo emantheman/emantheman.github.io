@@ -39,6 +39,7 @@ class Node extends Component {
   createLeaf = () => {
     const { open } = this.state
     const { link, name, depth, path } = this.props
+    // console.log(path)
     let leaf
     // determines whether leaf should be a plain folder, an external link,
     // or a link to a view and returns the corresponding jsx

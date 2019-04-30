@@ -20,23 +20,6 @@ const branches = {
     }, {
       name: 'other/',
       children: [{
-        name: 'writing/',
-        children: [{
-          name: 'cc.pdf',
-          link: {
-            type: 'view',
-            url: '/other/writing/cold_cuts.pdf',
-            newTab: true
-          }
-        }, {
-          name: 'beachd.pdf',
-          link: {
-            type: 'view',
-            url: '/other/writing/beached.pdf',
-            newTab: true
-          }
-        }]
-      }, {
         name: 'art',
         link: {
           type: 'view',
@@ -74,13 +57,24 @@ const branches = {
   }]
 }
 
-export default branches
+// writing
+// {
+//   name: 'writing/',
+//   children: [{
+//     name: 'cc.pdf',
+//     link: {
+//       type: 'view',
+//       url: '/other/writing/cold_cuts.pdf',
+//       newTab: true
+//     }
+//   }, {
+//     name: 'beachd.pdf',
+//     link: {
+//       type: 'view',
+//       url: '/other/writing/beached.pdf',
+//       newTab: true
+//     }
+//   }]
+// }, 
 
-/**
- * emmanuel/
- * |
- *  - code/ 
- * |
- *  - other/
- * 
- */
+export default branches

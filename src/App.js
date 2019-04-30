@@ -59,7 +59,7 @@ class App extends Component {
           onClick={ !expanded ? this.openMenu : undefined }>
           <FileTree
             branches={ branches }
-            currentPath={ history.location.pathname }
+            path={ history.location.pathname }
             toggleMenu={ this.toggleMenu }
             menuOpen={ expanded }/>
         </div>

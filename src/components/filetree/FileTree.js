@@ -14,6 +14,7 @@ const FileTree = props => {
       children
     }
   } = props
+
   return (
     <div className="FileTree">
       <Node

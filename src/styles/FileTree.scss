@@ -50,11 +50,12 @@ $box-color: white;
       transition: color .3s ease-out;
       // on hover
       &:hover {
-        color: $hover-color;// #690101;
+        color: $hover-color;
       }
       // link to currently selected view
       &.current {
-        font-style: italic;
+        // font-style: italic;
+        color: #00ffe0; //#ffd147;
       }
     }
     // adds question mark after not-currently-selected links on hover
