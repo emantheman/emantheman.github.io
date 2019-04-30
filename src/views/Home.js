@@ -27,6 +27,7 @@ export default class Home extends Component {
           </Link>
           <TextRotator
             words={ epithets }
+            positionRight={ '-164px' }
             spinRate={ 4.5 }
             reverseRotation/>
         </div>
