@@ -7,7 +7,6 @@ import ColdCuts from '../views/ColdCuts'
 import Beached from '../views/Beached'
 import Art from '../views/Art'
 import Resume from '../views/Resume'
-import Contact from '../views/Contact'
 
 const routes = [{
   path: '/',
@@ -45,10 +44,6 @@ const routes = [{
   path: '/info/resume.pdf',
   view: Resume,
   name: 'Resume'
-}, {
-  path: '/info/contact',
-  view: Contact,
-  name: 'Contact'
 }]
 
 export default routes

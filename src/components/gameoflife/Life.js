@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Cell from './Cell'
-
+// TODO: Change styling based on window.addEventListener('resize', callback)
 export default class Life extends Component {
   constructor(props) {
     super(props)

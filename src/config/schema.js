@@ -58,12 +58,6 @@ const branches = {
         url: '/info/bio'
       }
     }, {
-      name: 'contact',
-      link: {
-        type: 'view',
-        url: '/info/contact'
-      }
-    }, {
       name: 'github',
       link: {
         type: 'anchor',

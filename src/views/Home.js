@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-import Prism from '../components/Prism'
+import TextRotator from '../components/TextRotator'
 import epithets from '../config/epithets'
 
 import '../styles/Home.scss'
@@ -25,11 +25,11 @@ export default class Home extends Component {
           <Link className="link" to="/info/bio">
             Manny Price, 
           </Link>
-          <Prism
-            descriptors={ epithets }
-            affixed="web developer"
+          <TextRotator
+            words={ epithets }
             spinRate={ 3 }
-            startDelay={ 3 }/>
+            startDelay={ 3 }
+            reverseRotation/>
         </div>
       </div>
     )

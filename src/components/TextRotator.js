@@ -2,22 +2,27 @@ import React, { Component } from 'react'
 
 import { StyleSheet, css } from 'aphrodite/no-important'
 
-class Prism extends Component {
+class TextRotator extends Component {
   constructor(props) {
     super(props)
   
     this.state = {
       playAnimation: false,
       animation: 0,
-      i: 0,
-      j: 1, 
-      k: 2
+      words: []
     }
   }
 
   componentWillMount() {
     // initialize keyframes
     this.spinKeyframes = this.initializeKeyframes()
+    // set words
+    this.setState({ words: this.props.words })
+  }
+
+  componentWillUnmount() {
+    // flag sentinel
+    this._isMounted = false
   }
 
   /**
@@ -40,6 +45,8 @@ class Prism extends Component {
 
   componentDidMount() {
     const { startDelay } = this.props
+    // sentinel for asynchronous tasks
+    this._isMounted = true
     // convert delay from seconds to milliseconds
     const msDelay = startDelay * 1000
     // wait for <msDelay>ms to start animation
@@ -145,7 +152,7 @@ class Prism extends Component {
   }
 
   /**
-   * Starts cycling through descriptors.
+   * Starts cycling through words.
    */
   cycleAnimation = () => {
     const { spinRate } = this.props
@@ -155,35 +162,53 @@ class Prism extends Component {
     setTimeout(() => {
       // calls next animation.
       this.setState(prevState => {
-        // changes descriptors if prism-face is hidden
-        if (prevState.animation === 3) this.cycleDescriptors()
+        // changes words if prism-face is hidden
+        this.cyclewords()
         // increments animationCycle
         return { animation: (prevState.animation + 1) % 4 }
       })
-      // after timeout is complete, recurses
-      this.cycleAnimation()
+      // if component is still mounted, function recurses
+      if (this._isMounted) this.cycleAnimation()
+      console.log('Recursed!')
     }, msSpin)
   }
 
   /**
-   * Cycles through descriptors.
+   * TODO: Move only 1, the one right before the current index
+   * 
+   * @param {Array} arr - an array
    */
-  cycleDescriptors = () => {
-    const maxLen = this.props.descriptors.length
+  exchangeWord = (arr, i) => {
+    // item to transplant
+    const plucked = arr[i]
+    // words[0 through 3, excluding i] to pin in place
+    const pinned = [0,1,2,3].filter(idx => idx !== i).map(idx => [idx, arr[idx]])
+    // rest of arr
+    const rest = arr.slice(4)
+    // put pinned words back in place
+    pinned.forEach(([idx, word]) => rest.splice(idx, 0, word))
+    // combine sections
+    rest.push(plucked)
+    return rest
+  }
+
+  /**
+   * Cycles through words.
+   */
+  cyclewords = () => {
     // Shifts each index up to a new descriptor
     this.setState(prevState => {
-      const { i, j, k } = prevState
-      return { 
-        i: (k + 1) % maxLen,
-        j: (j + 3) % maxLen,
-        k: (i + 5) % maxLen
+      const { words, animation } = prevState
+      const index = (animation + 2) % 4
+      return {
+        words: this.exchangeWord(words, index)
       }
     })
   }
 
   render() {
-    const { i, j, k, playAnimation } = this.state
-    const { affixed, descriptors } = this.props
+    const { playAnimation, words } = this.state
+    const { affixed } = this.props
     const {
       Prism,
       rectangle,
@@ -199,16 +224,16 @@ class Prism extends Component {
       <div className={css(Prism)}>
         <div className={css(rectangle, playAnimation && spin)}>
           <div className={css(side, face1)}>
-            { affixed }.
+            { affixed || words[0] }.
           </div>
           <div className={css(side, face2)}>
-            { descriptors[i] }.
+            { words[1] }.
           </div>
           <div className={css(side, face3)}>
-            { descriptors[j] }.
+            { words[2] }.
           </div>
           <div className={css(side, face4)}>
-            { descriptors[k] }.
+            { words[3] }.
           </div>
         </div>
       </div>
@@ -216,7 +241,8 @@ class Prism extends Component {
   }
 }
 
-Prism.defaultProps = {
+TextRotator.defaultProps = {
+  affixed: '',
   reverseRotation: false,
   fontSize: '50px',
   fontColor: 'white',
@@ -229,8 +255,8 @@ Prism.defaultProps = {
   width: '370px',
   spinRate: 2.5,
   startDelay: 0,
-  prismBorder: 'rgba(245, 117, 103, 0.707)',
-  prismBoxShadow: 'rgba(247, 158, 158, 0.351)',
+  prismBorder: 'unset',
+  prismBoxShadow: 'unset',
 }
 
-export default Prism
+export default TextRotator
