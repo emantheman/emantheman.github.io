@@ -1,6 +1,5 @@
 /* Container for the game and its description*/
 .CGOL {
-  padding-left: 10px;
   opacity: 1;
 	animation-name: fadeInOpacity;
 	animation-iteration-count: 1;
@@ -10,9 +9,8 @@
   .Life {
     position: relative;
     margin-top: 10px;
-    margin-left: 24px;
+    margin-left: 28px;
     height: 99%;
-    float: left;
     &:focus {
       outline: none;
     }
@@ -37,7 +35,6 @@
     /* Allows interface with the GoL */
     .Interface {
       height: 1.5em;
-      width: 1044px;
       background: #3f3f3f;
       margin-top: -3px;
       color: white;
@@ -166,68 +163,68 @@
       }
     }
   }
-  /* The description and rules of the game */
-  .description {
-    position: absolute;
-    right: 36px;
-    top: 8px;
-    width: 306px;
-    // header that floats above the description
-    h2 {
-      border-bottom: 1px solid #eaecef;
-      margin-bottom: 0;
-      margin-top: 0;
-      padding-bottom: .3em;
-    }
-    // removes scrollbar from div with overflow: auto
-    ::-webkit-scrollbar {
-      display: none !important;
-      width: 0 !important;
-    }
-    // div that contains description
-    & > div {
-      height: 660px;
-      border-bottom: 1px solid #eaecef;
-      overflow: auto;
-      blockquote {
-        margin-left: 1em;
-        border-left: .25em solid #dfe2e5;
-        color: #51575e;
-        padding: 0 1em;
-      }
-      hr {
-        background-color: #e1e4e8;
-        border: 0;
-        height: .25em;
-        margin: 24px 0;
-        padding: 0;
-      }
-      ol {
-        padding-inline-start: 20px;
-      }
-      li+li {
-        margin-top: .4em;
-      }
-      li, p, blockquote {
-        line-height: 1.5;
-      }
-      p {
-        margin-bottom: 16px;
-        margin-top: 0;
-        &:first-child {
-          margin-top: .4em;
-        }
-      }
-      .footnote {
-        font-style: italic;
-        font-size: .7em;
+  // /* The description and rules of the game */
+  // .description {
+  //   position: absolute;
+  //   right: 36px;
+  //   top: 8px;
+  //   width: 306px;
+  //   // header that floats above the description
+  //   h2 {
+  //     border-bottom: 1px solid #eaecef;
+  //     margin-bottom: 0;
+  //     margin-top: 0;
+  //     padding-bottom: .3em;
+  //   }
+  //   // removes scrollbar from div with overflow: auto
+  //   ::-webkit-scrollbar {
+  //     display: none !important;
+  //     width: 0 !important;
+  //   }
+  //   // div that contains description
+  //   & > div {
+  //     height: 660px;
+  //     border-bottom: 1px solid #eaecef;
+  //     overflow: auto;
+  //     blockquote {
+  //       margin-left: 1em;
+  //       border-left: .25em solid #dfe2e5;
+  //       color: #51575e;
+  //       padding: 0 1em;
+  //     }
+  //     hr {
+  //       background-color: #e1e4e8;
+  //       border: 0;
+  //       height: .25em;
+  //       margin: 24px 0;
+  //       padding: 0;
+  //     }
+  //     ol {
+  //       padding-inline-start: 20px;
+  //     }
+  //     li+li {
+  //       margin-top: .4em;
+  //     }
+  //     li, p, blockquote {
+  //       line-height: 1.5;
+  //     }
+  //     p {
+  //       margin-bottom: 16px;
+  //       margin-top: 0;
+  //       &:first-child {
+  //         margin-top: .4em;
+  //       }
+  //     }
+  //     .footnote {
+  //       font-style: italic;
+  //       font-size: .7em;
         
-      }
-      .zero {
-        font-family: 'Roboto Slab', serif;
-      }
-    }
-  }
+  //     }
+  //     .zero {
+  //       font-family: 'Roboto Slab', serif;
+  //     }
+  //   }
+  // }
 }
 
 @keyframes brief-grow {

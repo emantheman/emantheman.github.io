@@ -13,7 +13,7 @@ export default class Life extends Component {
     note: this is calculated from the height(600) and width(900)
     of the grid divided by the size of each cell(15)
     */
-    const cols = 70, // number of rows
+    const cols = 92, // number of rows
           rows = 44 // and columns in the grid 
 
 
@@ -23,6 +23,8 @@ export default class Life extends Component {
     this.state = {
       cols,
       rows,
+      height: 660,
+      width: 1380,
       cellSize: 15,
       paused: true,
       generation: 0,
@@ -68,6 +70,35 @@ export default class Life extends Component {
                         [29,29],[27,33],[26,34],[26,32],[25,32],[24,33],
                         [25,34],[37,35],[28,40],[23,31],[32,26]].map(([x, y]) => [x+15, y-4]))
       }
+    }
+  }
+
+  componentWillMount() {
+    window.addEventListener('resize', this.resizeGrid)
+  }
+
+  /**
+   * Resizes game of life on screen-size change.
+   */
+  resizeGrid = () => {
+    // get width of screen
+    const x = window.innerWidth
+    const width = x - 56 // accounts for left and right margins
+
+    // if both cellSizes divide evenly into new width
+    if (Number.isInteger(width / 15) && Number.isInteger(width / 10)) {
+      // get size of cell
+      const { cellSize } = this.state
+      // calculates number of columns (width / cellsize)
+      const cols = width / cellSize
+
+      // reset state
+      this.setState({
+        width,
+        cols,
+        grid: this.newGrid()
+        // reset grid
+      }, this.resetGrid)
     }
   }
 
@@ -374,23 +405,39 @@ export default class Life extends Component {
   }
 
   render() {
+    const {
+      height,
+      width,
+      cellSize,
+      penType,
+      paused,
+      enlarged,
+      mouseIsDown,
+      generation,
+      tick
+    } = this.state
+
     return (
       <div
         className="Life"
         onKeyDown={ this.handleKeyDown }
-        tabIndex={0}>
+        tabIndex={ 0 }>
         {/* Liquid crystal display for the miracle of Life */}
         <svg
-          height={660}
-          width={1050}
+          height={ height }
+          width={ width }
           style={{ border: '1px solid black' }}>
           {/* Injects units of Life into display */}
           { this.drawGrid() }
           {/* Creates grid pattern */}
           <g>
             <defs>
-              <pattern id="grid" width={this.state.cellSize} height={this.state.cellSize} patternUnits="userSpaceOnUse">
-                <path d={`M ${this.state.cellSize} 0 L 0 0 0 ${this.state.cellSize}`} fill="none" stroke="gray" strokeWidth="0.2"/>
+              <pattern
+                id="grid"
+                width={ cellSize }
+                height={ cellSize }
+                patternUnits="userSpaceOnUse">
+                <path d={`M ${cellSize} 0 L 0 0 0 ${cellSize}`} fill="none" stroke="gray" strokeWidth="0.2"/>
               </pattern>
             </defs>
             {/* Clickable "screen" placed in foreground to detect mouse events without cells interfering */}
@@ -403,15 +450,17 @@ export default class Life extends Component {
                 this.changeCell(e)
               }}
               onMouseUp={() => this.setState({ mouseIsDown: false })}
-              onMouseMove={ this.state.mouseIsDown ? this._onMouseMove.bind(this) : undefined }
+              onMouseMove={ mouseIsDown ? this._onMouseMove.bind(this) : undefined }
             />
           </g>
         </svg>
         {/* Allows user to interact with the game */}
-        <div className="Interface">
+        <div
+          className="Interface"
+          style={{ width: width - 6 }}>
           {/* Pause/Play button */}
           <i
-            className={'fa fa-play ' + (this.state.paused ? '' : 'unpaused')}
+            className={'fa fa-play ' + (paused ? '' : 'unpaused')}
             id="start"
             title="pause/play"
             aria-hidden="true"
@@ -426,9 +475,9 @@ export default class Life extends Component {
           />
           {/* Change cell size */}
           <i
-            className={`fa fa-search-${this.state.enlarged ? 'minus' : 'plus'} magnifier`} 
+            className={`fa fa-search-${enlarged ? 'minus' : 'plus'} magnifier`} 
             aria-hidden="true"
-            onClick={this.changeCellSize}
+            onClick={ this.changeCellSize }
           />
           {/* Info tooltip */}
           <i
@@ -436,7 +485,7 @@ export default class Life extends Component {
             id="tooltip"
           >
             <p id="tooltiptext">
-              <span id="generation">generation: { this.state.generation }</span>
+              <span id="generation">generation: { generation }</span>
               <span id="population">population: { this.printPopulation() }</span>
             </p>
           </i>
@@ -459,10 +508,10 @@ export default class Life extends Component {
           </select>
           {/* Current Pen Type - reverses onClick */}
           <span
-            className={'pen ' + (this.state.penType ? 'draw' : '')}
+            className={'pen ' + (penType ? 'draw' : '')}
             onClick={() => this.setState(prevState => ({ penType: !prevState.penType }))}
           >
-            <span>{ this.state.penType ? 'Draw' : 'Erase'}</span>
+            <span>{ penType ? 'Draw' : 'Erase'}</span>
           </span>
           {/* Tick rate range */}
           <label>Tick delay:
@@ -476,7 +525,7 @@ export default class Life extends Component {
               name="tickrate"
               defaultValue=""
               onChange={({target: { value }}) => {
-                const isPause = this.state.paused
+                const isPause = paused
                 this.setState({ paused: true, tick: value })
                 if (!isPause) setTimeout(() => {
                   this.setState({ paused: false })
@@ -493,7 +542,7 @@ export default class Life extends Component {
               <option>400</option>
               <option>450</option>
             </datalist>
-            <em className="display-tickrate">{ this.state.tick }ms</em>
+            <em className="display-tickrate">{ tick }ms</em>
           </label>
         </div>
       </div>

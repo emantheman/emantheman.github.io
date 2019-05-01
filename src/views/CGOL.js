@@ -4,6 +4,7 @@ import Life from '../components/gameoflife/Life'
 import '../styles/Life.scss'
 
 export default class CGOL extends Component {
+
   componentWillMount() {
     this.props.menu.stow()
   }
@@ -16,7 +17,7 @@ export default class CGOL extends Component {
     return (
       <div className="CGOL">
         <Life/>
-        <div className="description">
+        {/* <div className="description">
           <h2>Conway's Game of Life</h2>
           <div>
             <p>
@@ -39,7 +40,7 @@ export default class CGOL extends Component {
               of the preceding one. The rules continue to be applied repeatedly to create further generations.
             </p>
           </div>
-        </div>
+        </div> */}
       </div>
     )
   }
