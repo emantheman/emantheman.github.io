@@ -163,68 +163,39 @@
       }
     }
   }
-  // /* The description and rules of the game */
-  // .description {
-  //   position: absolute;
-  //   right: 36px;
-  //   top: 8px;
-  //   width: 306px;
-  //   // header that floats above the description
-  //   h2 {
-  //     border-bottom: 1px solid #eaecef;
-  //     margin-bottom: 0;
-  //     margin-top: 0;
-  //     padding-bottom: .3em;
-  //   }
-  //   // removes scrollbar from div with overflow: auto
-  //   ::-webkit-scrollbar {
-  //     display: none !important;
-  //     width: 0 !important;
-  //   }
-  //   // div that contains description
-  //   & > div {
-  //     height: 660px;
-  //     border-bottom: 1px solid #eaecef;
-  //     overflow: auto;
-  //     blockquote {
-  //       margin-left: 1em;
-  //       border-left: .25em solid #dfe2e5;
-  //       color: #51575e;
-  //       padding: 0 1em;
-  //     }
-  //     hr {
-  //       background-color: #e1e4e8;
-  //       border: 0;
-  //       height: .25em;
-  //       margin: 24px 0;
-  //       padding: 0;
-  //     }
-  //     ol {
-  //       padding-inline-start: 20px;
-  //     }
-  //     li+li {
-  //       margin-top: .4em;
-  //     }
-  //     li, p, blockquote {
-  //       line-height: 1.5;
-  //     }
-  //     p {
-  //       margin-bottom: 16px;
-  //       margin-top: 0;
-  //       &:first-child {
-  //         margin-top: .4em;
-  //       }
-  //     }
-  //     .footnote {
-  //       font-style: italic;
-  //       font-size: .7em;
-        
-  //     }
-  //     .zero {
-  //       font-family: 'Roboto Slab', serif;
-  //     }
-  //   }
-  // }
+  /* Description of Game and Mechanics */
+  .description {
+    width: 80%;
+    line-height: 1.6em;
+    font-size: 1.2em;
+    margin: 0 auto;
+    margin-bottom: 45px;
+    h2, h3 {
+      text-align: center;
+    }
+    ol {
+      margin-left: 18%;
+    }
+    li+li {
+      margin-top: .4em;
+    }
+    hr {
+      background-color: #e1e4e8;
+      border: 0;
+      height: .25em;
+      margin: 24px 0;
+      padding: 0;
+    }
+    .zero {
+      font-family: 'Roboto Slab', serif;
+    }
+    .footnote {
+      display: block;
+      text-align: center;
+      font-style: italic;
+      font-size: .8em;
+    }
+  }
 }
 
 @keyframes brief-grow {

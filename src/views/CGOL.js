@@ -17,11 +17,11 @@ export default class CGOL extends Component {
     return (
       <div className="CGOL">
         <Life/>
-        {/* <div className="description">
+        <div className="description">
           <h2>Conway's Game of Life</h2>
           <div>
             <p>
-              <strong>Life</strong>, a <span className="zero">0</span>-player game devised by mathematician John Horton Conway, is an example of "design and organization emerging in the absence of a designer." After providing an initial configuration, known as the <i>seed</i> of the game, an observer can lean back and behold as patterns, creatures, structures, and symmetries emerge briefly from chaotic soups before devolving back into cellular ash. Successive generations of Conway's game are computed by applying simple rules to simple creatures.
+              <strong>Life</strong>, a <span className="zero">0</span>-player game devised by mathematician John Horton Conway, is an example of "design and organization emerging in the absence of a designer." After providing an initial configuration, known as the <i>seed</i> of the game, nothing else need be done. Simply watch as the game's rules generate patterns and behaviors.
             </p>
             <hr/>
             <h3>The Rules</h3>
@@ -40,7 +40,7 @@ export default class CGOL extends Component {
               of the preceding one. The rules continue to be applied repeatedly to create further generations.
             </p>
           </div>
-        </div> */}
+        </div>
       </div>
     )
   }
