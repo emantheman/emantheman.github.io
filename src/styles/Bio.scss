@@ -1,13 +1,14 @@
 .Bio {
   font-family: 'Roboto Slab', serif;
   width: 705px;
-  max-height: 525px;
   margin: auto;
   position: absolute;
   right: 0;
   left: 0;
   top: 0;
   bottom: 0;
+  width: 684px;
+  max-height: 540px;
   opacity: 1;
   font-size: 19px;
 	animation-name: fadeInOpacity;
@@ -30,6 +31,69 @@
   }
 }
 
+/* big landscape tablets, laptops, and desktops */
+@media (max-width:1024px)  {
+  .Bio {
+    margin: auto;
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 775px;
+    height: 980px;
+  }
+}
+
+@media (min-width:768px) and (max-width:1023px) {
+  .Bio {
+    margin: auto;
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 554px;
+    height: 980px;
+  }
+}
+
+/* tablet, landscape iPad, lo-res laptops ands desktops */
+@media (min-width:642) and (max-width:767px) {
+  .Bio {
+    margin: auto;
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 480px;
+    height: 701px;
+  }
+}
+
+/* smartphones, iPhone 5/SE, portrait 480x320 phones */
+@media (max-width:641px)  {
+  .Bio {
+    font-family: 'Roboto Slab', serif;
+    width: 83vw;
+    margin: auto;
+    margin-left: 36px;
+    opacity: 1;
+    font-size: 17px;
+    p {
+      margin-bottom: 1.5em;
+    }
+    h5 {
+      font-size: 13px;
+      margin: 5px 0;
+      &:last-of-type {
+        margin-bottom: 1.5em;
+      }
+    }
+  }
+}
+
 @keyframes fadeInOpacity {
 	0% {
 		opacity: 0;
@@ -38,3 +102,5 @@
 		opacity: 1;
 	}
 }
+
+// tip: in media-queries max-width means "if screen is less than or equal to <number> do this" while min-width means "if screen is greater than or equal to <number> do this"
