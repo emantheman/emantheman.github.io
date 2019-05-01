@@ -74,6 +74,7 @@ export default class Life extends Component {
   }
 
   componentWillMount() {
+    // event listener checks if window is resized
     window.addEventListener('resize', this.resizeGrid)
   }
 

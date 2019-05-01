@@ -165,6 +165,7 @@
   }
   /* Description of Game and Mechanics */
   .description {
+    padding-top: 30px;
     width: 80%;
     line-height: 1.6em;
     font-size: 1.2em;
@@ -172,6 +173,9 @@
     margin-bottom: 45px;
     h2, h3 {
       text-align: center;
+    }
+    p {
+      padding-right: 42px;
     }
     ol {
       margin-left: 18%;
@@ -189,11 +193,32 @@
     .zero {
       font-family: 'Roboto Slab', serif;
     }
-    .footnote {
+    .note {
       display: block;
       text-align: center;
+    }
+    .special-features {
+      font-size: .9em;
       font-style: italic;
-      font-size: .8em;
+      line-height: 1.3em;
+      padding-right: 40px;
+    }
+    .toGame {
+      cursor: pointer;
+      display: block;
+      position: -webkit-sticky;
+      position: sticky;
+      top: 45%;
+      margin-left: auto;
+      width: 40px;
+      height: 40px;
+      text-align: center;
+      background-color: #d9f5feba;
+      border: 1px solid #00000066;
+      border-radius: 15px 2px 0px 2px;
+      padding-top: 9px;
+      font-size: 1.5em;
+      font-weight: bold;
     }
   }
 }
