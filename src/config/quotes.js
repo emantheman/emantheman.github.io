@@ -58,6 +58,12 @@ const quotes = [{
 }, {
   author: 'Paulo Coelho',
   content: ["A child can teach an adult three things: to be happy for no reason, to always be busy with something, and to know how to demand with all his might that which he desires."]
+}, {
+  author: 'Frank Zappa',
+  content: ["A mind is like a parachute. It doesn’t work if it is not open."]
+}, {
+  author: 'Alfred Korzybski',
+  content: ["The map is not the territory."]
 }].sort((a, b) => { // sort alphabetically by first name
   if (b.author > a.author) {
     return -1

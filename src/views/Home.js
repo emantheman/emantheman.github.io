@@ -23,11 +23,11 @@ export default class Home extends Component {
       <div className="Home">
         <div className="container">
           <Link className="link" to="/info/bio">
-            Manny Price, 
+            Emmanuel Price, 
           </Link>
           <TextRotator
             words={ epithets }
-            positionRight={ '-164px' }
+            positionRight={ '-105px;' }
             spinRate={ 4.5 }
             reverseRotation/>
         </div>
