@@ -7,6 +7,7 @@ import epithets from '../config/epithets'
 import '../styles/Home.scss'
 
 export default class Home extends Component {
+  
   componentWillMount() {
     // stows side menu
     this.props.menu.stow()
@@ -22,12 +23,14 @@ export default class Home extends Component {
     return (
       <div className="Home">
         <div className="container">
-          <Link className="link" to="/info/bio">
+          <Link
+            className="link"
+            to="/info/bio">
             Emmanuel Price, 
           </Link>
           <TextRotator
             words={ epithets }
-            positionRight={ '-105px;' }
+            positionRight={ '-105px' }
             spinRate={ 4.5 }
             reverseRotation/>
         </div>

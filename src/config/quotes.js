@@ -60,7 +60,7 @@ const quotes = [{
   content: ["A child can teach an adult three things: to be happy for no reason, to always be busy with something, and to know how to demand with all his might that which he desires."]
 }, {
   author: 'Frank Zappa',
-  content: ["A mind is like a parachute. It doesn’t work if it is not open."]
+  content: ["A mind is like a parachute. It doesn’t work if it is not open.", "Information is not knowledge. Knowledge is not wisdom. Wisdom is not truth. Truth is not beauty. Beauty is not love. Love is not music. Music is THE BEST."]
 }, {
   author: 'Alfred Korzybski',
   content: ["The map is not the territory."]

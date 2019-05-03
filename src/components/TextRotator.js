@@ -16,12 +16,20 @@ class TextRotator extends Component {
   componentWillMount() {
     // init keyframes
     this.spinKeyframes = this.initializeKeyframes()
-    // init words
+    // init words and set spinrate
     this.setState({ facetext: this.props.words.slice(0, 4) })
   }
 
+
+  componentDidMount() {
+    // this.rotateText() calls itself until this is false
+    this._isMounted = true
+    // start animation
+    this.rotateText()
+  }
+
   componentWillUnmount() {
-    // flag sentinel
+    // halts this.rotateText() recursion
     this._isMounted = false
   }
 
@@ -41,13 +49,6 @@ class TextRotator extends Component {
       spin[i]['100%'] = { transform: `rotateX(${sign*deg}deg)` }
     }
     return spin
-  }
-
-  componentDidMount() {
-    // sentinel for halting asynchronous tasks
-    this._isMounted = true
-    // start animation
-    this.rotateText()
   }
 
   /**
@@ -164,13 +165,12 @@ class TextRotator extends Component {
           // if the word is on TxtRot, get next word
           while (facetext.includes(words[idx]))
             idx = (idx + 1) % len
-          idx = (idx + 1) % len // inc index again
           // set new word to hidden face
           facetext[h] = words[idx]
         }
         return {
           facetext,
-          idx,
+          idx: (idx + 1) % len, // inc index again
           animation: (animation + 1) % 4 // inc animation
         }
       })
