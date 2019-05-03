@@ -1,4 +1,7 @@
 const quotes = [{
+  author: 'John Stuart Mill',
+  content: ["Ask yourself whether you are happy and you cease to be so."]
+}, {
   author: 'Daniel Kahneman',
   content: ['A reliable way to make people believe in falsehoods is frequent repetition, because familiarity is not easily distinguished from truth. Authoritarian institutions and marketers have always known this fact.']
 }, {
@@ -18,7 +21,7 @@ const quotes = [{
   content: ['Too often we enjoy the comfort of opinion without the discomfort of thought.']
 }, {
   author: 'Lao Tzu',
-  content: ['A good traveler has no fixed plans and is not intent on arriving.']
+  content: ["Life is a series of natural and spontaneous changes. Don't resist them; that only creates sorrow. Let reality be reality. Let things flow naturally forward in whatever way they like.", 'A good traveler has no fixed plans and is not intent on arriving.', "Time is a created thing. To say 'I don't have time,' is like saying, 'I don't want to.'", "The truth is not always beautiful, nor beautiful words the truth.", "Silence is a source of great strength."]
 }, {
   author: 'E. W. Dijkstra',
   content: ['Always try to work as closely as possible at the boundary of your abilities. Do this, because it is the only way of discovering how that boundary should be moved forward.', 'Perfecting oneself is as much unlearning as it is learning.']

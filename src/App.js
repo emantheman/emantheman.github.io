@@ -43,6 +43,7 @@ class App extends Component {
     const { expanded, stowed } = this.state
     const { history } = this.props
 
+    // Instantiate routes
     const Routes = routes.map((route, index) => {
       const { path, view: View } = route
       return <Route key={ index }
@@ -54,6 +55,7 @@ class App extends Component {
       <div
         className="App"
         style={{ width: '100vw', height: '100vh' }}>
+        {/* LHS Menu (click to expand) */}
         <div
           className={"left-column " + (stowed ? 'stowed ' : '') + (expanded ? 'open' : '')}
           onClick={ !expanded ? this.openMenu : undefined }>
@@ -63,7 +65,9 @@ class App extends Component {
             toggleMenu={ this.toggleMenu }
             menuOpen={ expanded }/>
         </div>
-        <Path path={ history.location.pathname }/>
+        {/* Show path if NOT in root */}
+        {history.location.pathname !== '/' && <Path path={history.location.pathname} />}
+        {/* Render routes */}
         <main>
           { Routes }
         </main>

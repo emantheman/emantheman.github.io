@@ -16,7 +16,6 @@ export default class Home extends Component {
   componentWillUnmount() {
     // unstows side menu
     this.props.menu.unstow()
-    /* add class which includes hide-animation. */
   }
 
   render() {
@@ -31,7 +30,7 @@ export default class Home extends Component {
           <TextRotator
             words={ epithets }
             positionRight={ '-105px' }
-            spinRate={ 4.5 }
+            spinRate={ 4.2 }
             reverseRotation/>
         </div>
       </div>
