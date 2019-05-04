@@ -96,7 +96,11 @@ export default class TicTacToe extends Component {
         stepNumber: prevState.stepNumber + 1,
         xIsNext: !prevState.xIsNext
       }
-    }, this.makeComputerMove)
+    }, () => {
+      setTimeout(() => {
+        this.makeComputerMove()
+      }, 1800)
+    })
   }
 
   /**
@@ -124,8 +128,8 @@ export default class TicTacToe extends Component {
         break
       case '3': // impossible
         // get best move
-        // const { index } = this.minimax(squares, 'O')
-        // squares[index] = 'O'
+        const { index } = this.minimax([...squares], 'O')
+        squares[index] = 'O'
         break
       default: // facile
         // computer makes random move
@@ -293,9 +297,11 @@ export default class TicTacToe extends Component {
     // if there is a winner, declare winner
     if (win.token) {
       status = `Winner: ${win.token}`
-    } else if (squares.every(el => typeof el === 'string')) { 
+    } else if (squares.every(el => typeof el === 'string')) {
       // it is a tie if every square is NOT null (and there is no winner)
       status = "It's a tie!"
+    } else if (cpu.isOpponent && !xIsNext) { 
+      status = "...running diagnostics..."
     } else {
       // otherwise show next player
       status = `Next player is: ${xIsNext ? 'X' : 'O'}`
