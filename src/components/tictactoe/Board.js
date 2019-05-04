@@ -7,7 +7,7 @@ export default class Board extends Component {
     super(props)
   
     this.state = {
-      isHumanOpponent: true
+      vsCPU: true
     }
   }
 
@@ -19,7 +19,7 @@ export default class Board extends Component {
 
   handleChange = e => this.setState(prevState => {
     return {
-      isHumanOpponent: !prevState.isHumanOpponent
+      vsCPU: !prevState.vsCPU
     }
   })
   
@@ -34,7 +34,7 @@ export default class Board extends Component {
               type="checkbox"
               onChange={ this.handleChange }/>
             <span className="slider round" />
-            <span className="versus">vs { this.state.isHumanOpponent ? 'Human' : 'AI' }</span>
+            <span className={"versus " + (this.state.vsCPU ? 'computer' : '')}>vs computer</span>
           </label>
           <ol>History:{ moves }</ol>
         </div>
