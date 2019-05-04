@@ -18,20 +18,9 @@ export default class Board extends Component {
       value={ this.props.squares[i] }
       onClick={() => this.props.onClick(i)}/>
   )
-
-  handleVsChange = () => this.setState(prevState => {
-    let lvl = prevState.level
-    if (prevState) lvl = '1'
-    return {
-      vsCPU: !prevState.vsCPU,
-      level: lvl
-    }
-  })
-
-  handleLvlChange = e => this.setState({ level: e.target.value })
   
   render() {
-    const { status, moves } = this.props
+    const { status, moves, cpu, changeOpponent, changeLevel } = this.props
     return (
       <div className="Board">
         {/* Interface */}
@@ -40,36 +29,36 @@ export default class Board extends Component {
           <label className="switch">
             <input
               type="checkbox"
-              checked={ this.state.vsCPU }
-              onChange={ this.handleVsChange }/>
+              checked={ cpu.isOpponent }
+              onChange={() => changeOpponent()}/>
             <span className="slider round" />
-            <span className={"versus " + (this.state.vsCPU ? 'computer' : '')}>vs computer</span>
+            <span className={"versus " + (cpu.isOpponent ? 'computer' : '')}>vs computer</span>
           </label>
           {/* If opponent is CPU, choose difficulty */}
-          <div className={"level " + (!this.state.vsCPU ? 'hidden' : '')}>
+          <div className={"level " + (!cpu.isOpponent ? 'hidden' : '')}>
             <label>
               <input
                 className="choice"
                 type="radio"
-                checked={ this.state.level === '1' }
+                checked={ cpu.level === '1' }
                 value="1"
-                onChange={ this.handleLvlChange }/>Facile
+                onChange={e => changeLevel(e)}/>Facile
             </label>
             <label>
               <input
                 className="choice"
                 type="radio"
-                checked={ this.state.level === '2' }
+                checked={ cpu.level === '2' }
                 value="2"
-                onChange={ this.handleLvlChange }/>Challenging
+                onChange={e => changeLevel(e)}/>Challenging
             </label>
             <label>
               <input
                 className="choice"
                 type="radio"
-                checked={ this.state.level === '3' }
+                checked={ cpu.level === '3' }
                 value="3"
-                onChange={ this.handleLvlChange }/>Impossible
+                onChange={e => changeLevel(e)}/>Impossible
             </label>
           </div>
           {/* Show current game's history */}
