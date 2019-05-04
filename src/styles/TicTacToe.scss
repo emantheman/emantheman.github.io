@@ -46,8 +46,8 @@
           padding: 0;
           text-align: center;
           width: 120px;
-          &:focus {
-            outline: none;
+          &.win {
+            animation: 2s flash-color cubic-bezier(0.45, 0.01, 0.24, 0.94);
           }
         }
       }
@@ -67,11 +67,6 @@
     color: black;
   }
 }
-
-
-// .kbd-navigation .square:focus {
-//   background: #ddd;
-// }
 
 .switch {
   position: relative;
@@ -131,4 +126,9 @@
       border-radius: 50%;
     }
   }
+}
+
+@keyframes flash-color {
+  from { background-color: rgb(178, 252, 153); }
+  to { background-color: white; }
 }

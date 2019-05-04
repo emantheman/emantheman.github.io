@@ -46,12 +46,12 @@ export default class TicTacToe extends Component {
       const [a, b, c] = lines[i]
       // if the square at each index is equal and NOT empty
       if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-        // return the current token
-        return squares[a]
+        // return the winning tokens
+        return [squares[a], [a, b, c]]
       }
     }
     // otherwise there is no winner
-    return null
+    return [null, [null]]
   }
 
   handleClick = i => {
@@ -61,7 +61,7 @@ export default class TicTacToe extends Component {
     const squares = [...current.squares]
     
     // exit if game is over OR square is filled
-    if (this.calculateWinner(squares) || squares[i]) return
+    if (this.calculateWinner(squares)[0] || squares[i]) return
     
     // add token to square
     squares[i] = this.state.xIsNext ? 'X' : 'O';
@@ -90,12 +90,13 @@ export default class TicTacToe extends Component {
     } = this.state
     const current = history[stepNumber]
     const squares = [...current.squares]
-    const winner = this.calculateWinner(squares)
+    const [token, indices] = this.calculateWinner(squares)
     let status
     // if there is a winner, declare winner
-    if (winner) {
-      status = `Winner: ${winner}`
+    if (token) {
+      status = `Winner: ${token}`
     } else if (squares.every(el => typeof el === 'string')) { 
+      // it is a tie if every square is NOT null (and there is no winner)
       status = "It's a tie!"
     } else {
       // otherwise show next player
@@ -109,7 +110,9 @@ export default class TicTacToe extends Component {
         'Go to game start'
       return (
         <li key={ move }>
-          <button onClick={() => this.jumpTo(move)}>{ desc }</button>
+          <button onClick={() => this.jumpTo(move)}>
+            { desc }
+          </button>
         </li>
       )
     })
@@ -122,6 +125,7 @@ export default class TicTacToe extends Component {
         <div className="board-container">
           <Board
             onClick={i => this.handleClick(i)}
+            winSquares={ indices }
             squares={ squares } 
             status={ status }
             moves={ Moves }/>
@@ -129,8 +133,7 @@ export default class TicTacToe extends Component {
         {/* Links back to homepage */}
         <Link
           className="copyright"
-          to="/"
-          target="_blank">
+          to="/">
           Emmanuel Price ©
         </Link>
       </div>

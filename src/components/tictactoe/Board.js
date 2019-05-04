@@ -13,6 +13,7 @@ export default class Board extends Component {
 
   renderSquare = i => (
     <Square
+      className={ this.props.winSquares.includes(i) ? 'win' : '' }
       value={ this.props.squares[i] }
       onClick={() => this.props.onClick(i)}/>
   )
