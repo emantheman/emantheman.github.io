@@ -85,7 +85,7 @@ export default class TicTacToe extends Component {
     if (this.calculateWinner(squares).token || squares[i]) return
     
     // add token to square
-    squares[i] = this.state.xIsNext ? 'X' : 'O';
+    squares[i] = this.state.xIsNext ? 'X' : 'O'
 
     // setState
     this.setState(prevState => {
@@ -96,8 +96,60 @@ export default class TicTacToe extends Component {
         stepNumber: prevState.stepNumber + 1,
         xIsNext: !prevState.xIsNext
       }
+    }, this.makeComputerMove)
+  }
+
+  /**
+   * Makes computer's move.
+   */
+  makeComputerMove = () => {
+    const history = [...this.state.history]
+    const current = history[history.length - 1]
+    // copy current tictactoe board
+    const squares = [...current.squares]
+    // get available moves
+    const availableSquares = this.getAvailableMoves(squares)
+
+    // EXIT procedure if:
+    if (!this.state.cpu.isOpponent || // computer is not on
+      this.calculateWinner(squares).token || // or game is won
+      availableSquares.length === 0 || // or game is tie
+      this.state.xIsNext) return // or HU has next move
+
+    // get index of rand available move
+    const idx = availableSquares[this.getRandIndex(availableSquares.length)]
+
+    switch (this.state.cpu.level) {
+      case '2': // challenging
+        break
+      case '3': // impossible
+        // get best move
+        // const { index } = this.minimax(squares, 'O')
+        // squares[index] = 'O'
+        break
+      default: // facile
+        // computer makes random move
+        squares[idx] = 'O'
+        break
+    }
+
+    this.setState(prevState => {
+      return {
+        history: history.concat([{
+          squares
+        }]),
+        stepNumber: prevState.stepNumber + 1,
+        xIsNext: !prevState.xIsNext
+      }
     })
   }
+
+  /**
+   * Gets a random index to an array.
+   * 
+   * @param {Number} len - length of the array
+   */
+  getRandIndex = len => Math.floor(Math.random() * len)
 
   /**
    * Jumps to point in game's history.
@@ -114,7 +166,7 @@ export default class TicTacToe extends Component {
    * 
    * @param {Array} board - tictactoe board
    */
-  getAvailableMoves = board => board.filter(el => el === null)
+  getAvailableMoves = board => board.map((sq, i) => sq === null ? i : sq).filter(sq => Number.isInteger(sq))
 
   /**
    * Applies minimax algorithm to tictactoe. Calculates best possible move for CPU.
@@ -129,13 +181,13 @@ export default class TicTacToe extends Component {
     // get available spaces on the board
     const availableMoves = this.getAvailableMoves(board)
     // check for the terminal states such as win, lose, and tie and return a value accordingly
-    const token = this.calculateWinner(board)[0]
+    const { token } = this.calculateWinner(board)
   
     // BASE CASE
-    if (token && token === 'O') { // if computer win
+    if (token === 'O') { // if computer win
       // add to branch
       return { score: 10 }
-    } else if (token) { // if human win
+    } else if (token === 'X') { // if human win
       // subtract from branch
       return { score: -10 }
     } else if (availableMoves.length === 0) { // tie
@@ -216,21 +268,23 @@ export default class TicTacToe extends Component {
   }
 
   /**
-   * Toggles opponent (HU/CPU).
+   * Toggles opponent (HU/CPU). Resets game.
    */
   handleVsChange = () => this.setState(prevState => {
-    // reset level if changing to !cpu.isOpponent
-    const level = prevState.cpu.isOpponent ? '1' : prevState.cpu.level
     const isOpponent = !prevState.cpu.isOpponent
+    const level = '1'
     const cpu = { isOpponent, level }
-    return { cpu }
+    const stepNumber = 0
+    const xIsNext = true
+    return { cpu, stepNumber, xIsNext }
   })
 
   render() {
     const {
       history,
       stepNumber,
-      cpu
+      cpu,
+      xIsNext
     } = this.state
     const current = history[stepNumber]
     const squares = [...current.squares]
@@ -244,7 +298,7 @@ export default class TicTacToe extends Component {
       status = "It's a tie!"
     } else {
       // otherwise show next player
-      status = `Next player is: ${this.state.xIsNext ? 'X' : 'O'}`
+      status = `Next player is: ${xIsNext ? 'X' : 'O'}`
     }
 
     // get past moves

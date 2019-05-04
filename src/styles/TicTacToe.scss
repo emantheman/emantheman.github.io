@@ -62,7 +62,11 @@
           text-align: center;
           width: 120px;
           &.win {
-            animation: 2s flash-color cubic-bezier(0.45, 0.01, 0.24, 0.94);
+            animation: 2s flash-green cubic-bezier(0.45, 0.01, 0.24, 0.94);
+          }
+          &.win.opponent,
+          &.opponent {
+            animation: 2s flash-red cubic-bezier(0.45, 0.01, 0.24, 0.94);
           }
         }
       }
@@ -143,7 +147,11 @@
   }
 }
 
-@keyframes flash-color {
+@keyframes flash-green {
   from { background-color: rgb(70, 175, 35); }
+  to { background-color: white; }
+}
+@keyframes flash-red {
+  from { background-color: rgb(191, 36, 36); }
   to { background-color: white; }
 }
