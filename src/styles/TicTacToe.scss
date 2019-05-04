@@ -24,6 +24,9 @@
       .interface {
         position: absolute;
         right: -137px;
+        .selected {
+          font-weight: bold;
+        }
       }
       // for three rows
       .row {
