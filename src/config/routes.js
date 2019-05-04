@@ -1,6 +1,7 @@
 import Home from '../views/Home'
 import Bio from '../views/Bio'
 import CGOL from '../views/CGOL'
+import TicTacToe from '../views/TicTacToe'
 import Quotes from '../views/Quotes'
 import Concatenate from '../views/Concatenate'
 import ColdCuts from '../views/ColdCuts'
@@ -20,6 +21,10 @@ const routes = [{
   path: '/code/life',
   view: CGOL,
   name: 'Life'
+}, {
+  path: '/code/tictactoe',
+  view: TicTacToe,
+  name: 'TicTacToe'
 }, {
   path: '/other/quotes',
   view: Quotes,

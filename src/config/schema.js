@@ -11,6 +11,13 @@ const branches = {
           newTab: true
         }
       }, {
+        name: 'tictactoe',
+        link: {
+          type: 'view',
+          url: '/code/tictactoe',
+          newTab: true
+        }
+      }, {
         name: 'concat',
         link: {
           type: 'view',

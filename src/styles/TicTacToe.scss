@@ -1,0 +1,129 @@
+.TicTacToe {
+  font: 14px "Century Gothic", Futura, sans-serif;
+  ol, ul {
+    padding-left: 30px;
+  }
+
+  /* Title of game */
+  .title {
+    text-align: center;
+    font-size: 4em;
+  }
+
+  // container for game
+  .board-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // gameBoard
+    .Board {
+      position: relative;
+      max-width: 50%;
+      // info and interface
+      .interface {
+        position: absolute;
+        right: -137px;
+      }
+      // for three rows
+      .row {
+        &:after {
+          clear: both;
+          content: "";
+          display: table;
+        }
+        // squares inside row
+        .Square {
+          background: #fff;
+          border: 1px solid #999;
+          float: left;
+          font-size: 74px;
+          font-weight: bold;
+          line-height: 34px;
+          height: 120px;
+          margin-right: -1px;
+          margin-top: -1px;
+          padding: 0;
+          text-align: center;
+          width: 120px;
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+      // status of game
+      .status {
+        font-size: 1.4em;
+        text-align: center;
+        margin: 10px 0;
+      }
+    }
+  }
+
+  // author
+  .copyright {
+    font-size: 1.2em;
+    text-decoration: none;
+    color: black;
+  }
+}
+
+
+// .kbd-navigation .square:focus {
+//   background: #ddd;
+// }
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin-left: 7px;
+  input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+    &:checked + .slider {
+      background-color: #2196F3;
+    }
+    &:checked + .slider:before {
+      -webkit-transform: translateX(17px);
+      -ms-transform: translateX(17px);
+      transform: translateX(17px);
+    }
+  }
+  .versus {
+    right: -50px;
+    position: absolute;
+    width: 63px;
+  }
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 23px;
+    width: 40px;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    &:before {
+      position: absolute;
+      content: "";
+      height: 15px;
+      width: 15px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+    &.round {
+      border-radius: 34px;
+    }
+    &.round:before {
+      border-radius: 50%;
+    }
+  }
+}
