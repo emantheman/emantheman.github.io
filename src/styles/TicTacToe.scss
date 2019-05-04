@@ -1,8 +1,9 @@
 .TicTacToe {
   padding-top: 45px;
   font: 14px "Century Gothic", Futura, sans-serif;
-  ol, ul {
+  ol {
     padding-left: 30px;
+    width: 120px;
   }
 
   /* Title of game */
@@ -23,9 +24,20 @@
       // info and interface
       .interface {
         position: absolute;
-        right: -137px;
+        right: -265px;
         .selected {
           font-weight: bold;
+        }
+        .level {
+          opacity: 1;
+          transition: .2s opacity;
+          &.hidden {
+            opacity: .4;
+            pointer-events: none;
+          }
+          .choice {
+            margin-left: 12px;
+          }
         }
       }
       // for three rows
@@ -58,7 +70,7 @@
       .status {
         font-size: 1.4em;
         text-align: center;
-        margin: 10px 0;
+        margin: 15px 0;
       }
     }
   }
@@ -132,6 +144,6 @@
 }
 
 @keyframes flash-color {
-  from { background-color: rgb(178, 252, 153); }
+  from { background-color: rgb(70, 175, 35); }
   to { background-color: white; }
 }

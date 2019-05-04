@@ -7,7 +7,8 @@ export default class Board extends Component {
     super(props)
   
     this.state = {
-      vsCPU: true
+      vsCPU: false,
+      level: '1'
     }
   }
 
@@ -18,11 +19,16 @@ export default class Board extends Component {
       onClick={() => this.props.onClick(i)}/>
   )
 
-  handleChange = e => this.setState(prevState => {
+  handleVsChange = () => this.setState(prevState => {
+    let lvl = prevState.level
+    if (prevState) lvl = '1'
     return {
-      vsCPU: !prevState.vsCPU
+      vsCPU: !prevState.vsCPU,
+      level: lvl
     }
   })
+
+  handleLvlChange = e => this.setState({ level: e.target.value })
   
   render() {
     const { status, moves } = this.props
@@ -30,13 +36,43 @@ export default class Board extends Component {
       <div className="Board">
         {/* Interface */}
         <div className="interface">
+          {/* Choose opponent */}
           <label className="switch">
             <input
               type="checkbox"
-              onChange={ this.handleChange }/>
+              checked={ this.state.vsCPU }
+              onChange={ this.handleVsChange }/>
             <span className="slider round" />
             <span className={"versus " + (this.state.vsCPU ? 'computer' : '')}>vs computer</span>
           </label>
+          {/* If opponent is CPU, choose difficulty */}
+          <div className={"level " + (!this.state.vsCPU ? 'hidden' : '')}>
+            <label>
+              <input
+                className="choice"
+                type="radio"
+                checked={ this.state.level === '1' }
+                value="1"
+                onChange={ this.handleLvlChange }/>Facile
+            </label>
+            <label>
+              <input
+                className="choice"
+                type="radio"
+                checked={ this.state.level === '2' }
+                value="2"
+                onChange={ this.handleLvlChange }/>Challenging
+            </label>
+            <label>
+              <input
+                className="choice"
+                type="radio"
+                checked={ this.state.level === '3' }
+                value="3"
+                onChange={ this.handleLvlChange }/>Impossible
+            </label>
+          </div>
+          {/* Show current game's history */}
           <ol>History:{ moves }</ol>
         </div>
         {/* Gameboard */}

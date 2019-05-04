@@ -133,11 +133,11 @@ export default class TicTacToe extends Component {
             moves={ Moves }/>
         </div>
         {/* Links back to homepage */}
-        <Link
+        {/* <Link
           className="copyright"
           to="/">
           Emmanuel Price ©
-        </Link>
+        </Link> */}
       </div>
     )
   }
