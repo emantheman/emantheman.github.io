@@ -153,6 +153,7 @@ $box-color: white;
       // Plus sign
       .toggle {
         position: relative;
+        pointer-events: none;
         &::before, &::after {
           content: '';
           display: block;

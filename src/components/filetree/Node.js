@@ -125,7 +125,13 @@ class Node extends Component {
       <li className={ (depth === 0 ? 'tree ' : '') + (depth === 1 ? 'first-gen ' : '')}>
         <span onClick={() => depth === 0 && toggleMenu(open)}>
           {children.length > 0 && 
-          <div className={ 'toggle-container ' + this.toggleVariants() }>
+          <div 
+            className={ 'toggle-container ' + this.toggleVariants() }
+            onClick={ this.toggleChildren }
+            onMouseEnter={ () => this.setState({ hover: true }) }
+            onMouseOut={ () => this.setState({ hover: false }) }
+            onMouseDown={ () => this.setState({ active: true }) }
+            onMouseUp={ () => this.setState({ active: false }) }>
             <span className={ 'toggle ' + (!open ? 'collapsed ' : '') + (hover ? 'hover' : '')}/>
           </div>}
           { (menuOpen || depth !== 0) && this.createLeaf() }
