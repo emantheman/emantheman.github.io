@@ -156,7 +156,7 @@ class TextRotator extends Component {
       this.setState(prevState => {
         let { facetext, animation, idx } = prevState
         const { words } = this.props
-        const newtext = [...facetext]
+        // const newtext = [...facetext]
         const len = words.length // length of words
         // if more than four words,
         // then replace a word from TxtRot with new word from words
@@ -164,13 +164,13 @@ class TextRotator extends Component {
           // index of hidden face
           const h = (animation - 1) % len
           // if the word is on TxtRot, get next word
-          while (newtext.includes(words[idx]))
+          while (facetext.includes(words[idx]))
             idx = (idx + 1) % len
           // set new word to hidden face
-          newtext[h] = words[idx]
+          facetext[h] = words[idx]
         }
         return {
-          newtext,
+          facetext,
           idx: (idx + 1) % len, // inc index again
           animation: (animation + 1) % 4 // inc animation
         }
