@@ -1,13 +1,13 @@
-import Home from '../views/Home'
+import Art from '../views/Art'
+import Beached from '../views/Beached'
 import Bio from '../views/Bio'
 import CGOL from '../views/CGOL'
-import TicTacToe from '../views/TicTacToe'
-import Quotes from '../views/Quotes'
-import Concatenate from '../views/Concatenate'
 import ColdCuts from '../views/ColdCuts'
-import Beached from '../views/Beached'
-import Art from '../views/Art'
+import Concatenate from '../views/Concatenate'
+import Home from '../views/Home'
+import Quotes from '../views/Quotes'
 import Resume from '../views/Resume'
+import TicTacToe from '../views/TicTacToe'
 
 const routes = [{
   path: '/',
