@@ -9,12 +9,7 @@
   bottom: 0;
   width: 684px;
   max-height: 540px;
-  opacity: 1;
   font-size: 19px;
-	animation-name: fadeInOpacity;
-	animation-iteration-count: 1;
-	animation-timing-function: ease-in;
-  animation-duration: 1s;
   strong, h5 {
     color: rgba(0, 0, 0, 0.9);
   }
@@ -94,13 +89,5 @@
   }
 }
 
-@keyframes fadeInOpacity {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-	}
-}
 
 // tip: in media-queries max-width means "if screen is less than or equal to <number> do this" while min-width means "if screen is greater than or equal to <number> do this"

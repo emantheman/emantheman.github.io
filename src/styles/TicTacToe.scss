@@ -1,5 +1,9 @@
 .TicTacToe {
   padding-top: 45px;
+  animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+  animation-duration: 1s;
   font: 14px "Century Gothic", Futura, sans-serif;
   ol {
     padding-left: 30px;
@@ -10,6 +14,7 @@
   .title {
     text-align: center;
     font-size: 4em;
+    margin-bottom: 20px;
   }
 
   // container for game
@@ -160,4 +165,8 @@
 @keyframes flash-grey {
   from { background-color: rgb(124, 124, 124); }
   to { background-color: white; }
+}
+@keyframes fadeInOpacity {
+	from { opacity: 0; }
+	to { opacity: 1; }
 }

@@ -3,6 +3,10 @@
   height: 100vh;
   background-color: white; //salmon;
   font-family: 'Roboto Slab', serif;
+  animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+  animation-duration: 1s;
   .container {
     background-color: inherit;
     position: absolute;
@@ -19,4 +23,9 @@
       color: black;
     }
   }
+}
+
+@keyframes fadeInOpacity {
+	from { opacity: 0; }
+	to { opacity: 1; }
 }

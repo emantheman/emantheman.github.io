@@ -6,12 +6,19 @@ import Back from '../components/Back'
 import '../styles/Life.scss'
 
 export default class CGOL extends Component {
+  constructor(props) {
+    super(props)
+  
+    this.description = React.createRef()
+    this.game = React.createRef()
+  }
+  
 
   componentDidMount() {
     // stows side menu
     this.props.menu.stow()
     setTimeout(() => {
-      this.div.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      this.description.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }, 2000)
   }
   
@@ -23,9 +30,9 @@ export default class CGOL extends Component {
         {/* Scroll to this on up-arrow click */}
         <div ref={r => (this.game = r)} />
         {/* Game of Life */}
-        <Life scrollDown={this.scrollToDescription} />
+        <Life scrollDown={ this.scrollToDescription } />
         {/* Description of game */}
-        <div className="description" ref={r => (this.div = r)}>
+        <div className="description" ref={r => (this.description = r)}>
           <h2>Conway's Game of Life</h2>
           <div>
             {/* Click this to scroll to top of screen */}
