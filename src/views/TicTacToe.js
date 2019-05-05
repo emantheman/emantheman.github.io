@@ -26,7 +26,7 @@ export default class TicTacToe extends Component {
     // stows side menu
     this.props.menu.stow()
   }
-  
+
   /**
    * Calculates winner of game.
    * 
@@ -344,6 +344,8 @@ export default class TicTacToe extends Component {
 
     return (
       <div className="TicTacToe">
+        {/* Links back to homepage */}
+        <Back showInitials/>
         {/* Title */}
         <h1 className="title">Tic Tac Toe</h1>
         {/* Game */}
@@ -360,8 +362,6 @@ export default class TicTacToe extends Component {
             status={ status }
             moves={ Moves }/>
         </div>
-        {/* Links back to homepage */}
-        <Back showInitials/>
       </div>
     )
   }

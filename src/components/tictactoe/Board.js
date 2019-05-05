@@ -12,14 +12,27 @@ export default class Board extends Component {
     }
   }
 
-  renderSquare = i => (
-    <Square
-      key={ i }
-      className={(this.props.winSquares.includes(i) ? 'win ' : '') +
-                 (this.props.cpu.isOpponent && this.props.winSquares.includes(i) && this.props.squares[i] === 'O' ? 'opponent ' : '') + (this.props.winSquares.length < 3 && this.props.isTie ? 'tie ' : '') + ((this.props.xIsNext && !this.props.squares[i]) ||  (!this.props.cpu.isOpponent && !this.props.squares[i]) ? 'clickable' : '')}
-      value={ this.props.squares[i] }
-      onClick={() => (this.props.cpu.isOpponent && !this.props.xIsNext) ? undefined : this.props.onClick(i)}/>
-  )
+  renderSquare = i => {
+    const {
+      winSquares,
+      cpu,
+      squares,
+      isTie,
+      xIsNext,
+      onClick
+    } = this.props
+    const win = winSquares.includes(i) ? 'win' : ''
+    const cpuWin = cpu.isOpponent && winSquares.includes(i) && squares[i] === 'O' ? 'cpu-win' : ''
+    const tie = winSquares.length < 3 && isTie ? 'tie' : ''
+    const clickable = (xIsNext && !squares[i]) ||  (!cpu.isOpponent && !squares[i]) ? 'clickable' : ''
+    return (
+      <Square
+        key={ i }
+        className={ `${win} ${cpuWin} ${tie} ${clickable}` }
+        value={ squares[i] }
+        onClick={() => cpu.isOpponent && !xIsNext ? undefined : onClick(i)}/>
+    )
+  }
   
   render() {
     const { status, moves, cpu, changeOpponent, changeLevel } = this.props

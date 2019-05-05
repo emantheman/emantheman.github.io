@@ -67,8 +67,8 @@
           &.win {
             animation: 2s flash-green cubic-bezier(0.45, 0.01, 0.24, 0.94);
           }
-          &.win.opponent,
-          &.opponent {
+          &.win.cpu-win,
+          &.cpu-win {
             animation: 2s flash-red cubic-bezier(0.45, 0.01, 0.24, 0.94);
           }
           &.tie {
