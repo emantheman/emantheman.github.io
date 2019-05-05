@@ -34,7 +34,7 @@ class App extends Component {
    * Locks menu in place and allows menu to slide neatly out of view, respectively.
    */
   menu = {
-    stow: () => this.setState({ stowed: true }),
+    stow: () => this.setState({ stowed: true, expanded: false }),
     unstow: () => this.setState({ stowed: false })
   }
 
