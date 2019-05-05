@@ -107,7 +107,7 @@ export default class TicTacToe extends Component {
    * Makes computer's move.
    */
   makeComputerMove = () => {
-    const history = [...this.state.history]
+    const history = this.state.history.slice(0, this.state.stepNumber + 1)
     const current = history[history.length - 1]
     // copy current tictactoe board
     const squares = [...current.squares]
@@ -183,7 +183,6 @@ export default class TicTacToe extends Component {
    * @param {Number} step - index of board state
    */
   jumpTo = step => {
-    console.log(step % 2)
     this.setState({
       stepNumber: step,
       xIsNext: step % 2 === 0

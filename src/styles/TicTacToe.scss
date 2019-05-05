@@ -37,6 +37,9 @@
           }
           .choice {
             margin-left: 12px;
+            &.clickable {
+              cursor: pointer;
+            }
           }
         }
       }
@@ -71,6 +74,9 @@
           &.tie {
             animation: 2s flash-grey cubic-bezier(0.45, 0.01, 0.24, 0.94);
           }
+          &.clickable {
+            cursor: pointer;
+          }
         }
       }
       // status of game
@@ -95,7 +101,7 @@
   display: inline-block;
   width: 60px;
   height: 34px;
-  margin-left: 7px;
+  margin-left: 10px;
   input { 
     opacity: 0;
     width: 0;
@@ -114,7 +120,7 @@
     position: absolute;
     width: 83px;
     transition: .3s opacity;
-    &.computer {
+    &.human {
       opacity: .6;
     }
   }

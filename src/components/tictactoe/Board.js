@@ -16,7 +16,7 @@ export default class Board extends Component {
     <Square
       key={ i }
       className={(this.props.winSquares.includes(i) ? 'win ' : '') +
-                 (this.props.cpu.isOpponent && this.props.winSquares.includes(i) && this.props.squares[i] === 'O' ? 'opponent ' : '') + (this.props.winSquares.length < 3 && this.props.isTie ? 'tie' : '')}
+                 (this.props.cpu.isOpponent && this.props.winSquares.includes(i) && this.props.squares[i] === 'O' ? 'opponent ' : '') + (this.props.winSquares.length < 3 && this.props.isTie ? 'tie ' : '') + ((this.props.xIsNext && !this.props.squares[i]) ||  (!this.props.cpu.isOpponent && !this.props.squares[i]) ? 'clickable' : '')}
       value={ this.props.squares[i] }
       onClick={() => (this.props.cpu.isOpponent && !this.props.xIsNext) ? undefined : this.props.onClick(i)}/>
   )
@@ -34,13 +34,13 @@ export default class Board extends Component {
               checked={ cpu.isOpponent }
               onChange={() => changeOpponent()}/>
             <span className="slider round" />
-            <span className={"versus " + (cpu.isOpponent ? 'computer' : '')}>vs computer</span>
+            <span className={"versus " + (!cpu.isOpponent ? 'human' : '')}>vs computer</span>
           </label>
           {/* If opponent is CPU, choose difficulty */}
           <div className={"level " + (!cpu.isOpponent ? 'hidden' : '')}>
             <label>
               <input
-                className="choice"
+                className={"choice " + (cpu.isOpponent ? 'clickable' : '')}
                 type="radio"
                 checked={ cpu.level === '1' }
                 value="1"
@@ -48,7 +48,7 @@ export default class Board extends Component {
             </label>
             <label>
               <input
-                className="choice"
+                className={"choice " + (cpu.isOpponent ? 'clickable' : '')}
                 type="radio"
                 checked={ cpu.level === '2' }
                 value="2"
@@ -56,11 +56,11 @@ export default class Board extends Component {
             </label>
             <label>
               <input
-                className="choice"
+                className={"choice " + (cpu.isOpponent ? 'clickable' : '')}
                 type="radio"
                 checked={ cpu.level === '3' }
                 value="3"
-                onChange={e => changeLevel(e)}/>Impossible
+                onChange={e => changeLevel(e)}/>Unbeatable
             </label>
           </div>
           {/* Show current game's history */}
