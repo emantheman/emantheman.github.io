@@ -311,12 +311,13 @@ export default class TicTacToe extends Component {
     } = this.state
     const current = history[stepNumber]
     const squares = [...current.squares]
+    const isTie = squares.every(el => typeof el === 'string')
     const win = this.calculateWinner(squares)
     let status
     // if there is a winner, declare winner
     if (win.token) {
       status = `Winner: ${win.token}`
-    } else if (squares.every(el => typeof el === 'string')) {
+    } else if (isTie) {
       // it is a tie if every square is NOT null (and there is no winner)
       status = "It's a tie!"
     } else if (cpu.isOpponent && !xIsNext) { 
@@ -352,6 +353,7 @@ export default class TicTacToe extends Component {
             onClick={i => this.handleClick(i)}
             changeLevel={e => this.handleLvlChange(e)}
             changeOpponent={ this.handleVsChange }
+            isTie={ isTie }
             cpu={ cpu }
             xIsNext={ xIsNext }
             winSquares={ win.combo }

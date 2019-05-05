@@ -68,6 +68,9 @@
           &.opponent {
             animation: 2s flash-red cubic-bezier(0.45, 0.01, 0.24, 0.94);
           }
+          &.tie {
+            animation: 2s flash-grey cubic-bezier(0.45, 0.01, 0.24, 0.94);
+          }
         }
       }
       // status of game
@@ -153,5 +156,9 @@
 }
 @keyframes flash-red {
   from { background-color: rgb(191, 36, 36); }
+  to { background-color: white; }
+}
+@keyframes flash-grey {
+  from { background-color: rgb(124, 124, 124); }
   to { background-color: white; }
 }
