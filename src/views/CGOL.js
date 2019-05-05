@@ -1,29 +1,25 @@
 import React, { Component } from 'react'
+
 import Life from '../components/gameoflife/Life'
+import Back from '../components/Back'
 
 import '../styles/Life.scss'
 
 export default class CGOL extends Component {
-  
-  componentWillMount() {
-    // hide menu
-    this.props.menu.stow()
-  }
 
   componentDidMount() {
+    // stows side menu
+    this.props.menu.stow()
     setTimeout(() => {
       this.div.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }, 2000)
-  }
-
-  componentWillUnmount() {
-    // unhide menu
-    this.props.menu.unstow()
   }
   
   render() {
     return (
       <div className="CGOL">
+        {/* Link back to homepage */}
+        <Back style={{ fontSize: '22px', left: '3px' }}/>
         {/* Scroll to this on up-arrow click */}
         <div ref={r => (this.game = r)} />
         {/* Game of Life */}

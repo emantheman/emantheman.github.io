@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-// import { Link } from 'react-router-dom'
 
 import Board from '../components/tictactoe/Board'
+import Back from '../components/Back'
 
 import '../styles/TicTacToe.scss'
 
@@ -22,16 +22,11 @@ export default class TicTacToe extends Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     // stows side menu
     this.props.menu.stow()
   }
-
-  componentWillUnmount() {
-    // unstows side menu
-    this.props.menu.unstow()
-  }
-
+  
   /**
    * Calculates winner of game.
    * 
@@ -366,11 +361,7 @@ export default class TicTacToe extends Component {
             moves={ Moves }/>
         </div>
         {/* Links back to homepage */}
-        {/* <Link
-          className="copyright"
-          to="/">
-          Emmanuel Price ©
-        </Link> */}
+        <Back showInitials/>
       </div>
     )
   }

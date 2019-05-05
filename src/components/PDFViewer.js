@@ -4,12 +4,8 @@ import '../styles/App.scss'
 
 export default class PDFViewer extends Component {
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.menu.stow()
-  }
-
-  componentWillUnmount() {
-    this.props.menu.unstow()
   }
 
   render() {
