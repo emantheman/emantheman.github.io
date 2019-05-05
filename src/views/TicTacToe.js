@@ -182,10 +182,15 @@ export default class TicTacToe extends Component {
    * 
    * @param {Number} step - index of board state
    */
-  jumpTo = step => this.setState({
-    stepNumber: step,
-    xIsNext: step % 2 === 0
-  })
+  jumpTo = step => {
+    console.log(step % 2)
+    this.setState({
+      stepNumber: step,
+      xIsNext: step % 2 === 0
+    })
+    // if step is odd, attempt computer move
+    step % 2 && setTimeout(this.makeComputerMove, 1500)
+  }
 
   /**
    * Returns array of empty spaces on a board.
