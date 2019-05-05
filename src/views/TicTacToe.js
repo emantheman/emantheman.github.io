@@ -99,7 +99,7 @@ export default class TicTacToe extends Component {
     }, () => {
       setTimeout(() => {
         this.makeComputerMove()
-      }, 1800)
+      }, 1200)
     })
   }
 
@@ -121,10 +121,16 @@ export default class TicTacToe extends Component {
       this.state.xIsNext) return // or HU has next move
 
     // get index of rand available move
-    const idx = availableSquares[this.getRandIndex(availableSquares.length)]
+    const rand = availableSquares[this.getRandIndex(availableSquares.length)]
 
     switch (this.state.cpu.level) {
       case '2': // challenging
+        const win = this.winPossible([...squares])
+        if (win > -1) {
+          squares[win] = 'O'
+        } else {
+          squares[rand] = 'O'
+        }
         break
       case '3': // impossible
         // get best move
@@ -133,7 +139,7 @@ export default class TicTacToe extends Component {
         break
       default: // facile
         // computer makes random move
-        squares[idx] = 'O'
+        squares[rand] = 'O'
         break
     }
 
@@ -146,6 +152,22 @@ export default class TicTacToe extends Component {
         xIsNext: !prevState.xIsNext
       }
     })
+  }
+
+  /**
+   * If win is possible returns index of win, otherwise returns null.
+   * 
+   * @param {Array} arr - copy of tictactoe board
+   */
+  winPossible = arr => {
+    const availableSquares = this.getAvailableMoves(arr)
+    for (let i = 0; i < availableSquares.length; i++) {
+      const freeIndex = availableSquares[i]
+      arr[freeIndex] = 'O'
+      if (this.calculateWinner(arr)) return freeIndex
+      arr[freeIndex] = freeIndex
+    }
+    return -1
   }
 
   /**
@@ -178,8 +200,7 @@ export default class TicTacToe extends Component {
    * @param {Array} board - representation of tictactoe board
    * @param {String} player - token of current player ('X'/'O')
    */
-  minimax = (board, player) => {
-    let nextPlayer
+  minimax = (board, player, depth=0) => {
     // declare moves array to collect the move objects the function will create later
     const moves = []
     // get available spaces on the board
@@ -190,14 +211,16 @@ export default class TicTacToe extends Component {
     // BASE CASE
     if (token === 'O') { // if computer win
       // add to branch
-      return { score: 10 }
+      return { score: 100 - depth }
     } else if (token === 'X') { // if human win
       // subtract from branch
-      return { score: -10 }
-    } else if (availableMoves.length === 0) { // tie
+      return { score: depth - 100 }
+    } else if (!availableMoves.length) { // tie
       // branch is unchanged
       return { score: 0 }
     }
+
+    const nextPlayer = player === 'X' ? 'O' : 'X'
 
     // loop through available spots to create an array of possible move objects with associated score and index values
     for (let i = 0; i < availableMoves.length; i++) {
@@ -205,22 +228,15 @@ export default class TicTacToe extends Component {
       const move = {}
       // sets the move index to an available spot on the board
       move.index = availableMoves[i]
-
-      // place computer token in available space
-      if (player === 'O') {
-        board[move.index] = 'O'
-        nextPlayer = 'X'
-      // place human token in available space
-      } else {
-        board[move.index] = 'X'
-        nextPlayer = 'O'
-      }
-
-      // tests outcome of move
-      const result = this.minimax(board, nextPlayer)
+      // add token to available square
+      board[move.index] = player
+      // tests outcome of move, pass in next token
+      const result = this.minimax(board, nextPlayer, depth + 1)
       // give the move the appropriate score
       move.score = result.score
-      // the moves array will store all the moves on this level and their associated score
+      // reset the spot to empty
+      board[move.index] = move.index
+      // moves array will store all moves at this depth and their associated scores
       moves.push(move)
     }
 
@@ -236,7 +252,7 @@ export default class TicTacToe extends Component {
     */
     let bestMove, bestScore
     if (player === 'O') { // if CPU turn
-      bestScore = -100 // start low
+      bestScore = -1000 // start low
       for (let i = 0; i < moves.length; i++) {
         // if score at index is greater than best score
         if (moves[i].score > bestScore) {
@@ -246,7 +262,7 @@ export default class TicTacToe extends Component {
         }
       }
     } else { // if HU turn
-      bestScore = 100 // start high
+      bestScore = 1000 // start high
       for (let i = 0; i < moves.length; i++) {
         // if score at index is less than best score
         if (moves[i].score < bestScore) {
@@ -256,6 +272,7 @@ export default class TicTacToe extends Component {
         }
       }
     }
+
     // now return the chosen move (object) from the moves array
     return moves[bestMove]
   }
@@ -268,7 +285,9 @@ export default class TicTacToe extends Component {
   handleLvlChange = e => {
     const cpu = { ...this.state.cpu }
     cpu.level = e.target.value
-    this.setState({ cpu })
+    const stepNumber = 0
+    const xIsNext = true
+    this.setState({ cpu, stepNumber, xIsNext })
   }
 
   /**
@@ -334,6 +353,7 @@ export default class TicTacToe extends Component {
             changeLevel={e => this.handleLvlChange(e)}
             changeOpponent={ this.handleVsChange }
             cpu={ cpu }
+            xIsNext={ xIsNext }
             winSquares={ win.combo }
             squares={ squares } 
             status={ status }

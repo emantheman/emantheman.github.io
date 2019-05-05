@@ -18,7 +18,7 @@ export default class Board extends Component {
       className={(this.props.winSquares.includes(i) ? 'win ' : '') +
                  (this.props.cpu.isOpponent && this.props.winSquares.includes(i) && this.props.squares[i] === 'O' ? 'opponent' : '')}
       value={ this.props.squares[i] }
-      onClick={() => this.props.onClick(i)}/>
+      onClick={() => (this.props.cpu.isOpponent && !this.props.xIsNext) ? undefined : this.props.onClick(i)}/>
   )
   
   render() {
