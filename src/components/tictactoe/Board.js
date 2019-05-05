@@ -47,7 +47,7 @@ export default class Board extends Component {
               checked={ cpu.isOpponent }
               onChange={() => changeOpponent()}/>
             <span className="slider round" />
-            <span className={"versus " + (!cpu.isOpponent ? 'human' : '')}>vs computer</span>
+            <span className="versus">vs computer</span>
           </label>
           {/* If opponent is CPU, choose difficulty */}
           <div className={"level " + (!cpu.isOpponent ? 'hidden' : '')}>
@@ -65,7 +65,7 @@ export default class Board extends Component {
                 type="radio"
                 checked={ cpu.level === '2' }
                 value="2"
-                onChange={e => changeLevel(e)}/>Challenging
+                onChange={e => changeLevel(e)}/>Moderate
             </label>
             <label>
               <input

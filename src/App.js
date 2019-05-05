@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Route, withRouter } from 'react-router-dom'
 
 import FileTree from './components/filetree/FileTree'
-import Path from './components/filetree/Path'
 
 import routes from './config/routes'
 import branches from './config/schema'
@@ -65,8 +64,6 @@ class App extends Component {
             toggleMenu={ this.toggleMenu }
             menuOpen={ expanded }/>
         </div>
-        {/* Show path if NOT in root */}
-        {history.location.pathname !== '/' && <Path path={history.location.pathname} />}
         {/* Render routes */}
         <main>
           { Routes }
