@@ -1,8 +1,6 @@
 import Art from '../views/Art'
-import Beached from '../views/Beached'
 import Bio from '../views/Bio'
 import CGOL from '../views/CGOL'
-import ColdCuts from '../views/ColdCuts'
 import Concatenate from '../views/Concatenate'
 import Home from '../views/Home'
 import Quotes from '../views/Quotes'
@@ -33,14 +31,6 @@ const routes = [{
   path: '/code/concat',
   view: Concatenate,
   name: 'Concat'
-}, {
-  path: '/other/writing/cold_cuts.pdf',
-  view: ColdCuts,
-  name: 'ColdCuts'
-}, {
-  path: '/other/writing/beached.pdf',
-  view: Beached,
-  name: 'Beached'
 }, {
   path: '/other/art',
   view: Art,

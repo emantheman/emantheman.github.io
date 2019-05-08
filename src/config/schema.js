@@ -54,7 +54,7 @@ const branches = {
         url: 'https://github.com/emantheman'
       }
     }, {
-      name: 'resume.pdf',
+      name: 'resume',
       link: {
         type: 'view',
         url: '/info/resume.pdf',
