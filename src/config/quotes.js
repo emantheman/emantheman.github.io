@@ -1,4 +1,7 @@
 const quotes = [{
+  author: 'Gustav Mahler',
+  content: ['If you think you are boring your audience, go slower not faster.']
+}, {
   author: 'John Stuart Mill',
   content: ["Ask yourself whether you are happy and you cease to be so."]
 }, {
@@ -38,9 +41,6 @@ const quotes = [{
   author: 'Philip K. Dick',
   content: ['Reality is that which, when you stop believing in it, doesn\'t go away.', 'Just because something bears the aspect of the inevitable one should not, therefore, go along willingly with it.']
 }, {
-  author: 'Epicurus',
-  content: ['Is God willing to prevent evil, but not able? Then he is not omnipotent.\nIs he able, but not willing? Then he is malevolent.\nIs he both able and willing? Then whence cometh evil?\nIs he neither able nor willing? Then why call him God?']
-}, {
   author: 'Marcus Aurelius',
   content: ['Everything we hear is an opinion, not a fact. Everything we see is a perspective, not the truth.', 'When another blames you or hates you, or people voice similar criticisms, go to their souls, penetrate inside and see what sort of people they are. You will realize that there is no need to be racked with anxiety.']
 }, {
@@ -77,3 +77,8 @@ const quotes = [{
 })
 
 export default quotes
+
+// {
+//   author: 'Epicurus',
+//   content: ['Is God willing to prevent evil, but not able? Then he is not omnipotent.\nIs he able, but not willing? Then he is malevolent.\nIs he both able and willing? Then whence cometh evil?\nIs he neither able nor willing? Then why call him God?']
+// }, 
