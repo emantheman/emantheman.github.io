@@ -1,4 +1,7 @@
 const quotes = [{
+  author: 'Bruce Lee',
+  content: ["In building a statue, a sculptor doesn't keep adding clay to his subject. Actually, he keeps chiseling away at the nonessentials until the truth of his creation is revealed without obstruction."]
+}, {
   author: 'Gustav Mahler',
   content: ['If you think you are boring your audience, go slower not faster.']
 }, {
