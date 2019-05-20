@@ -76,32 +76,11 @@ const branches = {
     }, {
       name: 'resume',
       link: {
-        type: 'view',
-        url: '/info/resume.pdf',
-        newTab: true
+        type: 'anchor',
+        url: `${process.env.PUBLIC_URL}/documents/EPResume.pdf`
       }
     }]
   }]
 }
-
-// writing
-// {
-//   name: 'writing/',
-//   children: [{
-//     name: 'cc.pdf',
-//     link: {
-//       type: 'view',
-//       url: '/other/writing/cold_cuts.pdf',
-//       newTab: true
-//     }
-//   }, {
-//     name: 'beachd.pdf',
-//     link: {
-//       type: 'view',
-//       url: '/other/writing/beached.pdf',
-//       newTab: true
-//     }
-//   }]
-// }, 
 
 export default branches

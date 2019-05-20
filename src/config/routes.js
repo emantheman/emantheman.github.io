@@ -4,7 +4,6 @@ import CGOL from '../views/CGOL'
 import Concatenate from '../views/Concatenate'
 import Home from '../views/Home'
 import Quotes from '../views/Quotes'
-import Resume from '../views/Resume'
 import TicTacToe from '../views/TicTacToe'
 import Cube from '../views/Cube.js'
 
@@ -40,10 +39,6 @@ const routes = [{
   path: '/other/art',
   view: Art,
   name: 'Art'
-}, {
-  path: '/info/resume.pdf',
-  view: Resume,
-  name: 'Resume'
 }]
 
 export default routes
