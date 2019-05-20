@@ -2,21 +2,41 @@
 const branches = {
   name: 'emmanuel_price/',
   children: [{
-      name: 'code/',
-      children: [{
-        name: 'life',
-        link: {
-          type: 'view',
-          url: '/code/life',
-          newTab: true
-        }
+    name: 'code/',
+    children: [{
+        name: 'games/',
+        children: [{
+          name: 'life',
+          link: {
+            type: 'view',
+            url: '/code/games/life',
+            newTab: true
+          }
+        }, {
+          name: 'tictactoe',
+          link: {
+            type: 'view',
+            url: '/code/games/tictactoe',
+            newTab: true
+          }
+        }]
       }, {
-        name: 'tictactoe',
-        link: {
-          type: 'view',
-          url: '/code/tictactoe',
-          newTab: true
-        }
+        name: 'components/',
+        children: [{
+          name: 'rotator',
+          link: {
+            type: 'view',
+            url: '/code/components/rotator',
+            newTab: true
+          }
+        }, {
+          name: 'twocube',
+          link: {
+            type: 'view',
+            url: '/code/components/twocube',
+            newTab: true
+          }
+        }]
       }, {
         name: 'concat',
         link: {
