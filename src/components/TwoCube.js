@@ -28,21 +28,21 @@ const spinOuterKeyframes = {
   '0%': {
     transform: `translateX(-50%)
       scale3d(1,1,1)
-      rotateX(0deg)
-      rotateY(0deg)
-      rotateZ(0deg)`
+      rotateX(-0deg)
+      rotateY(-0deg)
+      rotateZ(-0deg)`
   },
   '25%': {
     transform: `translateX(-50%)
       scale3d(1,1,1)
-      rotateX(0deg)
+      rotateX(-0deg)
       rotateY(-90deg)
       rotateZ(0deg)`
   },
   '100%': {
     transform: `translateX(-50%)
       scale3d(1,1,1)
-      rotateX(0deg)
+      rotateX(-0deg)
       rotateY(-90deg)
       rotateZ(0deg)`
   },
@@ -86,7 +86,7 @@ export default class TwoCube extends Component {
       innerCube: {
         position: 'absolute',
         top: '-2px',
-        left: 0,
+        left: '1px',
         width: `${depth}px`,
         height: `${depth}px`,
         transform: `translateX(-50%)
@@ -120,7 +120,7 @@ export default class TwoCube extends Component {
         position: 'absolute',
         width: '100%',
         height: '100%',
-        border: '1px solid white'
+        border: '1px solid rgba(255,255,255,.8)'
       },
       outerFace: {
         backgroundColor: 'rgba(0, 0, 255, 0.6)',
@@ -131,7 +131,7 @@ export default class TwoCube extends Component {
       },
       innerFace: {
         backgroundColor: 'lightblue',
-        border: '2px solid white'
+        border: '1.5px solid white'
       }
     })
   }
