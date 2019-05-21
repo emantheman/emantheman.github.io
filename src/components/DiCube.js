@@ -50,21 +50,22 @@ const spinOuterKeyframes = {
 
 export default class DiCube extends Component {
 
+  static defaultProps = {
+    depth: 250,
+    alternate: false,
+    innerColor: '#00BCEF',
+    outerColor: 'rgba(0, 0, 255, 0.6)'
+  }
+
   state = {
     x: 0,
     y: 0,
     z: 0
   }
 
-  static defaultProps = {
-    depth: 250,
-    innerColor: '#87CEFA',
-    outerColor: 'rgba(0, 0, 255, 0.6)'
-  }
-
   styles = () => {
     const { x, y, z } = this.state
-    const { depth, innerColor, outerColor } = this.props
+    const { depth, alternate, innerColor, outerColor } = this.props
 
     return StyleSheet.create({
       container: {
@@ -99,7 +100,7 @@ export default class DiCube extends Component {
         transformOrigin: 'center',
         animationName: [spinInnerKeyframes],
         animationTimingFunction: 'ease',
-        animationDuration: `4s`,
+        animationDuration: `${alternate ? 3 : 4}s`,
         animationIterationCount: 'infinite',
         animationFillMode: 'forwards'
       },
@@ -114,7 +115,7 @@ export default class DiCube extends Component {
         animationName: [spinOuterKeyframes],
         animationTimingFunction: 'ease',
         animationDelay: '3s',
-        animationDuration: `4s`,
+        animationDuration: `${alternate ? 3 : 4}s`,
         animationIterationCount: 'infinite',
         animationFillMode: 'forwards'
       },
@@ -127,7 +128,7 @@ export default class DiCube extends Component {
       outerFace: {
         backgroundColor: outerColor,
         opacity: '.9',
-        border: '3px solid white',
+        border: '2px solid white',
         transition: 'border-width 0.2s',
         transitionDelay: '0.2s'
       },
@@ -142,8 +143,8 @@ export default class DiCube extends Component {
     const s = this.styles()
     const { depth } = this.props
     return [
-      'rotateX(0deg)',
       'rotateX(-90deg)',
+      'rotateX(0deg)',
       'rotateX(90deg)',
       'rotateY(-90deg)',
       'rotateY(90deg)',
@@ -152,7 +153,7 @@ export default class DiCube extends Component {
       <section
         key={ i }
         className={css(s.face, s[`${type}Face`])}
-        style={{transform: `${rot} translateZ(${ (depth / 2)+1.5 }px)`}}/>
+        style={{transform: `${rot} translateZ(${ (depth / 2)+2 }px)`}}/>
     ))
   }
 
