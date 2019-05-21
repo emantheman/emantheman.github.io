@@ -58,7 +58,7 @@ export default class DiCube extends Component {
 
   static defaultProps = {
     depth: 250,
-    innerColor: 'lightblue',
+    innerColor: '#87CEFA',
     outerColor: 'rgba(0, 0, 255, 0.6)'
   }
 
@@ -122,18 +122,18 @@ export default class DiCube extends Component {
         position: 'absolute',
         width: '100%',
         height: '100%',
-        border: '1px solid rgba(255,255,255,.8)'
+        border: '1.5px solid rgba(255,255,255,.8)'
       },
       outerFace: {
         backgroundColor: outerColor,
         opacity: '.9',
-        border: '2px solid white',
+        border: '3px solid white',
         transition: 'border-width 0.2s',
         transitionDelay: '0.2s'
       },
       innerFace: {
         backgroundColor: innerColor,
-        border: '1.5px solid white'
+        border: '1.5px solid rgba(255,255,255,.8)'
       }
     })
   }
@@ -152,7 +152,7 @@ export default class DiCube extends Component {
       <section
         key={ i }
         className={css(s.face, s[`${type}Face`])}
-        style={{transform: `${rot} translateZ(${ (depth / 2)+2 }px)`}}/>
+        style={{transform: `${rot} translateZ(${ (depth / 2)+1.5 }px)`}}/>
     ))
   }
 
