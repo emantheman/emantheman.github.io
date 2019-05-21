@@ -1,7 +1,6 @@
 .Rotator {
   width: 100%;
   min-height: 100vh;
-  background-color: lightblue;
   .container {
     position: absolute;
     right: 0;
@@ -10,7 +9,7 @@
     bottom: 125px;
     margin: auto;
     height: 120px;
-    width: 580px;
+    width: 520px;
     .proclamation {
       position: absolute;
       left: 0;
@@ -23,6 +22,12 @@
       font-size: 1.2em;
       bottom: 0;
       right: 0;
+      input {
+        font-size: 22px;
+        position: absolute;
+        left: -22px;
+        top: 2px;
+      }
     }
   }
   .description {
@@ -32,7 +37,7 @@
     left: 0;
     right: 0;
     bottom: 150px;
-    width: 70%;
+    width: 60%;
     margin: 0 auto;
     font-size: 1.6em;
   }
