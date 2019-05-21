@@ -16,7 +16,7 @@ export default class Cube extends Component {
       <div className="Cube">
         <Back
           style={{color: 'white', fontSize: '1.4em'}}
-          showInitials />
+          showInitials/>
         <div className="container">
           <DiCube alternate/>
         </div>

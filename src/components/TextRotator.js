@@ -121,6 +121,7 @@ class TextRotator extends Component {
         boxShadow: `inset 0 0 20px ${prismBoxShadow}`,
         lineHeight: '1.1em',
         paddingLeft: '7px',
+        transition: 'color .8s, background-color .8s',
         textAlign: align,
         color: fontColor,
         backgroundColor,

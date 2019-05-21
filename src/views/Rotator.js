@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import TextRotator from '../components/TextRotator'
+import Back from '../components/Back'
 
 import '../styles/Rotator.scss'
 
@@ -14,7 +15,13 @@ const ADJECTIVES = [
   'innovative',
   'elegant',
   'meaningful',
-  'efficient'
+  'efficient',
+  'engaging',
+  'immersive',
+  'influential',
+  'smart',
+  'personal',
+  'ill-defined',
 ]
 
 export default class Rotator extends Component {
@@ -37,13 +44,14 @@ export default class Rotator extends Component {
   }
 
   render() {
-    const {
-      blend
-    } = this.state
+    const { blend } = this.state
     const bgColor = blend ? 'white' : 'rgba(0,0,0,0.85)'
     const fontColor = blend ? 'coral' : 'white'
     return (
       <div className="Rotator">
+        <Back
+          style={{ color: 'black' }}
+          showInitials/>
         <div className="container">
           <span className="proclamation">Our&nbsp; product&nbsp; is</span>
           <TextRotator
@@ -62,7 +70,7 @@ export default class Rotator extends Component {
           </label>
         </div>
         <span className="description">
-          The <strong>TextRotator</strong> component, seen here cycling through an arbitrary list of tech adjectives, is a quote shiny doohickey unquote and aspires to be nothing more. Allow your eyes, fatigued from the daily slog of bad site design, to be replenished by the TR's pleasant rotation.
+          The <strong>TextRotator</strong> component, seen here cycling through an arbitrary list of buzzword-y adjectives, is a quote shiny doohickey unquote and aspires to be nothing more. Allow your eyes, fatigued from the daily slog of bad site design, to be replenished by the TR's pleasant rotation.
         </span>
       </div>
     )
