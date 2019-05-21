@@ -22,18 +22,20 @@ const branches = {
         }]
       }, {
         name: 'components/',
-        children: [{
-          name: 'rotator',
+        children: [
+        //   {
+        //   name: 'rotator',
+        //   link: {
+        //     type: 'view',
+        //     url: '/code/components/rotator',
+        //     newTab: true
+        //   }
+        // },
+          {
+          name: 'dicube',
           link: {
             type: 'view',
-            url: '/code/components/rotator',
-            newTab: true
-          }
-        }, {
-          name: 'twocube',
-          link: {
-            type: 'view',
-            url: '/code/components/twocube',
+            url: '/code/components/dicube',
             newTab: true
           }
         }]

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import TwoCube from '../components/TwoCube'
+import DiCube from '../components/DiCube'
 
 import '../styles/Cube.scss'
 
@@ -14,10 +14,10 @@ export default class Cube extends Component {
     return (
       <div className="Cube">
         <div className="container">
-          <TwoCube/>
+          <DiCube/>
         </div>
         <span className="description">
-          The <strong>Double Cube</strong> component, as a proposed verb in an imagined neocorporate visual language, serves no purpose<br/>except to quench briefly your seemingless endless thirst for nifty little sleek designs.
+          The <strong>Double Cube</strong> component, a proposed verb in an imagined neocorporate visual language, serves no purpose<br/>except to quench briefly your seemingless endless thirst for nifty little sleek designs.
         </span>
       </div>
     )

@@ -48,7 +48,7 @@ const spinOuterKeyframes = {
   },
 }
 
-export default class TwoCube extends Component {
+export default class DiCube extends Component {
 
   state = {
     x: 0,
@@ -57,12 +57,14 @@ export default class TwoCube extends Component {
   }
 
   static defaultProps = {
-    depth: 250
+    depth: 250,
+    innerColor: 'lightblue',
+    outerColor: 'rgba(0, 0, 255, 0.6)'
   }
 
   styles = () => {
     const { x, y, z } = this.state
-    const { depth } = this.props
+    const { depth, innerColor, outerColor } = this.props
 
     return StyleSheet.create({
       container: {
@@ -70,7 +72,7 @@ export default class TwoCube extends Component {
         height: `${depth * 1.5}px`,
         paddingLeft: `${depth / 1.7}px`
       },
-      TwoCube: {
+      DiCube: {
         position: 'relative',
         display: 'block',
         transformStyle: 'preserve-3d',
@@ -123,14 +125,14 @@ export default class TwoCube extends Component {
         border: '1px solid rgba(255,255,255,.8)'
       },
       outerFace: {
-        backgroundColor: 'rgba(0, 0, 255, 0.6)',
+        backgroundColor: outerColor,
         opacity: '.9',
         border: '2px solid white',
         transition: 'border-width 0.2s',
         transitionDelay: '0.2s'
       },
       innerFace: {
-        backgroundColor: 'lightblue',
+        backgroundColor: innerColor,
         border: '1.5px solid white'
       }
     })
@@ -157,7 +159,7 @@ export default class TwoCube extends Component {
   render() {
     const {
       container,
-      TwoCube,
+      DiCube,
       cube,
       innerCube,
       outerCube
@@ -165,7 +167,7 @@ export default class TwoCube extends Component {
 
     return (
       <div className={css(container)}>
-        <span className={css(TwoCube)}>
+        <span className={css(DiCube)}>
           <figure className={css(cube, outerCube)}>
             { this.getFaces('outer') }
           </figure>

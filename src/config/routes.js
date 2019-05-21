@@ -24,7 +24,7 @@ const routes = [{
   view: TicTacToe,
   name: 'TicTacToe'
 }, {
-  path: '/code/components/twocube',
+  path: '/code/components/dicube',
   view: Cube,
   name: 'Cube'
 }, {
