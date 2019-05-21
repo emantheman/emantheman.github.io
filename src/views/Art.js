@@ -5,6 +5,11 @@ import '../styles/Art.scss'
 
 // make google photos embedable at: https://ctrlq.org/google/photos/?_ga=2.128867980.1276491792.1554747504-750883585.1554747502
 const IMAGES = [{
+  src: `${process.env.PUBLIC_URL}/images/city_slicker.gif`,
+  thumbnail: `${process.env.PUBLIC_URL}/images/city_slicker.png`,
+  caption: 'City slicker (16-bit GIF)',
+  orientation: 'square'
+}, {
   src: 'https://lh3.googleusercontent.com/boJuDEZIizbUCSnLwPlD-oMV2wfk9Wh9chQiCabWOda0N_x2ZbRL9866Y1_XUmiOtgfoSCnn8mHDMVwD9qXwWQaVtemP_AmSkWirmvYiABKbShIxkvqos21FGjRoZh03Eyiu-oFxkw=w2400',
   thumbnail: 'https://lh3.googleusercontent.com/boJuDEZIizbUCSnLwPlD-oMV2wfk9Wh9chQiCabWOda0N_x2ZbRL9866Y1_XUmiOtgfoSCnn8mHDMVwD9qXwWQaVtemP_AmSkWirmvYiABKbShIxkvqos21FGjRoZh03Eyiu-oFxkw=w2400',
   caption: 'Wanderer (16-bit)',

@@ -1,10 +1,24 @@
 .Cube {
-  position: absolute;
-  right: 0;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  height: 500px;
-  width: 500px;
+  width: 100%;
+  min-height: 100vh;
+  background-color: salmon;
+  .container {
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 500px;
+    width: 500px;
+  }
+  .description {
+    color: white;
+    text-align: center;
+    position: absolute;
+    font-weight: 400;
+    bottom: 95px;
+    width: 100%;
+    font-size: 1.5em;
+  }
 }

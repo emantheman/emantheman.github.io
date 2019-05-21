@@ -1,11 +1,50 @@
 import React, { Component } from 'react'
 import { StyleSheet, css } from 'aphrodite/no-important'
-const spinKeyframes = {
-  from: {
-    transform: 'rotateY(0deg)'
+const spinInnerKeyframes = {
+  '0%': {
+    transform: `translateX(-50%)
+      scale3d(0.5,0.5,0.5)
+      rotateX(0deg)
+      rotateY(0deg)
+      rotateZ(0deg)`
   },
-  to: {
-    transform: 'rotateY(90deg)'
+  '75%': {
+    transform: `translateX(-50%)
+      scale3d(0.5,0.5,0.5)
+      rotateX(0deg)
+      rotateY(0deg)
+      rotateZ(0deg)`
+  },
+  '100%': {
+    transform: `translateX(-50%)
+      scale3d(0.5,0.5,0.5)
+      rotateX(0deg)
+      rotateY(90deg)
+      rotateZ(0deg)`
+  },
+}
+
+const spinOuterKeyframes = {
+  '0%': {
+    transform: `translateX(-50%)
+      scale3d(1,1,1)
+      rotateX(0deg)
+      rotateY(0deg)
+      rotateZ(0deg)`
+  },
+  '25%': {
+    transform: `translateX(-50%)
+      scale3d(1,1,1)
+      rotateX(0deg)
+      rotateY(-90deg)
+      rotateZ(0deg)`
+  },
+  '100%': {
+    transform: `translateX(-50%)
+      scale3d(1,1,1)
+      rotateX(0deg)
+      rotateY(-90deg)
+      rotateZ(0deg)`
   },
 }
 
@@ -18,7 +57,7 @@ export default class TwoCube extends Component {
   }
 
   static defaultProps = {
-    depth: 300
+    depth: 250
   }
 
   styles = () => {
@@ -37,7 +76,7 @@ export default class TwoCube extends Component {
         transformStyle: 'preserve-3d',
         transform: 'rotateX(-33.5deg) rotateY(45deg)',
         width: `${depth}px`,
-        paddingBottom: `${depth * 0.5}px`
+        paddingBottom: `${depth * 0.5}px`,
       },
       cube: {
         display: 'inline-block',
@@ -55,9 +94,12 @@ export default class TwoCube extends Component {
                     rotateX(${-x}deg)
                     rotateY(${-y}deg)
                     rotateZ(${-z}deg)`,
-        animationName: [spinKeyframes],
+        transformOrigin: 'center',
+        animationName: [spinInnerKeyframes],
         animationTimingFunction: 'ease',
         animationDuration: `4s`,
+        animationIterationCount: 'infinite',
+        animationFillMode: 'forwards'
       },
       outerCube: {
         width: `${depth}px`,
@@ -66,7 +108,13 @@ export default class TwoCube extends Component {
                     scale3d(1,1,1)
                     rotateX(${x}deg)
                     rotateY(${y}deg)
-                    rotateZ(${z}deg)`
+                    rotateZ(${z}deg)`,
+        animationName: [spinOuterKeyframes],
+        animationTimingFunction: 'ease',
+        animationDelay: '3s',
+        animationDuration: `4s`,
+        animationIterationCount: 'infinite',
+        animationFillMode: 'forwards'
       },
       face: {
         position: 'absolute',
@@ -75,8 +123,9 @@ export default class TwoCube extends Component {
         border: '1px solid white'
       },
       outerFace: {
-        backgroundColor: 'blue',
-        opacity: .5,
+        backgroundColor: 'rgba(0, 0, 255, 0.6)',
+        opacity: '.9',
+        border: '2px solid white',
         transition: 'border-width 0.2s',
         transitionDelay: '0.2s'
       },
@@ -101,7 +150,7 @@ export default class TwoCube extends Component {
       <section
         key={ i }
         className={css(s.face, s[`${type}Face`])}
-        style={{transform: `${rot} translateZ(${ depth / 2 }px)`}}/>
+        style={{transform: `${rot} translateZ(${ (depth / 2)+2 }px)`}}/>
     ))
   }
 
