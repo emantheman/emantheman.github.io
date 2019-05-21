@@ -78,7 +78,8 @@ class TextRotator extends Component {
       prismBorder,
       prismBoxShadow,
       backgroundColor,
-      fontColor
+      fontColor,
+      align
     } = this.props
     const {
       animation
@@ -120,6 +121,7 @@ class TextRotator extends Component {
         boxShadow: `inset 0 0 20px ${prismBoxShadow}`,
         lineHeight: '1.1em',
         paddingLeft: '7px',
+        textAlign: align,
         color: fontColor,
         backgroundColor,
         width,
@@ -184,7 +186,7 @@ class TextRotator extends Component {
   render() {
     // destructure
     const { facetext } = this.state
-    const { affixed } = this.props
+    const { affixed, after } = this.props
     const styles = this.styles()
     const {
       Prism,
@@ -201,7 +203,7 @@ class TextRotator extends Component {
         <div
           key={i}
           className={css(side, styles[`face${i + 1}`])}>
-            { ft }.
+            { ft }{ after }
         </div>
       )
     })
@@ -219,6 +221,7 @@ class TextRotator extends Component {
 
 TextRotator.defaultProps = {
   affixed: '',
+  align: 'left',
   reverseRotation: false,
   fontSize: '50px',
   fontColor: 'black',
@@ -232,6 +235,7 @@ TextRotator.defaultProps = {
   spinRate: 2.5,
   prismBorder: 'unset',
   prismBoxShadow: 'unset',
+  after: '.'
 }
 
 export default TextRotator

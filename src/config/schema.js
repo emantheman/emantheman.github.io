@@ -22,15 +22,14 @@ const branches = {
         }]
       }, {
         name: 'components/',
-        children: [
-        //   {
-        //   name: 'rotator',
-        //   link: {
-        //     type: 'view',
-        //     url: '/code/components/rotator',
-        //     newTab: true
-        //   }
-        // }, 
+        children: [{
+          name: 'rotator',
+          link: {
+            type: 'view',
+            url: '/code/components/rotator',
+            newTab: true
+          }
+        }, 
           {
           name: 'dicube',
           link: {
