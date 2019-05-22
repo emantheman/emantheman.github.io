@@ -1,6 +1,6 @@
 {
-  "name": "emantheman.github.io",
-  "homepage": "https://emantheman.github.io/",
+  "name": "portfolio",
+  "homepage": "https://emantheman.github.io/portfolio",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -18,7 +18,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -b master -d build"
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
