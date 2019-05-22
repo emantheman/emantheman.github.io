@@ -70,7 +70,8 @@ export default class Rotator extends Component {
           </label>
         </div>
         <span className="description">
-          The <strong>TextRotator</strong> component, seen here cycling through an arbitrary list of buzzword-y adjectives, is a quote shiny doohickey unquote and aspires to be nothing more. Allow your eyes, fatigued from the daily slog of bad site design, to be replenished by the TR's pleasant rotation.
+          {/* The <strong>TextRotator</strong> component, seen here cycling through an arbitrary list of buzzword-y adjectives, is a quote shiny doohickey unquote and aspires to be nothing more. Allow your eyes, fatigued from the daily slog of bad site design, to be replenished by the TR's pleasant rotation. */}
+          This shiny doohickey, sensibly named the <strong>TextRotator</strong>, will jazz up any static webpage it adorns. All you need to do is pass in a list of words and watch that baby spin!
         </span>
       </div>
     )

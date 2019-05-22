@@ -21,7 +21,7 @@ export default class Cube extends Component {
           <DiCube alternate/>
         </div>
         <span className="description">
-          The <strong>DiCube</strong> component, a proposed verb in an imagined neocorporate visual language,<br/>serves no purpose except to quench briefly your thirst for nifty little sleek designs.
+          The <strong>DiCube</strong> component, a proposed noun in an imagined neocorporate visual language,<br/>serves no purpose except to quench briefly your thirst for nifty little sleek designs.
         </span>
       </div>
     )
